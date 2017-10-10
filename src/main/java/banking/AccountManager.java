@@ -22,19 +22,30 @@ class AccountManager {
     }
 
     void addFunds(Scanner scanner) {
-        Long accountNumber = getAccountNumber(scanner);
+        Account account = null;
 
-        Account account = findAccount(accountNumber);
+        while (account == null) {
+            Long accountNumber = getAccountNumber(scanner);
+
+            account = findAccount(accountNumber);
+
+            if(account == null) {
+                outputMethods.printInvalidAccountNumber();
+            }
+        }
 
         int currencyType = getAccountCurrencyType(scanner);
 
-        //todo create getAmmountToAdd method
         Double amountToAdd = getAmountToAdd(scanner);
-
         Double convertedAmount = currencyConverter.convert(currencyType, account.getCurrencyType(), amountToAdd);
 
+        System.out.println("Current balance: " + account.getBalance());
+        Double newBalance = account.getBalance() + convertedAmount;
+        account.setBalance(newBalance);
+        System.out.println("New balance: " + newBalance);
 
-
+        entityManager.getTransaction().commit();
+        entityManager.getTransaction().begin();
     }
 
     void makeAccount(Scanner scanner) {
@@ -77,7 +88,60 @@ class AccountManager {
     }
 
     void subtractFunds(Scanner scanner) {
-        //todo
+        Account account = null;
+
+        while (account == null) {
+            Long accountNumber = getAccountNumber(scanner);
+
+            account = findAccount(accountNumber);
+
+            if(account == null) {
+                outputMethods.printInvalidAccountNumber();
+            }
+        }
+
+        int currencyType = getAccountCurrencyType(scanner);
+
+        Double amountToSubtract = getAmountToSubtract(scanner);
+        Double convertedAmount = currencyConverter.convert(currencyType, account.getCurrencyType(), amountToSubtract);
+
+        System.out.println("Current balance: " + account.getBalance());
+        Double newBalance = account.getBalance() - convertedAmount;
+        account.setBalance(newBalance);
+        System.out.println("New balance: " + newBalance);
+
+        entityManager.getTransaction().commit();
+        entityManager.getTransaction().begin();
+    }
+
+    CurrencyConverter updateCurrencyWeights(Scanner scanner) {
+        CurrencyConverter cc = currencyConverter.weightManger(scanner);
+        this.currencyConverter = cc;
+        return cc;
+    }
+
+    CurrencyConverter checkForCurrencyConverter() {
+
+        CurrencyConverter currencyConverter;
+
+//        try{
+//            currencyConverter = entityManager.find(CurrencyConverter.class, 1);
+//        }
+//        catch (IllegalArgumentException iea) {
+            currencyConverter = new CurrencyConverter();
+            currencyConverter.setDollarWeight(1d);
+            currencyConverter.setEuroWeight(1d);
+            currencyConverter.setYenWeight(1d);
+//
+//            entityManager.persist(currencyConverter);
+//            entityManager.getTransaction().commit();
+//            entityManager.getTransaction().begin();
+//        }
+//
+//        this.currencyConverter = currencyConverter;
+        return currencyConverter;
+
+
     }
 
     @SuppressWarnings("unchecked")
@@ -138,15 +202,28 @@ class AccountManager {
         try {
             outputMethods.printAmountToAddPrompt();
             String input = scanner.nextLine();
-            //todo make sanitizer method amountToAdd
             Double amountToAdd = sanitizer.accountBalance(input);
 
-            System.out.println("Amount to add: ");
+            System.out.print("Amount to add: ");
             System.out.println(amountToAdd);
 
             return amountToAdd;
+        } catch (NumberFormatException nfe) {
+            return getAmountToAdd(scanner);
         }
-        catch (NumberFormatException nfe) {
+    }
+
+    private Double getAmountToSubtract(Scanner scanner) {
+        try {
+            outputMethods.printAmountToSubtractPrompt();
+            String input = scanner.nextLine();
+            Double amountToSubtract = sanitizer.accountBalance(input);
+
+            System.out.print("Amount to subtract: ");
+            System.out.println(amountToSubtract);
+
+            return amountToSubtract;
+        } catch (NumberFormatException nfe) {
             return getAmountToAdd(scanner);
         }
     }

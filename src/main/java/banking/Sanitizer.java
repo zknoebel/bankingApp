@@ -1,21 +1,17 @@
 package banking;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-public class Sanitizer {
+class Sanitizer {
     private OutputMethods outputMethods = new OutputMethods();
 
-    public Sanitizer() {
+    Sanitizer() {
         //empty
     }
 
-    public String mainLoop(String input) {
+    String mainLoop(String input) {
         return onlyLetters(input);
     }
 
-    public long accountNumber(String input) {
+    long accountNumber(String input) {
         String returnString = onlyNumbers(input);
         try {
             return Long.parseLong(returnString);
@@ -25,7 +21,7 @@ public class Sanitizer {
         }
     }
 
-    public int currencyType(String input) {
+    int currencyType(String input) {
         String currencyType = onlyLetters(input);
 
         switch (currencyType) {
@@ -43,12 +39,21 @@ public class Sanitizer {
         }
     }
 
-    public Double accountBalance(String input) {
+    Double accountBalance(String input) {
         try {
             return new Double(input);
+        } catch (NumberFormatException nfe) {
+            outputMethods.printInvalidAccountBalance();
+            throw nfe;
+        }
+    }
+
+    Double currencyWeight(String intput) {
+        try {
+            return new Double(intput);
         }
         catch (NumberFormatException nfe) {
-            outputMethods.printInvalidAccountBalance();
+            outputMethods.printInvalidCurrencyWeight();
             throw nfe;
         }
     }
@@ -69,6 +74,7 @@ public class Sanitizer {
 
         for (int i = 0; i < input.length(); i++) {
             if (letterSet.contains(input.subSequence(i, i + 1))) {
+                //todo change to StringBuilder().append instead of for loop
                 returnString = returnString + input.subSequence(i, i + 1);
             }
         }

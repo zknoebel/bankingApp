@@ -1,25 +1,41 @@
 package banking;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.Scanner;
 
-public class CurrencyConverter {
+//todo change to static class?
+@Entity
+class CurrencyConverter {
+    @Id
+    private long singleton = 1;
     private static Double dollarWeight;
     private static Double euroWeight;
     private static Double yenWeight;
 
-    public CurrencyConverter() {
-        dollarWeight = new Double(1);
-        euroWeight = new Double(1);
-        yenWeight = new Double(1);
+    @Transient
+    private OutputMethods outputMethods = new OutputMethods();
+
+    @Transient
+    private Sanitizer sanitizer = new Sanitizer();
+
+    protected CurrencyConverter() {
     }
 
-    public CurrencyConverter(Double dollarWeight, Double euroWeight, Double yenWeight) {
+    void setDollarWeight(Double dollarWeight) {
         this.dollarWeight = dollarWeight;
+    }
+
+    void setEuroWeight(Double euroWeight) {
         this.euroWeight = euroWeight;
+    }
+
+    void setYenWeight(Double yenWeight) {
         this.yenWeight = yenWeight;
     }
 
-    public double convert(int from, int to, Double amount) {
+    double convert(int from, int to, Double amount) {
 
         Double convertedAmount;
 
@@ -101,9 +117,48 @@ public class CurrencyConverter {
         return yen / yenWeight * euroWeight;
     }
 
-    public void weightManger(Scanner scanner) {
-        //todo
+    CurrencyConverter weightManger(Scanner scanner) {
+        dollarWeight = -1d;
+        euroWeight = -1d;
+        yenWeight = -1d;
 
+        while(dollarWeight < 0) {
+            outputMethods.printDollarWeightPrompt();
+            String input = scanner.nextLine();
+            dollarWeight = sanitizer.currencyWeight(input);
+            if(dollarWeight < 0) {
+                outputMethods.printInvalidCurrencyWeight();
+            }
+        }
+
+        while(euroWeight < 0) {
+            outputMethods.printEuroWeightPrompt();
+            String input = scanner.nextLine();
+            euroWeight = sanitizer.currencyWeight(input);
+            if(euroWeight < 0) {
+                outputMethods.printInvalidCurrencyWeight();
+            }
+        }
+
+        while(yenWeight < 0) {
+            outputMethods.printYenWeightPrompt();
+            String input = scanner.nextLine();
+            yenWeight = sanitizer.currencyWeight(input);
+            if(yenWeight < 0) {
+                outputMethods.printInvalidCurrencyWeight();
+            }
+        }
+
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return  "\n{"
+                + "\n\tDollar weight: " + dollarWeight
+                + "\n\tEuro weight: " + euroWeight
+                + "\n\tYen weight: " + yenWeight
+                +"\n}\n";
     }
 
 }

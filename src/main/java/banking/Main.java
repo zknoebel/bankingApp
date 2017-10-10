@@ -9,9 +9,10 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         AccountManager accountManager = new AccountManager();
-        CurrencyConverter currencyConverter = new CurrencyConverter();
         OutputMethods outputMethods = new OutputMethods();
         Sanitizer sanitizer = new Sanitizer();
+
+        CurrencyConverter currencyConverter = accountManager.checkForCurrencyConverter();
 
         outputMethods.startScreen();
 
@@ -30,7 +31,12 @@ public class Main {
                     accountManager.manageAccount(scanner);
                     break;
 
+                case "CONVERSIONS":
+                    System.out.println(currencyConverter.toString());
+                    break;
+
                 case "CREATE":
+                    //todo error when trying to reuse primary key
                     accountManager.makeAccount(scanner);
                     break;
 
@@ -48,6 +54,7 @@ public class Main {
                     break;
 
                 case "MAINT":
+                    //todo save currency ratio in database?
                     currencyConverter.weightManger(scanner);
                     break;
 
