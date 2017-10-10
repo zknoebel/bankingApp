@@ -49,16 +49,25 @@ class AccountManager {
     }
 
     void makeAccount(Scanner scanner) {
+
         long accountNumber = getAccountNumber(scanner);
-        Account account = new Account(accountNumber);
+        Account testAccount = findAccount(accountNumber);
 
-        int currencyType = getAccountCurrencyType(scanner);
-        account.setCurrencyType(currencyType);
+        if(testAccount == null) {
+            Account account = new Account(accountNumber);
 
-        Double balance = getAccountBalance(scanner);
-        account.setBalance(balance);
+            int currencyType = getAccountCurrencyType(scanner);
+            account.setCurrencyType(currencyType);
 
-        saveAccount(account);
+            Double balance = getAccountBalance(scanner);
+            account.setBalance(balance);
+
+            saveAccount(account);
+        }
+        else {
+            outputMethods.printAccountNumberInUse();
+        }
+
     }
 
     void deleteAccount(Scanner scanner) {

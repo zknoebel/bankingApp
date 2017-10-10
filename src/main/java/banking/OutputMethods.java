@@ -119,6 +119,11 @@ class OutputMethods {
         printWeightPrompt();
     }
 
+    void printAccountNumberInUse() {
+        System.out.println("The account number you entered is already in use.");
+        System.out.println("Please choose another and try again.");
+    }
+
     private void printWeightPrompt() {
         System.out.println("This value needs to be a number greater than zero.");
         System.out.println("Enter value here");

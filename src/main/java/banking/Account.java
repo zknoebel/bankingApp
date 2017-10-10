@@ -4,6 +4,8 @@ package banking;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.text.DecimalFormat;
 
 @Entity
 @Table()
@@ -11,7 +13,7 @@ public class Account {
     @Id
     private long accountNumber;
 
-    private Double balance = new Double(0);
+    private Double balance = 0d;
 
     //dollars = 0
     //euros = 1
@@ -20,19 +22,22 @@ public class Account {
 
     private String username;
 
+    @Transient
+    private DecimalFormat df = new DecimalFormat("#.00");
+
     public Account() {
         //empty
     }
 
-    public Account(long accountNumber) {
+    Account(long accountNumber) {
         this.accountNumber = accountNumber;
     }
 
-    public long getAccountNumber() {
+    private long getAccountNumber() {
         return accountNumber;
     }
 
-    public String stringCurrencyType() {
+    private String stringCurrencyType() {
         switch (currencyType) {
             case 0:
                 return "DOLLAR";
@@ -48,20 +53,19 @@ public class Account {
         }
     }
 
-    public int getCurrencyType() {
+    int getCurrencyType() {
         return currencyType;
     }
 
-    public void setCurrencyType(int i) {
+    void setCurrencyType(int i) {
         currencyType = i;
     }
 
-    public Double getBalance() {
-        //todo always use 2 decimal places
+    Double getBalance() {
         return balance;
     }
 
-    public String getUsername() {
+    private String getUsername() {
         return username;
     }
 
@@ -69,7 +73,7 @@ public class Account {
         this.username = username;
     }
 
-    public void setBalance(Double balance) {
+    void setBalance(Double balance) {
         this.balance = balance;
     }
 
@@ -86,7 +90,7 @@ public class Account {
         String s = "\n{"
                 + "\n\tUsername: " + getUsername()
                 + "\n\tAccount Number: " + getAccountNumber()
-                + "\n\tAccount Balance: " + getBalance()
+                + "\n\tAccount Balance: " + df.format(getBalance())
                 + "\n\tAccount Currency Type: " + stringCurrencyType()
                 + "\n}\n";
        return s;

@@ -36,7 +36,6 @@ public class Main {
                     break;
 
                 case "CREATE":
-                    //todo error when trying to reuse primary key
                     accountManager.makeAccount(scanner);
                     break;
 
