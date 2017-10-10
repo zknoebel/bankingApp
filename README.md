@@ -1,8 +1,8 @@
-#Banking App
+# Banking App
 
-###Programming assignment 1
+### Programming assignment 1
 
-#####ICS355 University of Hawaii at Manoa
+##### ICS355 University of Hawaii at Manoa
 
     Task: Produce a financial program that tracks the balances of multiple users and supports multiple currencies. This will be done in stages.
     Detail: Produce a command-line driven financial calculator that supports multiple currencies. The program should be capable of adding and subtracting values from a user’s account. The program should handle conversion of the currencies prior to the arithmetic operation. The program should include commands:
@@ -25,7 +25,7 @@ Start the program with ./bankingApp
 
 Once the program is started, different options can be selected.
 
-#####Select an option by typing the word and then pressing enter. 
+##### Select an option by typing the word and then pressing enter. 
 
 Each option is a single word consisting only of letters from the english alphabet and is not case sensitive. 
 
