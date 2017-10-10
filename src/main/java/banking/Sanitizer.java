@@ -7,7 +7,7 @@ class Sanitizer {
         //empty
     }
 
-    String mainLoop(String input) {
+    String lettersOnlyString(String input) {
         return onlyLetters(input);
     }
 

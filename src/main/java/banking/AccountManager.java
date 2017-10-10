@@ -32,7 +32,7 @@ class AccountManager {
         add(currencyType, account, amountToAdd);
     }
 
-    void add(int currencyType, Account account, Double amountToAdd) {
+    private void add(int currencyType, Account account, Double amountToAdd) {
         Double convertedAmount = currencyConverter.convert(currencyType, account.getCurrencyType(), amountToAdd);
 
         System.out.println("Current balance: " + account.getBalance());
@@ -58,6 +58,9 @@ class AccountManager {
 
             Double balance = getAccountBalance(scanner);
             account.setBalance(balance);
+
+            String username = getUsername(scanner);
+            account.setUsername(username);
 
             saveAccount(account);
         } else {
@@ -98,11 +101,8 @@ class AccountManager {
         int currencyType = getAccountCurrencyType(scanner);
         //get amount
         Double amount = getAmountToTransfer(scanner);
-        //todo transfer
         subtract(currencyType, accountToTransferFrom, amount);
         add(currencyType, accountToTransferTo, amount);
-
-        //todo save
     }
 
     private Account getAccountToTransferFrom(Scanner scanner) {
@@ -133,7 +133,6 @@ class AccountManager {
 
     private Account validateAccount(Account account, Scanner scanner) {
 
-
         while (account == null) {
             Long accountNumber = getAccountNumber(scanner);
 
@@ -157,7 +156,7 @@ class AccountManager {
         subtract(currencyType, account, amountToSubtract);
     }
 
-    void subtract(int currencyType, Account account, Double amountToSubtract) {
+    private void subtract(int currencyType, Account account, Double amountToSubtract) {
         Double convertedAmount = currencyConverter.convert(currencyType, account.getCurrencyType(), amountToSubtract);
 
         System.out.println("Current balance: " + account.getBalance());
@@ -173,29 +172,30 @@ class AccountManager {
     CurrencyConverter updateCurrencyWeights(Scanner scanner) {
         CurrencyConverter cc = currencyConverter.weightManger(scanner);
         this.currencyConverter = cc;
+        entityManager.getTransaction().commit();
+        entityManager.getTransaction().begin();
         return cc;
     }
 
     CurrencyConverter checkForCurrencyConverter() {
 
-        //todo
         CurrencyConverter currencyConverter;
 
-//        try{
-//            currencyConverter = entityManager.find(CurrencyConverter.class, 1);
-//        }
-//        catch (IllegalArgumentException iea) {
+        try{
+            currencyConverter = entityManager.find(CurrencyConverter.class, 1);
+        }
+        catch (IllegalArgumentException iea) {
         currencyConverter = new CurrencyConverter();
         currencyConverter.setDollarWeight(1d);
         currencyConverter.setEuroWeight(1d);
         currencyConverter.setYenWeight(1d);
-//
-//            entityManager.persist(currencyConverter);
-//            entityManager.getTransaction().commit();
-//            entityManager.getTransaction().begin();
-//        }
-//
-//        this.currencyConverter = currencyConverter;
+
+            entityManager.persist(currencyConverter);
+            entityManager.getTransaction().commit();
+            entityManager.getTransaction().begin();
+        }
+
+        this.currencyConverter = currencyConverter;
         return currencyConverter;
 
 
@@ -237,6 +237,23 @@ class AccountManager {
             return getAccountNumber(scanner);
         }
 
+    }
+
+    private String getUsername(Scanner scanner) {
+        String username = "";
+
+        while (username.equals("")) {
+            outputMethods.usernamePrompt();
+            String input = scanner.nextLine();
+
+            username = sanitizer.lettersOnlyString(input.toUpperCase());
+
+            if(username.equals("")) {
+                outputMethods.invalidUsername();
+            }
+        }
+
+        return username;
     }
 
     private Double getAccountBalance(Scanner scanner) {

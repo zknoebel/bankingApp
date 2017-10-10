@@ -150,4 +150,15 @@ class OutputMethods {
         System.out.println("Please enter the amount of money you wish to transfer.");
         System.out.println("Amount: ");
     }
+
+    void usernamePrompt() {
+        System.out.println("Please enter the username for this account.");
+        System.out.println("Username: ");
+    }
+
+    void invalidUsername() {
+        System.out.println("The username you entered is invalid.");
+        System.out.println("Usernames may only contain letters from the English alphabet.");
+        System.out.println("Usernames are not case sensitive.");
+    }
 }

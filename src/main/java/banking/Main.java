@@ -20,7 +20,7 @@ public class Main {
             System.out.print("\nEnter an option: ");
 
             String input = scanner.nextLine();
-            String option = sanitizer.mainLoop(input.toUpperCase());
+            String option = sanitizer.lettersOnlyString(input.toUpperCase());
 
             switch (option) {
                 case "ADD":
@@ -53,8 +53,7 @@ public class Main {
                     break;
 
                 case "MAINT":
-                    //todo save currency ratio in database?
-                    currencyConverter.weightManger(scanner);
+                    currencyConverter = accountManager.updateCurrencyWeights(scanner);
                     break;
 
                 case "LIST":

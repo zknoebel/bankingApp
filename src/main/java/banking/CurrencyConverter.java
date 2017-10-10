@@ -1,18 +1,23 @@
 package banking;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.Scanner;
 
 //todo change to static class?
 @Entity
+@Table()
 class CurrencyConverter {
     @Id
     private long singleton = 1;
-    private static Double dollarWeight;
-    private static Double euroWeight;
-    private static Double yenWeight;
+
+    @Column
+    private Double dollarWeight;
+
+    @Column
+    private Double euroWeight;
+
+    @Column
+    private Double yenWeight;
 
     @Transient
     private OutputMethods outputMethods = new OutputMethods();
@@ -122,29 +127,29 @@ class CurrencyConverter {
         euroWeight = -1d;
         yenWeight = -1d;
 
-        while(dollarWeight < 0) {
+        while (dollarWeight < 0) {
             outputMethods.dollarWeightPrompt();
             String input = scanner.nextLine();
             dollarWeight = sanitizer.currencyWeight(input);
-            if(dollarWeight < 0) {
+            if (dollarWeight < 0) {
                 outputMethods.invalidCurrencyWeight();
             }
         }
 
-        while(euroWeight < 0) {
+        while (euroWeight < 0) {
             outputMethods.euroWeightPrompt();
             String input = scanner.nextLine();
             euroWeight = sanitizer.currencyWeight(input);
-            if(euroWeight < 0) {
+            if (euroWeight < 0) {
                 outputMethods.invalidCurrencyWeight();
             }
         }
 
-        while(yenWeight < 0) {
+        while (yenWeight < 0) {
             outputMethods.yenWeightPrompt();
             String input = scanner.nextLine();
             yenWeight = sanitizer.currencyWeight(input);
-            if(yenWeight < 0) {
+            if (yenWeight < 0) {
                 outputMethods.invalidCurrencyWeight();
             }
         }
@@ -154,11 +159,11 @@ class CurrencyConverter {
 
     @Override
     public String toString() {
-        return  "\n{"
+        return "\n{"
                 + "\n\tDollar weight: " + dollarWeight
                 + "\n\tEuro weight: " + euroWeight
                 + "\n\tYen weight: " + yenWeight
-                +"\n}\n";
+                + "\n}\n";
     }
 
 }
