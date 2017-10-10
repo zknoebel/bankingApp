@@ -16,7 +16,7 @@ class Sanitizer {
         try {
             return Long.parseLong(returnString);
         } catch (NumberFormatException nfe) {
-            outputMethods.printInvalidAccountNumber();
+            outputMethods.invalidAccountNumber();
             throw nfe;
         }
     }
@@ -43,7 +43,7 @@ class Sanitizer {
         try {
             return new Double(input);
         } catch (NumberFormatException nfe) {
-            outputMethods.printInvalidAccountBalance();
+            outputMethods.invalidAccountBalance();
             throw nfe;
         }
     }
@@ -53,7 +53,7 @@ class Sanitizer {
             return new Double(intput);
         }
         catch (NumberFormatException nfe) {
-            outputMethods.printInvalidCurrencyWeight();
+            outputMethods.invalidCurrencyWeight();
             throw nfe;
         }
     }

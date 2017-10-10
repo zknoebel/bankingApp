@@ -33,7 +33,7 @@ public class Account {
         this.accountNumber = accountNumber;
     }
 
-    private long getAccountNumber() {
+    long getAccountNumber() {
         return accountNumber;
     }
 

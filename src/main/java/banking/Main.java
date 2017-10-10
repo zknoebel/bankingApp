@@ -71,7 +71,7 @@ public class Main {
                     break;
 
                 default:
-                    outputMethods.printInvalidMenuInput();
+                    outputMethods.invalidMenuInput();
             }
 
         }

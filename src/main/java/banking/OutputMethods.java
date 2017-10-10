@@ -6,17 +6,16 @@ class OutputMethods {
     }
 
     void startScreen() {
-        printTitleArt();
+        titleArt();
         System.out.println("Enter an option to start: ");
     }
 
     void helpScreen() {
-        printOptionsArt();
-        printOptions();
+        optionsArt();
+        options();
     }
 
-    private void printTitleArt() {
-
+    private void titleArt() {
         System.out.print(
                 " ______   _______  _        _       _________ _        _______        _______  _______  _______\n"
                         + "(  ___ \\ (  ___  )( (    /|| \\    /\\\\__   __/( (    /|(  ____ \\      (  ___  )(  ____ )(  ____ )\n"
@@ -29,7 +28,7 @@ class OutputMethods {
         );
     }
 
-    private void printOptionsArt() {
+    private void optionsArt() {
         System.out.print(
                 " _______  _______ __________________ _______  _        _______ \n" +
                         "(  ___  )(  ____ )\\__   __/\\__   __/(  ___  )( (    /|(  ____ \\\n" +
@@ -42,7 +41,7 @@ class OutputMethods {
         );
     }
 
-    private void printOptions() {
+    private void options() {
         System.out.println("ADD - Add money to an account.");
         System.out.println("ACCOUNT - Modify account information.");
         System.out.println("CONVERSIONS - show current currency conversion ratios");
@@ -56,80 +55,80 @@ class OutputMethods {
         System.out.println("WITHDRAW - Remove money from an account.");
     }
 
-    void printInvalidMenuInput() {
+    void invalidMenuInput() {
         System.out.println("Invalid input...");
         System.out.println("Enter one of the options and then press enter.");
         System.out.println("Input should be one word and only contain letters from the English alphabet.");
         System.out.println("For a list of options type HELP and press enter.");
     }
 
-    void printInvalidAccountNumber() {
+    void invalidAccountNumber() {
         System.out.println("Invalid account number...");
         System.out.println("Enter an account number and press enter.");
         System.out.println("Input should be one number and only contain digits from the Arabic numeral system.");
     }
 
-    void printInvalidAccountBalance() {
+    void invalidAccountBalance() {
         System.out.println("Invalid account balance...");
         System.out.println("Enter an account balance and press enter.");
         System.out.println("Input should be one number.");
         System.out.println("The balance should only contain digits from the Arabic numeral system and a period as a decimal separator");
     }
 
-    void printInvalidCurrencyWeight() {
+    void invalidCurrencyWeight() {
         System.out.println("Invalid Currency Weight...");
         System.out.println("Enter a Currency Weight and press enter.");
         System.out.println("Input should be one number and should be greater than zero");
         System.out.println("The Currency Weight should only contain digits from the Arabic numeral system and a period as a decimal separator");
     }
 
-    void printNoAccount(Long accountNumber) {
+    void noExistingAccount(Long accountNumber) {
         System.out.println("There is no existing account with the account number: " + accountNumber);
         System.out.println("Use the LIST command to print a list of existing accounts.");
     }
 
-    void printAccountNumberPrompt() {
+    void accountNumberPrompt() {
         System.out.print("\nPlease enter an account number: ");
     }
 
-    void printAccountBalancePrompt() {
+    void accountBalancePrompt() {
         System.out.print("\nPlease enter the balance for this account: ");
     }
 
-    void printAmountToAddPrompt() {
+    void amountToAddPrompt() {
         System.out.println("\nPlease enter an amount to add: ");
     }
 
-    void printAmountToSubtractPrompt() {
+    void amountToWithdrawPrompt() {
         System.out.println("\nPlease enter an amount to withdraw: ");
     }
 
-    void printDollarWeightPrompt() {
+    void dollarWeightPrompt() {
         System.out.println("Enter the ratio value of how much a Dollar will be worth.");
-        printWeightPrompt();
+        weightPrompt();
     }
 
-    void printEuroWeightPrompt() {
+    void euroWeightPrompt() {
         System.out.println("Enter the ratio value of how much a Euro will be worth.");
-        printWeightPrompt();
+        weightPrompt();
     }
 
-    void printYenWeightPrompt() {
+    void yenWeightPrompt() {
         System.out.println("Enter the ratio value of how much a Yen will be worth.");
-        printWeightPrompt();
+        weightPrompt();
     }
 
-    void printAccountNumberInUse() {
+    void accountNumberInUse() {
         System.out.println("The account number you entered is already in use.");
         System.out.println("Please choose another and try again.");
     }
 
-    private void printWeightPrompt() {
+    private void weightPrompt() {
         System.out.println("This value needs to be a number greater than zero.");
         System.out.println("Enter value here");
     }
 
-    void printCurrencyTypePrompt() {
+    void currencyTypePrompt() {
         System.out.println("Supported currencies...");
         System.out.println("\tDOLLAR");
         System.out.println("\tEURO");
@@ -137,4 +136,18 @@ class OutputMethods {
         System.out.print("\nPlease enter a currency type: ");
     }
 
+    void accountToTransferFromPrompt() {
+        System.out.println("Please enter the account number for the account you with to transfer money from.");
+        System.out.println("Account number: ");
+    }
+
+    void accountToTransferToPrompt() {
+        System.out.println("Please enter the account number for the account you with to transfer money to.");
+        System.out.println("Account number: ");
+    }
+
+    void amountToTransferPrompt() {
+        System.out.println("Please enter the amount of money you wish to transfer.");
+        System.out.println("Amount: ");
+    }
 }

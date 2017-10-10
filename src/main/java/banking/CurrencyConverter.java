@@ -123,29 +123,29 @@ class CurrencyConverter {
         yenWeight = -1d;
 
         while(dollarWeight < 0) {
-            outputMethods.printDollarWeightPrompt();
+            outputMethods.dollarWeightPrompt();
             String input = scanner.nextLine();
             dollarWeight = sanitizer.currencyWeight(input);
             if(dollarWeight < 0) {
-                outputMethods.printInvalidCurrencyWeight();
+                outputMethods.invalidCurrencyWeight();
             }
         }
 
         while(euroWeight < 0) {
-            outputMethods.printEuroWeightPrompt();
+            outputMethods.euroWeightPrompt();
             String input = scanner.nextLine();
             euroWeight = sanitizer.currencyWeight(input);
             if(euroWeight < 0) {
-                outputMethods.printInvalidCurrencyWeight();
+                outputMethods.invalidCurrencyWeight();
             }
         }
 
         while(yenWeight < 0) {
-            outputMethods.printYenWeightPrompt();
+            outputMethods.yenWeightPrompt();
             String input = scanner.nextLine();
             yenWeight = sanitizer.currencyWeight(input);
             if(yenWeight < 0) {
-                outputMethods.printInvalidCurrencyWeight();
+                outputMethods.invalidCurrencyWeight();
             }
         }
 
