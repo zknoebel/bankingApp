@@ -88,8 +88,38 @@ class AccountManager {
     }
 
     void manageAccount(Scanner scanner) {
-        System.out.println("Not yet implemented");
-        //todo
+        outputMethods.accountNumberPrompt();
+
+        Account account = validateAccount(null, scanner);
+
+        outputMethods.whatAttribute();
+
+        changeAttribute(account, scanner);
+    }
+
+    private void changeAttribute(Account account, Scanner scanner) {
+        String input = scanner.nextLine();
+
+        String attribute = sanitizer.lettersOnlyString(input.toUpperCase());
+
+        switch (attribute) {
+            case "USERNAME":
+                updateUsername(account, scanner);
+                break;
+
+            default:
+                break;
+        }
+
+    }
+
+    private void updateUsername(Account account, Scanner scanner) {
+        String username = getUsername(scanner);
+
+        account.setUsername(username);
+
+        entityManager.getTransaction().commit();
+        entityManager.getTransaction().begin();
     }
 
     void transferFunds(Scanner scanner) {
@@ -181,14 +211,13 @@ class AccountManager {
 
         CurrencyConverter currencyConverter;
 
-        try{
+        try {
             currencyConverter = entityManager.find(CurrencyConverter.class, 1);
-        }
-        catch (IllegalArgumentException iea) {
-        currencyConverter = new CurrencyConverter();
-        currencyConverter.setDollarWeight(1d);
-        currencyConverter.setEuroWeight(1d);
-        currencyConverter.setYenWeight(1d);
+        } catch (IllegalArgumentException iea) {
+            currencyConverter = new CurrencyConverter();
+            currencyConverter.setDollarWeight(1d);
+            currencyConverter.setEuroWeight(1d);
+            currencyConverter.setYenWeight(1d);
 
             entityManager.persist(currencyConverter);
             entityManager.getTransaction().commit();
@@ -248,7 +277,7 @@ class AccountManager {
 
             username = sanitizer.lettersOnlyString(input.toUpperCase());
 
-            if(username.equals("")) {
+            if (username.equals("")) {
                 outputMethods.invalidUsername();
             }
         }

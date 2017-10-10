@@ -161,4 +161,10 @@ class OutputMethods {
         System.out.println("Usernames may only contain letters from the English alphabet.");
         System.out.println("Usernames are not case sensitive.");
     }
+
+    void whatAttribute() {
+        System.out.println("What attribute would you like to change?");
+        System.out.println("Options are:");
+        System.out.println("\tUSERNAME");
+    }
 }
