@@ -1,3 +1,8 @@
+#Banking App
+
+###Programming assignment 1
+
+#####ICS355 University of Hawaii at Manoa
 
     Task: Produce a financial program that tracks the balances of multiple users and supports multiple currencies. This will be done in stages.
     Detail: Produce a command-line driven financial calculator that supports multiple currencies. The program should be capable of adding and subtracting values from a user’s account. The program should handle conversion of the currencies prior to the arithmetic operation. The program should include commands:
@@ -12,4 +17,29 @@
         Program
         1 page summary including how to install any dependencies, how to run the application, and example runs.
 
-Due: Oct 15th @ 11:55pm
+    Due: Oct 15th @ 11:55pm
+    
+The Banking App is an application that allows a user to create, modify and store bank accounts. It supports three forms of currency, US Dollars, Euros and Japanese Yen.
+
+Start the program with ./bankingApp
+
+Once the program is started, different options can be selected.
+
+#####Select an option by typing the word and then pressing enter. 
+
+Each option is a single word consisting only of letters from the english alphabet and is not case sensitive. 
+
+
+        ADD - Add money to an account.
+        ACCOUNT - Modify account information.
+        CREATE - Create a new bank account.
+        DELETE - Remove account from database. (CANNOT BE UNDONE)
+        EXIT - Close program.
+        HELP - Display options.
+        MAINT - Allow currency conversion data to be entered (or read in).
+        LIST - Print a list of all current accounts.
+        TRANSFER - Move funds from one account to another.
+        WITHDRAW - Remove money from an account.
+        
+        
+The first time the program is started, there will be no accounts in the database. Use the CREATE option to add new accounts. The currency conversion ratios start at 1:1:1 and they can be changed with the MAINT option.

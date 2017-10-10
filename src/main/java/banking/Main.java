@@ -52,6 +52,7 @@ public class Main {
                     break;
 
                 case "LIST":
+                    //todo error when no accounts have been saved
                     accountManager.showAllAccounts();
                     break;
 

@@ -134,6 +134,23 @@ class AccountManager {
 
     }
 
+    private Double getAmountToAdd(Scanner scanner) {
+        try {
+            outputMethods.printAmountToAddPrompt();
+            String input = scanner.nextLine();
+            //todo make sanitizer method amountToAdd
+            Double amountToAdd = sanitizer.accountBalance(input);
+
+            System.out.println("Amount to add: ");
+            System.out.println(amountToAdd);
+
+            return amountToAdd;
+        }
+        catch (NumberFormatException nfe) {
+            return getAmountToAdd(scanner);
+        }
+    }
+
     private int getAccountCurrencyType(Scanner scanner) {
         try {
             outputMethods.printCurrencyTypePrompt();

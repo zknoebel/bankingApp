@@ -101,7 +101,7 @@ public class CurrencyConverter {
         return yen / yenWeight * euroWeight;
     }
 
-    private void weightManger(Scanner scanner) {
+    public void weightManger(Scanner scanner) {
         //todo
 
     }

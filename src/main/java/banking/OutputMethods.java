@@ -87,6 +87,10 @@ public class OutputMethods {
         System.out.print("\nPlease enter the balance for this account: ");
     }
 
+    public void printAmountToAddPrompt() {
+        System.out.println("\nPlease enter an amout to add: ");
+    }
+
     public void printCurrencyTypePrompt() {
         System.out.println("Supported currencies...");
         System.out.println("\tDOLLAR");
