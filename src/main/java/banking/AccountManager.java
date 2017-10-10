@@ -68,6 +68,7 @@ class AccountManager {
         //todo
     }
 
+    @SuppressWarnings("unchecked")
     void showAllAccounts() {
 
         Query ql = entityManager.createQuery("SELECT a FROM Account a");
