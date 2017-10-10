@@ -45,6 +45,7 @@ public class OutputMethods {
         System.out.println("ADD - Add money to an account.");
         System.out.println("ACCOUNT - Modify account information.");
         System.out.println("CREATE - Create a new bank account.");
+        System.out.println("DELETE - Remove account from database. (CANNOT BE UNDONE)");
         System.out.println("EXIT - Close program.");
         System.out.println("HELP - Display options.");
         System.out.println("MAINT - Allow currency conversion data to be entered (or read in).");
@@ -71,6 +72,11 @@ public class OutputMethods {
         System.out.println("Enter an account balance and press enter.");
         System.out.println("Input should be one number.");
         System.out.println("The balance should only contain digits from the Arabic numeral system and a period as a decimal separator");
+    }
+
+    public void printNoAccount(Long accountNumber) {
+        System.out.println("There is no existing account with the account number: " + accountNumber);
+        System.out.println("Use the LIST command to print a list of existing accounts.");
     }
 
     public void printAccountNumberPrompt() {

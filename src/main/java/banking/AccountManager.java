@@ -7,25 +7,24 @@ import javax.persistence.Query;
 import java.util.List;
 import java.util.Scanner;
 
-public class AccountManager {
-    EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("$objectdb/db/bankingApp.odb");
-    EntityManager entityManager;
+class AccountManager {
+    private EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("$objectdb/db/bankingApp.odb");
+    private EntityManager entityManager;
 
+    private Sanitizer sanitizer = new Sanitizer();
+    private OutputMethods outputMethods = new OutputMethods();
 
-    Sanitizer sanitizer = new Sanitizer();
-    OutputMethods outputMethods = new OutputMethods();
-
-    public AccountManager() {
+    AccountManager() {
         entityManager = emfactory.createEntityManager();
         entityManager.getTransaction().begin();
 
     }
 
-    public void addFunds(Scanner scanner) {
+    void addFunds(Scanner scanner) {
         //todo
     }
 
-    public void makeAccount(Scanner scanner) {
+    void makeAccount(Scanner scanner) {
         long accountNumber = getAccountNumber(scanner);
         Account account = new Account(accountNumber);
 
@@ -38,24 +37,38 @@ public class AccountManager {
         saveAccount(account);
     }
 
-    public void closeEntityManger(){
+    void deleteAccount(Scanner scanner) {
+        long accountNumber = getAccountNumber(scanner);
+
+        try {
+            Account account = entityManager.find(Account.class, accountNumber);
+            entityManager.remove(account);
+            entityManager.getTransaction().commit();
+            entityManager.getTransaction().begin();
+        }
+        catch (IllegalArgumentException iae) {
+            outputMethods.printNoAccount(accountNumber);
+        }
+    }
+
+    void closeEntityManger(){
         entityManager.close();
         emfactory.close();
     }
 
-    public void manageAccount(Scanner scanner) {
+    void manageAccount(Scanner scanner) {
         //todo
     }
 
-    public void transferFunds(Scanner scanner) {
+    void transferFunds(Scanner scanner) {
         //todo
     }
 
-    public void subtractFunds(Scanner scanner) {
+    void subtractFunds(Scanner scanner) {
         //todo
     }
 
-    public void showAllAccounts() {
+    void showAllAccounts() {
 
         Query ql = entityManager.createQuery("SELECT a FROM Account a");
         List<Account> accounts = ql.getResultList();

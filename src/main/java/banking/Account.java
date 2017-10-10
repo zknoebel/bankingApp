@@ -56,6 +56,14 @@ public class Account {
         return balance;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public void setBalance(Double balance) {
         this.balance = balance;
     }
@@ -71,9 +79,10 @@ public class Account {
     @Override
     public String toString() {
         String s = "\n{"
-                + "\n\tAccount Number: " + accountNumber
-                + "\n\tAccount Balance: " + balance
-                + "\n\tAccount Currency Type: " + currencyType
+                + "\n\tUsername: " + getUsername()
+                + "\n\tAccount Number: " + getAccountNumber()
+                + "\n\tAccount Balance: " + getBalance()
+                + "\n\tAccount Currency Type: " + getCurrencyType()
                 + "\n}\n";
        return s;
     }

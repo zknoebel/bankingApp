@@ -34,6 +34,10 @@ public class Main {
                     accountManager.makeAccount(scanner);
                     break;
 
+                case "DELETE":
+                    accountManager.deleteAccount(scanner);
+                    break;
+
                 case "EXIT":
                     accountManager.closeEntityManger();
                     end = true;
