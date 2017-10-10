@@ -13,6 +13,7 @@ class AccountManager {
 
     private Sanitizer sanitizer = new Sanitizer();
     private OutputMethods outputMethods = new OutputMethods();
+    private CurrencyConverter currencyConverter = new CurrencyConverter();
 
     AccountManager() {
         entityManager = emfactory.createEntityManager();
@@ -21,7 +22,19 @@ class AccountManager {
     }
 
     void addFunds(Scanner scanner) {
-        //todo
+        Long accountNumber = getAccountNumber(scanner);
+
+        Account account = findAccount(accountNumber);
+
+        int currencyType = getAccountCurrencyType(scanner);
+
+        //todo create getAmmountToAdd method
+        Double amountToAdd = getAmountToAdd(scanner);
+
+        Double convertedAmount = currencyConverter.convert(currencyType, account.getCurrencyType(), amountToAdd);
+
+
+
     }
 
     void makeAccount(Scanner scanner) {
@@ -41,17 +54,16 @@ class AccountManager {
         long accountNumber = getAccountNumber(scanner);
 
         try {
-            Account account = entityManager.find(Account.class, accountNumber);
+            Account account = findAccount(accountNumber);
             entityManager.remove(account);
             entityManager.getTransaction().commit();
             entityManager.getTransaction().begin();
-        }
-        catch (IllegalArgumentException iae) {
+        } catch (IllegalArgumentException iae) {
             outputMethods.printNoAccount(accountNumber);
         }
     }
 
-    void closeEntityManger(){
+    void closeEntityManger() {
         entityManager.close();
         emfactory.close();
     }
@@ -73,22 +85,19 @@ class AccountManager {
 
         Query ql = entityManager.createQuery("SELECT a FROM Account a");
         List<Account> accounts = ql.getResultList();
-        for(Account a : accounts) {
+        for (Account a : accounts) {
             System.out.print(a);
         }
     }
 
     private Account findAccount(long id) {
-        //todo
-        return null;
+        return entityManager.find(Account.class, id);
     }
 
     private void saveAccount(Account account) {
         entityManager.persist(account);
         entityManager.getTransaction().commit();
         entityManager.getTransaction().begin();
-
-        //todo
     }
 
     private long getAccountNumber(Scanner scanner) {
@@ -110,7 +119,7 @@ class AccountManager {
     }
 
     private Double getAccountBalance(Scanner scanner) {
-        try{
+        try {
             outputMethods.printAccountBalancePrompt();
             String input = scanner.nextLine();
             Double accountBalance = sanitizer.accountBalance(input);
@@ -119,8 +128,7 @@ class AccountManager {
             System.out.println(accountBalance);
 
             return accountBalance;
-        }
-        catch (NumberFormatException nfe) {
+        } catch (NumberFormatException nfe) {
             return getAccountBalance(scanner);
         }
 

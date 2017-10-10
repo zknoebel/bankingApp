@@ -19,31 +19,89 @@ public class CurrencyConverter {
         this.yenWeight = yenWeight;
     }
 
-    public double convertDollarToEuro(Double dollars) {
-        return dollars/dollarWeight*euroWeight;
+    public double convert(int from, int to, Double amount) {
+
+        Double convertedAmount;
+
+        switch (from) {
+            case 0:
+                switch (to) {
+                    case 1:
+                        convertedAmount = convertDollarToEuro(amount);
+                        break;
+
+                    case 2:
+                        convertedAmount = convertDollarToYen(amount);
+                        break;
+
+                    default:
+                        convertedAmount = amount;
+                }
+                break;
+
+            case 1:
+                switch (to) {
+                    case 0:
+                        convertedAmount = convertEuroToDollar(amount);
+                        break;
+
+                    case 2:
+                        convertedAmount = convertEuroToYen(amount);
+                        break;
+
+                    default:
+                        convertedAmount = amount;
+                }
+                break;
+
+            case 2:
+                switch (to) {
+                    case 0:
+                        convertedAmount = convertYenToDollar(amount);
+                        break;
+
+                    case 1:
+                        convertedAmount = convertYenToEuro(amount);
+                        break;
+
+                    default:
+                        convertedAmount = amount;
+                }
+                break;
+
+            default:
+                convertedAmount = amount;
+                break;
+        }
+
+        return convertedAmount;
     }
 
-    public double convertDollarToYen(Double dollars) {
-        return dollars/dollarWeight*yenWeight;
+    private double convertDollarToEuro(Double dollars) {
+        return dollars / dollarWeight * euroWeight;
     }
 
-    public double convertEuroToDollar(Double euros) {
-        return euros/euroWeight*dollarWeight;
+    private double convertDollarToYen(Double dollars) {
+        return dollars / dollarWeight * yenWeight;
     }
 
-    public double convertEuroToYen(Double euros) {
-        return euros/euroWeight*yenWeight;
+    private double convertEuroToDollar(Double euros) {
+        return euros / euroWeight * dollarWeight;
     }
 
-    public double convertYenToDollar(Double yen) {
-        return yen/yenWeight*dollarWeight;
+    private double convertEuroToYen(Double euros) {
+        return euros / euroWeight * yenWeight;
     }
 
-    public double convertYenToEuro(Double yen) {
-        return yen/yenWeight*euroWeight;
+    private double convertYenToDollar(Double yen) {
+        return yen / yenWeight * dollarWeight;
     }
 
-    public void weightManger(Scanner scanner) {
+    private double convertYenToEuro(Double yen) {
+        return yen / yenWeight * euroWeight;
+    }
+
+    private void weightManger(Scanner scanner) {
         //todo
 
     }

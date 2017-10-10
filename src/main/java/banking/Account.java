@@ -32,7 +32,7 @@ public class Account {
         return accountNumber;
     }
 
-    public String getCurrencyType() {
+    public String stringCurrencyType() {
         switch (currencyType) {
             case 0:
                 return "DOLLAR";
@@ -48,11 +48,16 @@ public class Account {
         }
     }
 
+    public int getCurrencyType() {
+        return currencyType;
+    }
+
     public void setCurrencyType(int i) {
         currencyType = i;
     }
 
     public Double getBalance() {
+        //todo always use 2 decimal places
         return balance;
     }
 
@@ -82,7 +87,7 @@ public class Account {
                 + "\n\tUsername: " + getUsername()
                 + "\n\tAccount Number: " + getAccountNumber()
                 + "\n\tAccount Balance: " + getBalance()
-                + "\n\tAccount Currency Type: " + getCurrencyType()
+                + "\n\tAccount Currency Type: " + stringCurrencyType()
                 + "\n}\n";
        return s;
     }
