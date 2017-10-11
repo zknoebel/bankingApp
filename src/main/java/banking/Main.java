@@ -53,6 +53,7 @@ public class Main {
                     break;
 
                 case "MAINT":
+                    System.out.println(currencyConverter.toString());
                     currencyConverter = accountManager.updateCurrencyWeights(scanner);
                     break;
 

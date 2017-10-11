@@ -92,7 +92,7 @@ class AccountManager {
 
         Account account = validateAccount(null, scanner);
 
-        outputMethods.whatAttribute();
+        outputMethods.accountScreen(account);
 
         changeAttribute(account, scanner);
     }
@@ -211,9 +211,8 @@ class AccountManager {
 
         CurrencyConverter currencyConverter;
 
-        try {
-            currencyConverter = entityManager.find(CurrencyConverter.class, 1);
-        } catch (IllegalArgumentException iea) {
+        currencyConverter = entityManager.find(CurrencyConverter.class, 1);
+        if (currencyConverter == null) {
             currencyConverter = new CurrencyConverter();
             currencyConverter.setDollarWeight(1d);
             currencyConverter.setEuroWeight(1d);
