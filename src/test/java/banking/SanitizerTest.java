@@ -1,7 +1,5 @@
-package test;
+package banking;
 
-
-import banking.Sanitizer;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -75,8 +73,9 @@ public class SanitizerTest {
         assertEquals(six, sanitizer.currencyWeight("012345"));
         assertEquals(six, sanitizer.currencyWeight("012345.0000000"));
     }
-    @Test(expected = NumberFormatException.class)
+
+    @Test
     public void currencyWeightException() {
-        sanitizer.currencyWeight("1234.1234.1234");
+      assertEquals(new Double(0), sanitizer.currencyWeight("1234.1234.1234"));
     }
 }

@@ -2,8 +2,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>BankingApp</groupId>
-    <artifactId>Banking</artifactId>
+    <groupId>Banking</groupId>
+    <artifactId>bankingApp</artifactId>
     <packaging>jar</packaging>
     <version>1.0</version>
     <name>banking</name>
@@ -68,19 +68,9 @@
                                 <goal>java</goal>
                             </goals>
                             <configuration>
-                                <mainClass>com.objectdb.Enhancer</mainClass>
-                                <arguments>
-                                    <argument>banking.*</argument>
-                                </arguments>
+                                <mainClass>banking.Main</mainClass>
                             </configuration>
                         </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>exec-maven-plugin</artifactId>
-                    <version>1.2</version>
-                    <executions>
                         <execution>
                             <phase>test</phase>
                             <goals>

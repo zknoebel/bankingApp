@@ -1,6 +1,4 @@
-package test;
-
-import banking.CurrencyConverter;
+package banking;
 
 import org.junit.Test;
 

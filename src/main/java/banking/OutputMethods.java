@@ -7,7 +7,7 @@ class OutputMethods {
 
     void startScreen() {
         titleArt();
-        System.out.println("Enter an option to start: ");
+        System.out.println("Enter HELP for a list of options.");
     }
 
     void helpScreen() {
