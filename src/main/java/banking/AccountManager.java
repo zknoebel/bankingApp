@@ -35,10 +35,8 @@ class AccountManager {
     private void add(int currencyType, Account account, Double amountToAdd) {
         Double convertedAmount = currencyConverter.convert(currencyType, account.getCurrencyType(), amountToAdd);
 
-        System.out.println("Current balance: " + account.getBalance());
         Double newBalance = account.getBalance() + convertedAmount;
         account.setBalance(newBalance);
-        System.out.println("New balance: " + newBalance);
 
         entityManager.getTransaction().commit();
         entityManager.getTransaction().begin();
@@ -100,7 +98,7 @@ class AccountManager {
     private void changeAttribute(Account account, Scanner scanner) {
         String input = scanner.nextLine();
 
-        String attribute = sanitizer.lettersOnlyString(input.toUpperCase());
+        String attribute = sanitizer.lettersOnlyString(input);
 
         switch (attribute) {
             case "USERNAME":
@@ -152,9 +150,6 @@ class AccountManager {
             String input = scanner.nextLine();
             Double amountToTransfer = sanitizer.accountBalance(input);
 
-            System.out.print("Amount to transfer: ");
-            System.out.println(amountToTransfer);
-
             return amountToTransfer;
         } catch (NumberFormatException nfe) {
             return getAmountToTransfer(scanner);
@@ -189,10 +184,8 @@ class AccountManager {
     private void subtract(int currencyType, Account account, Double amountToSubtract) {
         Double convertedAmount = currencyConverter.convert(currencyType, account.getCurrencyType(), amountToSubtract);
 
-        System.out.println("Current balance: " + account.getBalance());
         Double newBalance = account.getBalance() - convertedAmount;
         account.setBalance(newBalance);
-        System.out.println("New balance: " + newBalance);
 
         entityManager.getTransaction().commit();
         entityManager.getTransaction().begin();
@@ -255,10 +248,6 @@ class AccountManager {
             String input = scanner.nextLine();
             long accountNumber = sanitizer.accountNumber(input);
 
-
-            System.out.print("Account Number: ");
-            System.out.println(accountNumber);
-
             return accountNumber;
 
         } catch (NumberFormatException nfe) {
@@ -274,7 +263,7 @@ class AccountManager {
             outputMethods.usernamePrompt();
             String input = scanner.nextLine();
 
-            username = sanitizer.lettersOnlyString(input.toUpperCase());
+            username = sanitizer.lettersOnlyString(input);
 
             if (username.equals("")) {
                 outputMethods.invalidUsername();
@@ -290,9 +279,6 @@ class AccountManager {
             String input = scanner.nextLine();
             Double accountBalance = sanitizer.accountBalance(input);
 
-            System.out.print("Account Balance: ");
-            System.out.println(accountBalance);
-
             return accountBalance;
         } catch (NumberFormatException nfe) {
             return getAccountBalance(scanner);
@@ -306,9 +292,6 @@ class AccountManager {
             String input = scanner.nextLine();
             Double amountToAdd = sanitizer.accountBalance(input);
 
-            System.out.print("Amount to add: ");
-            System.out.println(amountToAdd);
-
             return amountToAdd;
         } catch (NumberFormatException nfe) {
             return getAmountToAdd(scanner);
@@ -321,9 +304,6 @@ class AccountManager {
             String input = scanner.nextLine();
             Double amountToSubtract = sanitizer.accountBalance(input);
 
-            System.out.print("Amount to subtract: ");
-            System.out.println(amountToSubtract);
-
             return amountToSubtract;
         } catch (NumberFormatException nfe) {
             return getAmountToSubtract(scanner);
@@ -335,9 +315,6 @@ class AccountManager {
             outputMethods.currencyTypePrompt();
             String input = scanner.nextLine();
             int currencyType = sanitizer.currencyType(input.toUpperCase());
-
-            System.out.print("Currency Type: ");
-            System.out.println(currencyType);
 
             return currencyType;
 

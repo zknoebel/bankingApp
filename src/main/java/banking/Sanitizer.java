@@ -1,17 +1,17 @@
 package banking;
 
-class Sanitizer {
+public class Sanitizer {
     private OutputMethods outputMethods = new OutputMethods();
 
-    Sanitizer() {
+    public Sanitizer() {
         //empty
     }
 
-    String lettersOnlyString(String input) {
-        return onlyLetters(input);
+    public String lettersOnlyString(String input) {
+        return uppercaseLettersOnly(input.toUpperCase());
     }
 
-    long accountNumber(String input) {
+    public Long accountNumber(String input) {
         String returnString = onlyNumbers(input);
         try {
             return Long.parseLong(returnString);
@@ -21,8 +21,8 @@ class Sanitizer {
         }
     }
 
-    int currencyType(String input) {
-        String currencyType = onlyLetters(input);
+    public int currencyType(String input) {
+        String currencyType = lettersOnlyString(input);
 
         switch (currencyType) {
             case "DOLLAR":
@@ -39,7 +39,7 @@ class Sanitizer {
         }
     }
 
-    Double accountBalance(String input) {
+    public Double accountBalance(String input) {
         try {
             return new Double(input);
         } catch (NumberFormatException nfe) {
@@ -48,17 +48,16 @@ class Sanitizer {
         }
     }
 
-    Double currencyWeight(String intput) {
+    public Double currencyWeight(String input) {
         try {
-            return new Double(intput);
+            return new Double(input);
         }
         catch (NumberFormatException nfe) {
-            outputMethods.invalidCurrencyWeight();
-            throw nfe;
+            return 0d;
         }
     }
 
-    private String onlyLetters(String input) {
+    private String uppercaseLettersOnly(String input) {
         String letterSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         return sanitizeInput(input, letterSet);
     }
@@ -79,8 +78,6 @@ class Sanitizer {
             }
         }
 
-        System.out.println(returnString);
         return returnString;
-
     }
 }

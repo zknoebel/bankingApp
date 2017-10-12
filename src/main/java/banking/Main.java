@@ -20,7 +20,7 @@ public class Main {
             System.out.print("\nEnter an option: ");
 
             String input = scanner.nextLine();
-            String option = sanitizer.lettersOnlyString(input.toUpperCase());
+            String option = sanitizer.lettersOnlyString(input);
 
             switch (option) {
                 case "ADD":

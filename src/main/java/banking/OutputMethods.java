@@ -64,12 +64,12 @@ class OutputMethods {
     }
 
     void noExistingAccount(Long accountNumber) {
-        System.out.println("There is no existing account with the account number: " + accountNumber);
+        System.out.println("\nThere is no existing account with the account number: " + accountNumber);
         System.out.println("Use the LIST command to print a list of existing accounts.");
     }
 
     void accountNumberInUse() {
-        System.out.println("The account number you entered is already in use.");
+        System.out.println("\nThe account number you entered is already in use.");
         System.out.println("Please choose another and try again.");
     }
 
@@ -94,27 +94,27 @@ class OutputMethods {
     }
 
     void dollarWeightPrompt() {
-        System.out.println("Enter the ratio value of how much a Dollar will be worth.");
+        System.out.println("\nEnter the ratio value of how much a Dollar will be worth.");
         weightPrompt();
     }
 
     void euroWeightPrompt() {
-        System.out.println("Enter the ratio value of how much a Euro will be worth.");
+        System.out.println("\nEnter the ratio value of how much a Euro will be worth.");
         weightPrompt();
     }
 
     void yenWeightPrompt() {
-        System.out.println("Enter the ratio value of how much a Yen will be worth.");
+        System.out.println("\nEnter the ratio value of how much a Yen will be worth.");
         weightPrompt();
     }
 
     private void weightPrompt() {
-        System.out.println("This value needs to be a number greater than zero.");
-        System.out.println("Enter value here");
+        System.out.println("\nThis value needs to be a number greater than zero.");
+        System.out.print("Enter value here: ");
     }
 
     void currencyTypePrompt() {
-        System.out.println("Supported currencies...");
+        System.out.println("\nSupported currencies...");
         System.out.println("\tDOLLAR");
         System.out.println("\tEURO");
         System.out.println("\tYEN");
@@ -122,27 +122,25 @@ class OutputMethods {
     }
 
     void accountToTransferFromPrompt() {
-        System.out.println("Please enter the account number for the account you with to transfer money from.");
-        System.out.println("Account number: ");
+        System.out.println("P\nlease enter the account number for the account you with to transfer money from.");
     }
 
     void accountToTransferToPrompt() {
-        System.out.println("Please enter the account number for the account you with to transfer money to.");
-        System.out.println("Account number: ");
+        System.out.println("\nPlease enter the account number for the account you with to transfer money to.");
     }
 
     void amountToTransferPrompt() {
-        System.out.println("Please enter the amount of money you wish to transfer.");
+        System.out.println("\nPlease enter the amount of money you wish to transfer.");
         System.out.println("Amount: ");
     }
 
     void usernamePrompt() {
-        System.out.println("Please enter the username for this account.");
+        System.out.println("\nPlease enter the username for this account.");
         System.out.println("Username: ");
     }
 
-    void whatAttributePrompt() {
-        System.out.println("What attribute would you like to change?");
+    private void whatAttributePrompt() {
+        System.out.println("\nWhat attribute would you like to change?");
         System.out.println("Options are:");
         System.out.println("\tUSERNAME");
     }
@@ -152,34 +150,34 @@ class OutputMethods {
     //////////////////////////////////////////////////////////////
 
     void invalidMenuInput() {
-        System.out.println("Invalid input...");
+        System.out.println("\nInvalid input...");
         System.out.println("Enter one of the options and then press enter.");
         System.out.println("Input should be one word and only contain letters from the English alphabet.");
         System.out.println("For a list of options type HELP and press enter.");
     }
 
     void invalidAccountNumber() {
-        System.out.println("Invalid account number...");
+        System.out.println("\nInvalid account number...");
         System.out.println("Enter an account number and press enter.");
         System.out.println("Input should be one number and only contain digits from the Arabic numeral system.");
     }
 
     void invalidAccountBalance() {
-        System.out.println("Invalid account balance...");
+        System.out.println("\nInvalid account balance...");
         System.out.println("Enter an account balance and press enter.");
         System.out.println("Input should be one number.");
         System.out.println("The balance should only contain digits from the Arabic numeral system and a period as a decimal separator");
     }
 
     void invalidCurrencyWeight() {
-        System.out.println("Invalid Currency Weight...");
+        System.out.println("\nInvalid Currency Weight...");
         System.out.println("Enter a Currency Weight and press enter.");
         System.out.println("Input should be one number and should be greater than zero");
         System.out.println("The Currency Weight should only contain digits from the Arabic numeral system and a period as a decimal separator");
     }
 
     void invalidUsername() {
-        System.out.println("The username you entered is invalid.");
+        System.out.println("\nThe username you entered is invalid.");
         System.out.println("Usernames may only contain letters from the English alphabet.");
         System.out.println("Usernames are not case sensitive.");
     }
