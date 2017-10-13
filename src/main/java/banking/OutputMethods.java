@@ -115,9 +115,9 @@ class OutputMethods {
 
     void currencyTypePrompt() {
         System.out.println("\nSupported currencies...");
-        System.out.println("\tDOLLAR");
-        System.out.println("\tEURO");
-        System.out.println("\tYEN");
+        System.out.println("\tDOLLAR or $");
+        System.out.println("\tEURO or Є");
+        System.out.println("\tYEN ¥");
         System.out.print("\nPlease enter a currency type: ");
     }
 

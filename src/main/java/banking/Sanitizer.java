@@ -1,5 +1,8 @@
 package banking;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Sanitizer {
     private OutputMethods outputMethods = new OutputMethods();
 
@@ -9,6 +12,15 @@ public class Sanitizer {
 
     public String lettersOnlyString(String input) {
         return uppercaseLettersOnly(input.toUpperCase());
+    }
+
+    public String typeAndAmountOfMoney(String input) {
+        Pattern pattern = Pattern.compile(input);
+
+        Matcher matcher = pattern.matcher("[\\$Є¥]&&[0-999999999]&&\\.&&[0-999999999]");
+
+
+
     }
 
     public Long accountNumber(String input) {
@@ -28,10 +40,19 @@ public class Sanitizer {
             case "DOLLAR":
                 return 0;
 
+            case "$":
+                return 0;
+
             case "EURO":
                 return 1;
 
+            case "Є":
+                return 1;
+
             case "YEN":
+                return 2;
+
+            case "¥":
                 return 2;
 
             default:
