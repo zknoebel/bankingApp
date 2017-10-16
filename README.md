@@ -21,7 +21,28 @@
     
 The Banking App is an application that allows a user to create, modify and store bank accounts. It supports three forms of currency, US Dollars, Euros and Japanese Yen.
 
-Start the program with ./bankingApp
+#### Installation
+
+To get this program, you can download the BankingApp.jar file from https://github.com/zknoebel/bankingApp
+
+You can also clone the repository and compile the app yourself using Git and Maven.
+
+Ubuntu users can use these commands.
+    $ sudo apt install git
+    $ sudo apt install maven
+    $ git clone https://github.com/zknoebel/bankingApp.git
+    $ cd bankingApp
+    $ mvn clean compile assembly:single
+    
+#### Running the program
+
+To run this program you need to have Java installed.
+
+Ubuntu users can use this command 
+    $ sudo apt install openjdk-8-jdk
+    
+Then you run the program using Java
+    $ java -jar BankingApp.jar
 
 Once the program is started, different options can be selected.
 
@@ -43,3 +64,55 @@ Each option is a single word consisting only of letters from the english alphabe
         WITHDRAW - Remove money from an account.
         
 The first time the program is started, there will be no accounts in the database. Use the CREATE option to add new accounts. The currency conversion ratios start at 1:1:1 and they can be changed with the MAINT option.
+
+##### ADD
+    First choose the account number for an existing account (to make a new account use CREATE).
+    Next choose the amount of money to add and the currency type.
+    This can be done one of two ways. Enter both at once like this <currency type character> <amount> example $43.22 or type the amount and then press enter. This will show you the list of acceptable currency types and also allow you to type the word out instead of just using the character. This will be helpful in case you don't have the Euro or Yen symbol on your keyboard.
+    
+##### ACCOUNT
+    First choose the account number for an existing account (to make a new account use CREATE).
+    Next choose the attribute to change. At the moment the only attribute that there is to change is the username. At some point there might be other attributes added such as first name, last name, address and phone number.
+    Usernames are only allowed to have letters from the english alphabet and they are not case sensitive.
+    
+##### CONVERSIONS
+    This will show the ratios of value for the availaible currency types. 
+    They will start out as 1:1:1 and can be changed with the MAINT option.
+    
+##### CREATE
+    This will allow you to create a new bank account.
+    Start by choosing an unused account number.
+    Then add the balance for the account to start out at.
+    Next choose the amount of money to add and the currency type.
+    This can be done one of two ways. Enter both at once like this <currency type character> <amount> example $43.22 or type the amount and then press enter. This will show you the list of acceptable currency types and also allow you to type the word out instead of just using the character. This will be helpful in case you don't have the Euro or Yen symbol on your keyboard.
+    Then choose the username.
+    Usernames are only allowed to have letters from the english alphabet and they are not case sensitive.
+
+##### DELETE
+    Enter the account number of the account you wish to delete.
+    To get a list of accounts, you can use the LIST option.
+    
+##### EXIT
+    This will save the database and close the program.
+    
+##### HELP
+    This will display a list of the available options.
+    
+##### MAINT
+    This will allow you to change the ratios of value for the available currency types.
+    The number for each ratio must greater than zero.
+    If you want to see the current ratios, before choosing MAINT you can display them with CONVERSIONS.
+    
+##### LIST
+    This will show a list of the current accounts and their associated information.
+    
+##### TRANSFER
+    This can be used to move money from one account to another.
+    Choose the account to take the money from and the account to move the money to.
+    Then choose the amount of money to move.
+    This can be done one of two ways. Enter both at once like this <currency type character> <amount> example $43.22 or type the amount and then press enter. This will show you the list of acceptable currency types and also allow you to type the word out instead of just using the character. This will be helpful in case you don't have the Euro or Yen symbol on your keyboard.
+    
+##### WITHDRAW
+    First choose the account number for an existing account (to make a new account use CREATE).
+    Next choose the amount of money to withdraw and the currency type.
+    This can be done one of two ways. Enter both at once like this <currency type character> <amount> example $43.22 or type the amount and then press enter. This will show you the list of acceptable currency types and also allow you to type the word out instead of just using the character. This will be helpful in case you don't have the Euro or Yen symbol on your keyboard.
