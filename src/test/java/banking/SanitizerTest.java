@@ -17,14 +17,15 @@ public class SanitizerTest {
         String numbers = "0123456789";
         String specialChars = "`~!@#$%^&*()_+[]{}\\|;:'\",./<>?";
         String mixed = uppercase + numbers + lowercase + specialChars;
+        String empty = "";
 
         assertEquals(uppercase, sanitizer.lettersOnlyString(uppercase));
         assertEquals(uppercase, sanitizer.lettersOnlyString(lowercase));
         assertEquals(uppercase + uppercase, sanitizer.lettersOnlyString(mixedLetters));
-        assertEquals("", sanitizer.lettersOnlyString(numbers));
-        assertEquals("", sanitizer.lettersOnlyString(specialChars));
-        assertEquals(uppercase + uppercase, sanitizer.lettersOnlyString(mixed));
-        assertEquals("", sanitizer.lettersOnlyString(""));
+        assertEquals(empty, sanitizer.lettersOnlyString(numbers));
+        assertEquals(empty, sanitizer.lettersOnlyString(specialChars));
+        assertEquals(empty, sanitizer.lettersOnlyString(mixed));
+        assertEquals(empty, sanitizer.lettersOnlyString(empty));
     }
 
     @Test
@@ -32,9 +33,11 @@ public class SanitizerTest {
         Long six = Long.parseLong("012345");
 
         assertEquals(six, sanitizer.accountNumber("012345"));
-        assertEquals(six, sanitizer.accountNumber("z0a1B2C3d4e5F"));
-        assertEquals(six, sanitizer.accountNumber(" 0 1 2 3 4 5 "));
-        assertEquals(six, sanitizer.accountNumber(")(*&^%$#@012345<>?,./"));
+    }
+
+    @Test(expected = NumberFormatException.class)
+    public void accountNumberException() {
+        sanitizer.accountNumber("z0a1B2C3d4e5F");
     }
 
     @Test
@@ -44,8 +47,6 @@ public class SanitizerTest {
         assertEquals(2, sanitizer.currencyType("yen"));
         assertEquals(0, sanitizer.currencyType("DOLLAR"));
         assertEquals(1, sanitizer.currencyType("eUrO"));
-        assertEquals(2, sanitizer.currencyType("1234yEn!@#$%^&"));
-
     }
 
     @Test(expected = IllegalArgumentException.class)

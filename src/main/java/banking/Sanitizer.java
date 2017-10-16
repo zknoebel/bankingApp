@@ -14,19 +14,18 @@ public class Sanitizer {
         return uppercaseLettersOnly(input.toUpperCase());
     }
 
-    public String typeAndAmountOfMoney(String input) {
-        Pattern pattern = Pattern.compile(input);
-
-        Matcher matcher = pattern.matcher("[\\$Є¥]&&[0-999999999]&&\\.&&[0-999999999]");
-
-
-
-    }
+//    public String typeAndAmountOfMoney(String input) {
+//        Pattern pattern = Pattern.compile(input);
+//
+//        Matcher matcher = pattern.matcher("[\\$Є¥]+[ ]{0,}+[0-9]{1,}+[\\.+[0-9]{1,}]{0,1}");
+//
+//
+//
+//    }
 
     public Long accountNumber(String input) {
-        String returnString = onlyNumbers(input);
         try {
-            return Long.parseLong(returnString);
+            return new Long(input);
         } catch (NumberFormatException nfe) {
             outputMethods.invalidAccountNumber();
             throw nfe;
@@ -79,26 +78,17 @@ public class Sanitizer {
     }
 
     private String uppercaseLettersOnly(String input) {
-        String letterSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        return sanitizeInput(input, letterSet);
+
+        if(input.matches("[A-Z]*")){
+            return input;
+        }
+        else return "";
     }
 
     private String onlyNumbers(String input) {
-        //todo spaces in numbers?
-        String numberSet = "0123456789";
-        return sanitizeInput(input, numberSet);
-    }
-
-    private String sanitizeInput(String input, String letterSet) {
-        String returnString = "";
-
-        for (int i = 0; i < input.length(); i++) {
-            if (letterSet.contains(input.subSequence(i, i + 1))) {
-                //todo change to StringBuilder().append instead of for loop
-                returnString = returnString + input.subSequence(i, i + 1);
-            }
+        if(input.matches("[0-9]*")){
+            return input;
         }
-
-        return returnString;
+        else return "";
     }
 }
