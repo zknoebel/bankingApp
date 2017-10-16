@@ -15,7 +15,7 @@
     Permissible languages: C/C++, Java, Python, or Other with permission of instructor. No Shell Scripts
     Output:
         Program
-    #####    1 page summary including how to install any dependencies, how to run the application, and example runs.
+        1 page summary including how to install any dependencies, how to run the application, and example runs.
 
     Due: Oct 15th @ 11:55pm
     

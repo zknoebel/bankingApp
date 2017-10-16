@@ -122,7 +122,7 @@ class OutputMethods {
     }
 
     void accountToTransferFromPrompt() {
-        System.out.println("P\nlease enter the account number for the account you with to transfer money from.");
+        System.out.println("\nPlease enter the account number for the account you with to transfer money from.");
     }
 
     void accountToTransferToPrompt() {
