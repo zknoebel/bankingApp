@@ -1,9 +1,6 @@
 package banking;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Scanner;
 
@@ -236,10 +233,15 @@ class AccountManager {
     @SuppressWarnings("unchecked")
     void showAllAccounts() {
 
-        Query ql = entityManager.createQuery("SELECT a FROM Account a");
-        List<Account> accounts = ql.getResultList();
-        for (Account a : accounts) {
-            System.out.print(a);
+        try {
+            Query ql = entityManager.createQuery("SELECT a FROM Account a");
+            List<Account> accounts = ql.getResultList();
+            for (Account a : accounts) {
+                System.out.print(a);
+            }
+        }
+        catch (PersistenceException pe) {
+            System.out.println("No accounts have been saved yet.");
         }
     }
 
