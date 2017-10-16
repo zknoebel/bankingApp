@@ -43,10 +43,13 @@ public class SanitizerTest {
     @Test
     public void currencyType() {
         assertEquals(0, sanitizer.currencyType("dollar"));
-        assertEquals(1, sanitizer.currencyType("euro"));
-        assertEquals(2, sanitizer.currencyType("yen"));
         assertEquals(0, sanitizer.currencyType("DOLLAR"));
+        assertEquals(0, sanitizer.currencyType("$"));
+        assertEquals(1, sanitizer.currencyType("euro"));
         assertEquals(1, sanitizer.currencyType("eUrO"));
+        assertEquals(1, sanitizer.currencyType("Є"));
+        assertEquals(2, sanitizer.currencyType("yen"));
+        assertEquals(2, sanitizer.currencyType("¥"));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -78,5 +81,21 @@ public class SanitizerTest {
     @Test
     public void currencyWeightException() {
       assertEquals(new Double(0), sanitizer.currencyWeight("1234.1234.1234"));
+    }
+
+    @Test
+    public void typeAndAmountOfMoney() {
+        String test0 = "$12345";
+        String test1 = " $ 12345";
+        String test2 = "Є12345";
+        String test3 = "¥12345";
+        assertEquals(new Double(12345), sanitizer.typeAndAmountOfMoney(test0)[0]);
+        assertEquals(new Double(12345), sanitizer.typeAndAmountOfMoney(test1)[0]);
+        assertEquals(new Double(12345), sanitizer.typeAndAmountOfMoney(test2)[0]);
+        assertEquals(new Double(12345), sanitizer.typeAndAmountOfMoney(test3)[0]);
+        assertEquals(new Double(0), sanitizer.typeAndAmountOfMoney(test0)[1]);
+        assertEquals(new Double(0), sanitizer.typeAndAmountOfMoney(test1)[1]);
+        assertEquals(new Double(1), sanitizer.typeAndAmountOfMoney(test2)[1]);
+        assertEquals(new Double(2), sanitizer.typeAndAmountOfMoney(test3)[1]);
     }
 }

@@ -1,8 +1,5 @@
 package banking;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Sanitizer {
     private OutputMethods outputMethods = new OutputMethods();
 
@@ -14,14 +11,26 @@ public class Sanitizer {
         return uppercaseLettersOnly(input.toUpperCase());
     }
 
-//    public String typeAndAmountOfMoney(String input) {
-//        Pattern pattern = Pattern.compile(input);
-//
-//        Matcher matcher = pattern.matcher("[\\$Є¥]+[ ]{0,}+[0-9]{1,}+[\\.+[0-9]{1,}]{0,1}");
-//
-//
-//
-//    }
+    public Double[] typeAndAmountOfMoney(String input) {
+        Double[] doubles = new Double[2];
+        String returnString = "";
+
+        if (input.matches("\\s*+[$Є¥]+\\s*+\\d*+[.+\\d]?")) {
+            for(String i : input.split("\\s")) {
+                returnString += i;
+            }
+            int currencyType = currencyType(returnString.substring(0, 1));
+            doubles[1] = (double) currencyType;
+            doubles[0] = new Double(returnString.substring(1, returnString.length()));
+        }
+        else {
+            doubles[1] = (double) -1;
+            doubles[0] = new Double(input);
+
+        }
+
+        return doubles;
+    }
 
     public Long accountNumber(String input) {
         try {
@@ -33,7 +42,10 @@ public class Sanitizer {
     }
 
     public int currencyType(String input) {
-        String currencyType = lettersOnlyString(input);
+        String currencyType = currencyCharacters(input);
+        if (currencyType.equals("")) {
+            currencyType = lettersOnlyString(input);
+        }
 
         switch (currencyType) {
             case "DOLLAR":
@@ -71,24 +83,27 @@ public class Sanitizer {
     public Double currencyWeight(String input) {
         try {
             return new Double(input);
-        }
-        catch (NumberFormatException nfe) {
+        } catch (NumberFormatException nfe) {
             return 0d;
         }
     }
 
     private String uppercaseLettersOnly(String input) {
 
-        if(input.matches("[A-Z]*")){
+        if (input.matches("[A-Z]*")) {
             return input;
-        }
-        else return "";
+        } else return "";
     }
 
-    private String onlyNumbers(String input) {
-        if(input.matches("[0-9]*")){
+    private String numbersOnly(String input) {
+        if (input.matches("[0-9]*")) {
             return input;
-        }
-        else return "";
+        } else return "";
+    }
+
+    private String currencyCharacters(String input) {
+        if (input.matches("[$Є¥]")) {
+            return input;
+        } else return "";
     }
 }

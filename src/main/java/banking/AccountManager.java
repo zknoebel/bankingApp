@@ -21,17 +21,6 @@ class AccountManager {
 
     }
 
-    void addFunds(Scanner scanner) {
-
-        Account account = validateAccount(null, scanner);
-
-        int currencyType = getAccountCurrencyType(scanner);
-
-        Double amountToAdd = getAmountToAdd(scanner);
-
-        add(currencyType, account, amountToAdd);
-    }
-
     private void add(int currencyType, Account account, Double amountToAdd) {
         Double convertedAmount = currencyConverter.convert(currencyType, account.getCurrencyType(), amountToAdd);
 
@@ -40,30 +29,6 @@ class AccountManager {
 
         entityManager.getTransaction().commit();
         entityManager.getTransaction().begin();
-
-    }
-
-    void makeAccount(Scanner scanner) {
-
-        long accountNumber = getAccountNumber(scanner);
-        Account testAccount = findAccount(accountNumber);
-
-        if (testAccount == null) {
-            Account account = new Account(accountNumber);
-
-            int currencyType = getAccountCurrencyType(scanner);
-            account.setCurrencyType(currencyType);
-
-            Double balance = getAccountBalance(scanner);
-            account.setBalance(balance);
-
-            String username = getUsername(scanner);
-            account.setUsername(username);
-
-            saveAccount(account);
-        } else {
-            outputMethods.accountNumberInUse();
-        }
 
     }
 
@@ -120,19 +85,6 @@ class AccountManager {
         entityManager.getTransaction().begin();
     }
 
-    void transferFunds(Scanner scanner) {
-        //get account to take from
-        Account accountToTransferFrom = getAccountToTransferFrom(scanner);
-        //get account to add to
-        Account accountToTransferTo = getAccountToTransferTo(scanner);
-        //get currency type
-        int currencyType = getAccountCurrencyType(scanner);
-        //get amount
-        Double amount = getAmountToTransfer(scanner);
-        subtract(currencyType, accountToTransferFrom, amount);
-        add(currencyType, accountToTransferTo, amount);
-    }
-
     private Account getAccountToTransferFrom(Scanner scanner) {
         outputMethods.accountToTransferFromPrompt();
         return validateAccount(null, scanner);
@@ -141,19 +93,6 @@ class AccountManager {
     private Account getAccountToTransferTo(Scanner scanner) {
         outputMethods.accountToTransferToPrompt();
         return validateAccount(null, scanner);
-    }
-
-    private Double getAmountToTransfer(Scanner scanner) {
-
-        try {
-            outputMethods.amountToTransferPrompt();
-            String input = scanner.nextLine();
-            Double amountToTransfer = sanitizer.accountBalance(input);
-
-            return amountToTransfer;
-        } catch (NumberFormatException nfe) {
-            return getAmountToTransfer(scanner);
-        }
     }
 
     private Account validateAccount(Account account, Scanner scanner) {
@@ -171,14 +110,86 @@ class AccountManager {
         return account;
     }
 
-    void subtractFunds(Scanner scanner) {
+    void makeAccount(Scanner scanner) {
+        int currencyType = -1;
+
+        long accountNumber = getAccountNumber(scanner);
+        Account testAccount = findAccount(accountNumber);
+
+        if (testAccount == null) {
+            Account account = new Account(accountNumber);
+
+            Double[] balance = getAmountToAdd(scanner);
+
+            if (balance[1].equals((double) -1)) {
+                currencyType = getAccountCurrencyType(scanner);
+
+            } else {
+                currencyType = balance[1].intValue();
+
+            }
+
+            account.setBalance(balance[0]);
+            account.setCurrencyType(currencyType);
+            String username = getUsername(scanner);
+            account.setUsername(username);
+
+            saveAccount(account);
+        } else {
+            outputMethods.accountNumberInUse();
+        }
+
+    }
+
+    void addFunds(Scanner scanner) {
+        int currencyType = -1;
+
         Account account = validateAccount(null, scanner);
 
-        int currencyType = getAccountCurrencyType(scanner);
+        Double[] amountToAdd = getAmountToAdd(scanner);
 
-        Double amountToSubtract = getAmountToSubtract(scanner);
+        if (amountToAdd[1].equals((double) -1)) {
+            currencyType = getAccountCurrencyType(scanner);
+        } else {
+            currencyType = amountToAdd[1].intValue();
+        }
+
+        add(currencyType, account, amountToAdd[0]);
+    }
+
+    void subtractFunds(Scanner scanner) {
+        Account account = validateAccount(null, scanner);
+        Double[] amount = getAmountToSubtract(scanner);
+        int currencyType = -1;
+
+        Double amountToSubtract = amount[0];
+
+        if (amount[1].equals((double) -1)) {
+            currencyType = getAccountCurrencyType(scanner);
+        } else {
+            currencyType = amount[1].intValue();
+        }
 
         subtract(currencyType, account, amountToSubtract);
+    }
+
+    void transferFunds(Scanner scanner) {
+        int currencyType = -1;
+        //get account to take from
+        Account accountToTransferFrom = getAccountToTransferFrom(scanner);
+        //get account to add to
+        Account accountToTransferTo = getAccountToTransferTo(scanner);
+        //get amount
+        Double[] amount = getAmountToTransfer(scanner);
+        //get currency type
+        if (amount[1].equals((double) -1)) {
+            currencyType = getAccountCurrencyType(scanner);
+        } else {
+            currencyType = amount[1].intValue();
+        }
+
+        subtract(currencyType, accountToTransferFrom, amount[0]);
+        add(currencyType, accountToTransferTo, amount[0]);
     }
 
     private void subtract(int currencyType, Account account, Double amountToSubtract) {
@@ -246,9 +257,7 @@ class AccountManager {
         try {
             outputMethods.accountNumberPrompt();
             String input = scanner.nextLine();
-            long accountNumber = sanitizer.accountNumber(input);
-
-            return accountNumber;
+            return sanitizer.accountNumber(input);
 
         } catch (NumberFormatException nfe) {
             return getAccountNumber(scanner);
@@ -277,36 +286,44 @@ class AccountManager {
         try {
             outputMethods.accountBalancePrompt();
             String input = scanner.nextLine();
-            Double accountBalance = sanitizer.accountBalance(input);
+            return sanitizer.accountBalance(input);
 
-            return accountBalance;
         } catch (NumberFormatException nfe) {
             return getAccountBalance(scanner);
         }
 
     }
 
-    private Double getAmountToAdd(Scanner scanner) {
+    private Double[] getAmountToAdd(Scanner scanner) {
         try {
             outputMethods.amountToAddPrompt();
             String input = scanner.nextLine();
-            Double amountToAdd = sanitizer.accountBalance(input);
 
-            return amountToAdd;
+            return sanitizer.typeAndAmountOfMoney(input);
         } catch (NumberFormatException nfe) {
             return getAmountToAdd(scanner);
         }
     }
 
-    private Double getAmountToSubtract(Scanner scanner) {
+    private Double[] getAmountToSubtract(Scanner scanner) {
         try {
             outputMethods.amountToWithdrawPrompt();
             String input = scanner.nextLine();
-            Double amountToSubtract = sanitizer.accountBalance(input);
 
-            return amountToSubtract;
+            return sanitizer.typeAndAmountOfMoney(input);
         } catch (NumberFormatException nfe) {
             return getAmountToSubtract(scanner);
+        }
+    }
+
+    private Double[] getAmountToTransfer(Scanner scanner) {
+        try {
+            outputMethods.amountToTransferPrompt();
+            String input = scanner.nextLine();
+
+            return sanitizer.typeAndAmountOfMoney(input);
+        } catch (NumberFormatException nfe) {
+            return getAmountToTransfer(scanner);
         }
     }
 
@@ -314,9 +331,7 @@ class AccountManager {
         try {
             outputMethods.currencyTypePrompt();
             String input = scanner.nextLine();
-            int currencyType = sanitizer.currencyType(input.toUpperCase());
-
-            return currencyType;
+            return sanitizer.currencyType(input.toUpperCase());
 
         } catch (IllegalArgumentException iae) {
             return getAccountCurrencyType(scanner);
