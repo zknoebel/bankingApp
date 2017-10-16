@@ -116,3 +116,279 @@ The first time the program is started, there will be no accounts in the database
     First choose the account number for an existing account (to make a new account use CREATE).
     Next choose the amount of money to withdraw and the currency type.
     This can be done one of two ways. Enter both at once like this <currency type character> <amount> example $43.22 or type the amount and then press enter. This will show you the list of acceptable currency types and also allow you to type the word out instead of just using the character. This will be helpful in case you don't have the Euro or Yen symbol on your keyboard.
+
+#### Example Run
+This is just the contents of the testRun.txt file. (The random underscores and parentheses are ascii art that shows up better in the testRun.txt file)
+
+Script started on 2017-10-15 21:50:52-1000
+]0;zac@zac-pc:~/workspace/school/ICS355/bankingApp[01;32m[zac@zac-pc[01;37m bankingApp[01;32m]$[00m java -jar BankingApp.jar 
+ ______   _______  _        _       _________ _        _______        _______  _______  _______
+(  ___ \ (  ___  )( (    /|| \    /\\__   __/( (    /|(  ____ \      (  ___  )(  ____ )(  ____ )
+| (   ) )| (   ) ||  \  ( ||  \  / /   ) (   |  \  ( || (    \/      | (   ) || (    )|| (    )|
+| (__/ / | (___) ||   \ | ||  (_/ /    | |   |   \ | || |            | (___) || (____)|| (____)|
+|  __ (  |  ___  || (\ \) ||   _ (     | |   | (\ \) || | ____       |  ___  ||  _____)|  _____)
+| (  \ \ | (   ) || | \   ||  ( \ \    | |   | | \   || | \_  )      | (   ) || (      | (
+| )___) )| )   ( || )  \  ||  /  \ \___) (___| )  \  || (___) |      | )   ( || )      | )      
+(______/ |/     \||/    )_)|_/    \/\_______/|/    )_)(_______)      |/     \||/       |/       
+
+Enter HELP for a list of options.
+
+Enter an option: help
+ _______  _______ __________________ _______  _        _______ 
+(  ___  )(  ____ )\__   __/\__   __/(  ___  )( (    /|(  ____ \
+| (   ) || (    )|   ) (      ) (   | (   ) ||  \  ( || (    \/
+| |   | || (____)|   | |      | |   | |   | ||   \ | || (_____ 
+| |   | ||  _____)   | |      | |   | |   | || (\ \) |(_____  )
+| |   | || (         | |      | |   | |   | || | \   |      ) |
+| (___) || )         | |   ___) (___| (___) || )  \  |/\____) |
+(_______)|/          )_(   \_______/(_______)|/    )_)\_______)
+
+ADD - Add money to an account.
+ACCOUNT - Modify account information.
+CONVERSIONS - show current currency conversion ratios
+CREATE - Create a new bank account.
+DELETE - Remove account from database. (CANNOT BE UNDONE)
+EXIT - Close program.
+HELP - Display options.
+MAINT - Allow currency conversion data to be entered (or read in).
+LIST - Print a list of all current accounts.
+TRANSFER - Move funds from one account to another.
+WITHDRAW - Remove money from an account.
+
+Enter an option: list
+No accounts have been saved yet.
+
+Enter an option: create
+
+Please enter an account number: 1234
+
+Please enter an amount to add: 
+$500
+
+Please enter the username for this account.
+Username: 
+sam
+
+Enter an option: llist
+
+Invalid input...
+Enter one of the options and then press enter.
+Input should be one word and only contain letters from the English alphabet.
+For a list of options type HELP and press enter.
+
+Enter an option: list
+
+{
+	Username: SAM
+	Account Number: 1234
+	Account Balance: 500.00
+	Account Currency Type: DOLLAR
+}
+
+Enter an option: add
+
+Please enter an account number: 1234
+
+Please enter an amount to add: 
+40
+
+Supported currencies...
+	DOLLAR or $
+	EURO or Є
+	YEN ¥
+
+Please enter a currency type: yen
+
+Enter an option: list
+
+{
+	Username: SAM
+	Account Number: 1234
+	Account Balance: 540.00
+	Account Currency Type: DOLLAR
+}
+
+Enter an option: withdraw
+
+Please enter an account number: 1234
+
+Please enter an amount to withdraw: 
+¥ 40
+
+Enter an option: list
+
+{
+	Username: SAM
+	Account Number: 1234
+	Account Balance: 500.00
+	Account Currency Type: DOLLAR
+}
+
+Enter an option: conversions
+
+{
+	Dollar weight: 1.0
+	Euro weight: 1.0
+	Yen weight: 1.0
+}
+
+
+Enter an option: maint
+
+{
+	Dollar weight: 1.0
+	Euro weight: 1.0
+	Yen weight: 1.0
+}
+
+
+Enter the ratio value of how much a Dollar will be worth.
+
+This value needs to be a number greater than zero.
+Enter value here: 4
+
+Enter the ratio value of how much a Euro will be worth.
+
+This value needs to be a number greater than zero.
+Enter value here: 2
+
+Enter the ratio value of how much a Yen will be worth.
+
+This value needs to be a number greater than zero.
+Enter value here: 1
+
+Enter an option: conversions
+
+{
+	Dollar weight: 4.0
+	Euro weight: 2.0
+	Yen weight: 1.0
+}
+
+
+Enter an option: create
+
+Please enter an account number: 1233
+
+Please enter an amount to add: 
+400
+
+Supported currencies...
+	DOLLAR or $
+	EURO or Є
+	YEN ¥
+
+Please enter a currency type: dollar
+
+Please enter the username for this account.
+Username: 
+dave
+
+Enter an option: list
+
+{
+	Username: DAVE
+	Account Number: 1233
+	Account Balance: 400.00
+	Account Currency Type: DOLLAR
+}
+
+{
+	Username: SAM
+	Account Number: 1234
+	Account Balance: 500.00
+	Account Currency Type: DOLLAR
+}
+
+Enter an option: transfer
+P
+lease enter the account number for the account you with to transfer money from.
+
+Please enter an account number: sam
+
+Invalid account number...
+Enter an account number and press enter.
+Input should be one number and only contain digits from the Arabic numeral system.
+
+Please enter an account number: 1234
+
+Please enter the account number for the account you with to transfer money to.
+
+Please enter an account number: 1233
+
+Please enter the amount of money you wish to transfer.
+Amount: 
+50
+
+Supported currencies...
+	DOLLAR or $
+	EURO or Є
+	YEN ¥
+
+Please enter a currency type: euro
+
+Enter an option: list
+
+{
+	Username: DAVE
+	Account Number: 1233
+	Account Balance: 425.00
+	Account Currency Type: DOLLAR
+}
+
+{
+	Username: SAM
+	Account Number: 1234
+	Account Balance: 475.00
+	Account Currency Type: DOLLAR
+}
+
+Enter an option: conversions
+
+{
+	Dollar weight: 4.0
+	Euro weight: 2.0
+	Yen weight: 1.0
+}
+
+
+Enter an option: help
+ _______  _______ __________________ _______  _        _______ 
+(  ___  )(  ____ )\__   __/\__   __/(  ___  )( (    /|(  ____ \
+| (   ) || (    )|   ) (      ) (   | (   ) ||  \  ( || (    \/
+| |   | || (____)|   | |      | |   | |   | ||   \ | || (_____ 
+| |   | ||  _____)   | |      | |   | |   | || (\ \) |(_____  )
+| |   | || (         | |      | |   | |   | || | \   |      ) |
+| (___) || )         | |   ___) (___| (___) || )  \  |/\____) |
+(_______)|/          )_(   \_______/(_______)|/    )_)\_______)
+
+ADD - Add money to an account.
+ACCOUNT - Modify account information.
+CONVERSIONS - show current currency conversion ratios
+CREATE - Create a new bank account.
+DELETE - Remove account from database. (CANNOT BE UNDONE)
+EXIT - Close program.
+HELP - Display options.
+MAINT - Allow currency conversion data to be entered (or read in).
+LIST - Print a list of all current accounts.
+TRANSFER - Move funds from one account to another.
+WITHDRAW - Remove money from an account.
+
+Enter an option: dlee   elete
+
+Please enter an account number: 1233
+
+Enter an option: list
+
+{
+	Username: SAM
+	Account Number: 1234
+	Account Balance: 475.00
+	Account Currency Type: DOLLAR
+}
+
+Enter an option: exit
+]0;zac@zac-pc:~/workspace/school/ICS355/bankingApp[01;32m[zac@zac-pc[01;37m bankingApp[01;32m]$[00m exit
+exit
+
+Script done on 2017-10-15 21:56:05-1000
