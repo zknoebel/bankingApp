@@ -1,8 +1,8 @@
 # Banking App
 
-### Programming assignment 1
-
 ##### ICS355 University of Hawaii at Manoa
+
+### Programming assignment 1
 
     Task: Produce a financial program that tracks the balances of multiple users and supports multiple currencies. This will be done in stages.
     Detail: Produce a command-line driven financial calculator that supports multiple currencies. The program should be capable of adding and subtracting values from a user’s account. The program should handle conversion of the currencies prior to the arithmetic operation. The program should include commands:
@@ -20,6 +20,36 @@
     Due: Oct 15th @ 11:55pm
     
 The Banking App is an application that allows a user to create, modify and store bank accounts. It supports three forms of currency, US Dollars, Euros and Japanese Yen.
+
+### Programming assignment 2
+
+
+    Task:
+    Produce a financial program that tracks the balances of multiple users and supports multiple currencies. This will be done in stages.
+ 
+    Details:
+    Create the Multiuser portion of your application.
+    Users now have to login to your application
+    You should have a management account and it is the only one that is able to add and remove users.
+    It should attempt to validate the user and handle incorrect authentication properly
+    It should also support the transfer of money from one user’s account to another. Validate that the user’s have accounts and the source account has the funds necessary for the transfer to occur.
+
+    Functions:
+    ADDUSER - Add username to the database. Set user’s preferred currency to CurrencyType. Also set the user’s password and save the hashed version to a file. Leverage a salt to ensure duplicate passwords area always unique. Your user database should look something like this:
+    USERNAME,SALT,Hashed_Password
+    DELUSER - Remove user from the database • [ADD|SUB] - Add or remove amount from user’s account. Currency Value can be from any of the supported currency types.
+    Login – Your application should support a login phase where passwords are checked based on your database.
+    Transfer – Ability to transfer money from one account to the next.
+
+    You must gracefully reject any attempts to provide invalid data.
+    The database of currencies and users should persist between executions of the program.
+    Permissible languages: C/C++, Java, Python, or Other with permission of instructor. No Shell Scripts
+    
+    Output:
+    Program
+    1 page summary including how to install any dependencies, how to run the application, and example runs.
+    Github Only (or equivalent)!
+
 
 #### Installation
 
