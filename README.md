@@ -5,7 +5,7 @@
 ### Programming assignment 1
 
     Task: Produce a financial program that tracks the balances of multiple users and supports multiple currencies. This will be done in stages.
-    Detail: Produce a command-line driven financial calculator that supports multiple currencies. The program should be capable of adding and subtracting values from a user’s account. The program should handle conversion of the currencies prior to the arithmetic operation. The program should include commands:
+    Detail: Produce a command-line driven financial calculator that supports multiple currencies. The program should be capable of adding and subtracting values from a normalUser’s account. The program should handle conversion of the currencies prior to the arithmetic operation. The program should include commands:
     MAINT – Allow currency conversion data to be entered (or read in)
     Create regular expressions to validate all input to include commands, usernames, currency types, and currency values. For currency values, validation should be consistent with the standards used to write numbers in the currency being used. (e.g. $3,150.02, £10.52, etc.). Be sure to document your assumptions for formats in your report. 
     Accepting ambiguous currency values is acceptable as long as you handle the ambiguity reasonably
@@ -19,7 +19,7 @@
 
     Due: Oct 15th @ 11:55pm
     
-The Banking App is an application that allows a user to create, modify and store bank accounts. It supports three forms of currency, US Dollars, Euros and Japanese Yen.
+The Banking App is an application that allows a normalUser to create, modify and store bank accounts. It supports three forms of currency, US Dollars, Euros and Japanese Yen.
 
 ### Programming assignment 2
 
@@ -31,13 +31,13 @@ The Banking App is an application that allows a user to create, modify and store
     Create the Multiuser portion of your application.
     Users now have to login to your application
     You should have a management account and it is the only one that is able to add and remove users.
-    It should attempt to validate the user and handle incorrect authentication properly
-    It should also support the transfer of money from one user’s account to another. Validate that the user’s have accounts and the source account has the funds necessary for the transfer to occur.
+    It should attempt to validate the normalUser and handle incorrect authentication properly
+    It should also support the transfer of money from one normalUser’s account to another. Validate that the normalUser’s have accounts and the source account has the funds necessary for the transfer to occur.
 
     Functions:
-    ADDUSER - Add username to the database. Set user’s preferred currency to CurrencyType. Also set the user’s password and save the hashed version to a file. Leverage a salt to ensure duplicate passwords area always unique. Your user database should look something like this:
+    ADDUSER - Add username to the database. Set normalUser’s preferred currency to CurrencyType. Also set the normalUser’s password and save the hashed version to a file. Leverage a salt to ensure duplicate passwords area always unique. Your normalUser database should look something like this:
     USERNAME,SALT,Hashed_Password
-    DELUSER - Remove user from the database • [ADD|SUB] - Add or remove amount from user’s account. Currency Value can be from any of the supported currency types.
+    DELUSER - Remove normalUser from the database • [ADD|SUB] - Add or remove amount from normalUser’s account. Currency Value can be from any of the supported currency types.
     Login – Your application should support a login phase where passwords are checked based on your database.
     Transfer – Ability to transfer money from one account to the next.
 

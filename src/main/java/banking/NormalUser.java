@@ -2,20 +2,18 @@ package banking;
 
 import java.util.Scanner;
 
-public class Admin implements User {
+public class NormalUser implements User{
     private String username;
     private String password;
-    private boolean admin;
     private int currencyType;
+    private boolean admin = false;
 
-    Admin(String username, String password, int currencyType) {
+    NormalUser(String username, String password, int currencyType) {
         this.username = username;
         this.password = password;
         this.currencyType = currencyType;
-        setAdmin(true);
 
     }
-
 
     @Override
     public String getUsername() {
@@ -25,7 +23,6 @@ public class Admin implements User {
     @Override
     public void setUsername(String username) {
         this.username = username;
-
     }
 
     @Override
@@ -43,11 +40,9 @@ public class Admin implements User {
         return currencyType;
     }
 
-
     @Override
     public void setCurrencyType(int currencyType) {
         this.currencyType = currencyType;
-
     }
 
     @Override
@@ -61,77 +56,74 @@ public class Admin implements User {
     }
 
     @Override
-    //todo
     public void add(AccountManager accountManager, Scanner scanner) {
-
+        //todo only allow adding to user's account
+//        accountManager.addFunds(scanner);
     }
 
-    //todo
     @Override
-    public void adduser() {
-        //add user to database
-        //set user's preferred currency to CurrencyType
-        //set the user's password
-        //save the password (hashed with salt)
-        //ex [username, salt, hashed password]
+    public void adduser() throws IllegalAccessException {
+        throw new IllegalAccessException("Not Admin");
     }
-
 
     @Override
     public void account(AccountManager accountManager, Scanner scanner) {
-        accountManager.manageAccount(scanner);
+        //todo only only allow access to accounts for signed in user
+//        accountManager.manageAccount(scanner);
     }
 
     @Override
-    public void conversions(CurrencyConverter currencyConverter) {
-        System.out.println(currencyConverter.toString());
+    public void conversions(CurrencyConverter currencyConverter) throws IllegalAccessException {
+        throw new IllegalAccessException("Not Admin");
     }
 
     @Override
     public void create(AccountManager accountManager, Scanner scanner) {
-        accountManager.makeAccount(scanner);
+        //todo only allow creation of accounts for signed in user
+//        accountManager.makeAccount(scanner);
     }
 
     @Override
     public void delete(AccountManager accountManager, Scanner scanner) {
-        accountManager.deleteAccount(scanner);
+        //todo only allow deletion of accounts for signed in user
+//        accountManager.deleteAccount(scanner);
     }
 
     //todo
     @Override
-    public void deluser() {
-        //delete user from database
+    public void deluser() throws IllegalAccessException {
+        throw new IllegalAccessException("Not Admin");
     }
 
     @Override
     public void help(OutputMethods outputMethods) {
-
+        outputMethods.helpScreen();
     }
 
     @Override
-    public CurrencyConverter maint(CurrencyConverter currencyConverter, AccountManager accountManager, Scanner scanner) {
-        System.out.println(currencyConverter.toString());
-        return accountManager.updateCurrencyWeights(scanner);
+    public CurrencyConverter maint(CurrencyConverter currencyConverter, AccountManager accountManager, Scanner scanner) throws IllegalAccessException {
+        throw new IllegalAccessException("Not Admin");
     }
 
     @Override
-    public void list(AccountManager accountManager) {
-        accountManager.showAllAccounts();
+    public void list(AccountManager accountManager) throws IllegalAccessException {
+        throw new IllegalAccessException("Not Admin");
     }
 
     @Override
     public void subtract(AccountManager accountManager, Scanner scanner) {
-        accountManager.subtractFunds(scanner);
+        //todo only allow subtraction from user's account
+//        accountManager.subtractFunds(scanner);
     }
 
     @Override
     public void transfer(AccountManager accountManager, Scanner scanner) {
-        accountManager.transferFunds(scanner);
+//        accountManager.transferFunds(scanner);
+        //todo only allow transfer from user's account
     }
 
     @Override
     public void withdraw(AccountManager accountManager, Scanner scanner) {
-
+        subtract(accountManager, scanner);
     }
-
 }

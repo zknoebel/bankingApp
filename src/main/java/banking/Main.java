@@ -6,7 +6,6 @@ public class Main {
 
     public static void main(String[] args) {
         boolean end = false;
-        boolean anon = true;
         Scanner scanner = new Scanner(System.in);
 
         AccountManager accountManager = new AccountManager();
@@ -14,7 +13,7 @@ public class Main {
         Sanitizer sanitizer = new Sanitizer();
 
         //todo make users sign in
-        User user = new User("root", "toor", 0);
+        User user = new Admin("root", "toor", 0);
         user.setAdmin(true);
 
         CurrencyConverter currencyConverter = accountManager.checkForCurrencyConverter();

@@ -2,107 +2,47 @@ package banking;
 
 import java.util.Scanner;
 
-public class User {
-    private String username;
-    private String password;
-    private int currencyType;
-    private boolean admin = false;
+public interface User {
 
-    User(String username, String password, int currencyType) {
-        this.username = username;
-        this.password = password;
-        this.currencyType = currencyType;
+    String getUsername();
 
-    }
+    void setUsername(String username);
 
-    public String getUsername() {
-        return username;
-    }
+    String getPassword();
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    void setPassword(String password);
 
-    public String getPassword() {
-        return password;
-    }
+    int getCurrencyType();
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    void setCurrencyType(int currencyType);
 
-    public int getCurrencyType() {
-        return currencyType;
-    }
+    boolean isAdmin();
 
-    public void setCurrencyType(int currencyType) {
-        this.currencyType = currencyType;
-    }
+    void setAdmin(boolean admin);
 
-    public boolean isAdmin() {
-        return admin;
-    }
+    void add(AccountManager accountManager, Scanner scanner);
 
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
-    }
+    void adduser () throws IllegalAccessException;
 
-    void add(AccountManager accountManager, Scanner scanner) {
-        //todo only allow adding to user's account
-//        accountManager.addFunds(scanner);
-    }
+    void account(AccountManager accountManager, Scanner scanner);
 
-    void adduser() throws IllegalAccessException {
-        throw new IllegalAccessException("Not Admin");
-    }
+    void conversions(CurrencyConverter currencyConverter)throws IllegalAccessException;
 
-    void account(AccountManager accountManager, Scanner scanner) {
-        //todo only only allow access to accounts for signed in user
-//        accountManager.manageAccount(scanner);
-    }
+    void create(AccountManager accountManager, Scanner scanner);
 
-    void conversions(CurrencyConverter currencyConverter) throws IllegalAccessException {
-        throw new IllegalAccessException("Not Admin");
-    }
+    void delete(AccountManager accountManager, Scanner scanner);
 
-    void create(AccountManager accountManager, Scanner scanner) {
-        //todo only allow creation of accounts for signed in user
-//        accountManager.makeAccount(scanner);
-    }
+    void deluser()throws IllegalAccessException;
 
-    void delete(AccountManager accountManager, Scanner scanner) {
-        //todo only allow deletion of accounts for signed in user
-//        accountManager.deleteAccount(scanner);
-    }
+    void help(OutputMethods outputMethods);
 
-    //todo
-    void deluser() throws IllegalAccessException {
-        throw new IllegalAccessException("Not Admin");
-    }
+    CurrencyConverter maint(CurrencyConverter currencyConverter, AccountManager accountManager, Scanner scanner)throws IllegalAccessException;
 
-    void help(OutputMethods outputMethods) {
-        outputMethods.helpScreen();
-    }
+    void list(AccountManager accountManager)throws IllegalAccessException;
 
-    CurrencyConverter maint(CurrencyConverter currencyConverter, AccountManager accountManager, Scanner scanner) throws IllegalAccessException {
-        throw new IllegalAccessException("Not Admin");
-    }
+    void subtract(AccountManager accountManager, Scanner scanner);
 
-    void list(AccountManager accountManager) throws IllegalAccessException {
-        throw new IllegalAccessException("Not Admin");
-    }
+    void transfer(AccountManager accountManager, Scanner scanner);
 
-    void subtract(AccountManager accountManager, Scanner scanner) {
-        //todo only allow subtraction from user's account
-//        accountManager.subtractFunds(scanner);
-    }
-
-    void transfer(AccountManager accountManager, Scanner scanner) {
-//        accountManager.transferFunds(scanner);
-        //todo only allow transfer from user's account
-    }
-
-    void withdraw(AccountManager accountManager, Scanner scanner) {
-        subtract(accountManager, scanner);
-    }
+    void withdraw(AccountManager accountManager, Scanner scanner);
 }
