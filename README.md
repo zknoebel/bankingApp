@@ -58,6 +58,7 @@ To get this program, you can download the BankingApp.jar file from https://githu
 You can also clone the repository and compile the app yourself using Git and Maven.
 
 Ubuntu users can use these commands.
+
     $ sudo apt install git
     $ sudo apt install maven
     $ git clone https://github.com/zknoebel/bankingApp.git
@@ -69,9 +70,11 @@ Ubuntu users can use these commands.
 To run this program you need to have Java installed.
 
 Ubuntu users can use this command 
+
     $ sudo apt install openjdk-8-jdk
     
 Then you run the program using Java
+
     $ java -jar BankingApp.jar
 
 Once the program is started, different options can be selected.

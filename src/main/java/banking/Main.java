@@ -6,6 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         boolean end = false;
+        boolean anon = true;
         Scanner scanner = new Scanner(System.in);
 
         AccountManager accountManager = new AccountManager();
@@ -15,6 +16,13 @@ public class Main {
         CurrencyConverter currencyConverter = accountManager.checkForCurrencyConverter();
 
         outputMethods.startScreen();
+
+        //todo make user login
+        while(anon) {
+
+
+
+        }
 
         while (!end) {
             System.out.print("\nEnter an option: ");
@@ -26,6 +34,15 @@ public class Main {
             switch (option) {
                 case "ADD":
                     accountManager.addFunds(scanner);
+                    break;
+
+                    //todo
+                case "ADDUSER":
+                    //add user to database
+                    //set user's preferred currency to CurrencyType
+                    //set the user's password
+                    //save the password (hashed with salt)
+                    //ex [username, salt, hashed password]
                     break;
 
                 case "ACCOUNT":
@@ -44,6 +61,11 @@ public class Main {
                     accountManager.deleteAccount(scanner);
                     break;
 
+                    //todo
+                case "DELUSER":
+                    //delete user from database
+                    break;
+
                 case "EXIT":
                     accountManager.closeEntityManger();
                     end = true;
@@ -60,6 +82,11 @@ public class Main {
 
                 case "LIST":
                     accountManager.showAllAccounts();
+                    break;
+
+                    //todo add to help menu
+                case "SUBTRACT":
+                    accountManager.subtractFunds(scanner);
                     break;
 
                 case "TRANSFER":
