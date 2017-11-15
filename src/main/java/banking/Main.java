@@ -22,6 +22,7 @@ public class Main {
             String input = scanner.nextLine();
             String option = sanitizer.lettersOnlyString(input);
 
+            //when input comes in, it gets turned to all caps, so you can think of it as non-case-sensitive
             switch (option) {
                 case "ADD":
                     accountManager.addFunds(scanner);
