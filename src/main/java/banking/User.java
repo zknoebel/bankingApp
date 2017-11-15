@@ -48,60 +48,58 @@ public class User {
     }
 
     void add(AccountManager accountManager, Scanner scanner) {
-
-        accountManager.addFunds(scanner);
+        //todo only allow adding to user's account
+//        accountManager.addFunds(scanner);
     }
 
-    //todo
-    void adduser() {
-        //add user to database
-        //set user's preferred currency to CurrencyType
-        //set the user's password
-        //save the password (hashed with salt)
-        //ex [username, salt, hashed password]
+    void adduser() throws IllegalAccessException {
+        throw new IllegalAccessException("Not Admin");
     }
 
     void account(AccountManager accountManager, Scanner scanner) {
-        accountManager.manageAccount(scanner);
+        //todo only only allow access to accounts for signed in user
+//        accountManager.manageAccount(scanner);
     }
 
-    void conversions(CurrencyConverter currencyConverter) {
-        System.out.println(currencyConverter.toString());
+    void conversions(CurrencyConverter currencyConverter) throws IllegalAccessException {
+        throw new IllegalAccessException("Not Admin");
     }
 
     void create(AccountManager accountManager, Scanner scanner) {
-        accountManager.makeAccount(scanner);
+        //todo only allow creation of accounts for signed in user
+//        accountManager.makeAccount(scanner);
     }
 
     void delete(AccountManager accountManager, Scanner scanner) {
-        accountManager.deleteAccount(scanner);
+        //todo only allow deletion of accounts for signed in user
+//        accountManager.deleteAccount(scanner);
     }
 
     //todo
-    void deluser() {
-        //delete user from database
+    void deluser() throws IllegalAccessException {
+        throw new IllegalAccessException("Not Admin");
     }
 
     void help(OutputMethods outputMethods) {
         outputMethods.helpScreen();
     }
 
-    CurrencyConverter maint(CurrencyConverter currencyConverter, AccountManager accountManager, Scanner scanner) {
-        System.out.println(currencyConverter.toString());
-        return accountManager.updateCurrencyWeights(scanner);
+    CurrencyConverter maint(CurrencyConverter currencyConverter, AccountManager accountManager, Scanner scanner) throws IllegalAccessException {
+        throw new IllegalAccessException("Not Admin");
     }
 
-    void list(AccountManager accountManager) {
-        accountManager.showAllAccounts();
+    void list(AccountManager accountManager) throws IllegalAccessException {
+        throw new IllegalAccessException("Not Admin");
     }
 
-    //todo add to help menu
     void subtract(AccountManager accountManager, Scanner scanner) {
-        accountManager.subtractFunds(scanner);
+        //todo only allow subtraction from user's account
+//        accountManager.subtractFunds(scanner);
     }
 
     void transfer(AccountManager accountManager, Scanner scanner) {
-        accountManager.transferFunds(scanner);
+//        accountManager.transferFunds(scanner);
+        //todo only allow transfer from user's account
     }
 
     void withdraw(AccountManager accountManager, Scanner scanner) {

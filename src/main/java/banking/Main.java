@@ -21,13 +21,6 @@ public class Main {
 
         outputMethods.startScreen();
 
-        //todo make user login
-        while(anon) {
-
-
-
-        }
-
         while (!end) {
             System.out.print("\nEnter an option: ");
 
@@ -40,10 +33,11 @@ public class Main {
                     user.add(accountManager, scanner);
                     break;
 
-                    //todo
                 case "ADDUSER":
-                    if(user.isAdmin()) {
+                    try {
                         user.adduser();
+                    } catch (IllegalAccessException iae) {
+                        outputMethods.userNotAdmin();
                     }
                     break;
 
@@ -52,22 +46,27 @@ public class Main {
                     break;
 
                 case "CONVERSIONS":
-                    user.conversions(currencyConverter);
+                    try {
+                        user.conversions(currencyConverter);
+                    } catch (IllegalAccessException iae) {
+                        outputMethods.userNotAdmin();
+                    }
                     break;
 
                 case "CREATE":
-                        user.create(accountManager, scanner);
+                    user.create(accountManager, scanner);
                     break;
 
                 case "DELETE":
-                        user.delete(accountManager, scanner);
+                    user.delete(accountManager, scanner);
                     break;
 
-                    //todo
                 case "DELUSER":
-                    if(user.isAdmin()) {
+                    try {
                         //delete user from database
                         user.deluser();
+                    } catch (IllegalAccessException iae) {
+                        outputMethods.userNotAdmin();
                     }
                     break;
 
@@ -80,15 +79,27 @@ public class Main {
                     user.help(outputMethods);
                     break;
 
+                //todo implement
+                case "LOGIN":
+                    break;
+
+                //todo implement
+                case "LOGOUT":
+                    break;
+
                 case "MAINT":
-                    if(user.isAdmin()) {
+                    try {
                         currencyConverter = user.maint(currencyConverter, accountManager, scanner);
+                    } catch (IllegalAccessException iae) {
+                        outputMethods.userNotAdmin();
                     }
                     break;
 
                 case "LIST":
-                    if(user.isAdmin()) {
+                    try {
                         user.list(accountManager);
+                    } catch (IllegalAccessException iae) {
+                        outputMethods.userNotAdmin();
                     }
                     break;
 
@@ -97,7 +108,7 @@ public class Main {
                     break;
 
                 case "TRANSFER":
-                        user.transfer(accountManager, scanner);
+                    user.transfer(accountManager, scanner);
                     break;
 
                 case "WITHDRAW":

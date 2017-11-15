@@ -185,4 +185,8 @@ class OutputMethods {
         System.out.println("Usernames are not case sensitive.");
     }
 
+    void userNotAdmin() {
+        System.out.println("\nYou are not an administrator.");
+    }
+
 }
