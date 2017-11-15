@@ -13,6 +13,10 @@ public class Main {
         OutputMethods outputMethods = new OutputMethods();
         Sanitizer sanitizer = new Sanitizer();
 
+        //todo make users sign in
+        User user = new User("root", "toor", 0);
+        user.setAdmin(true);
+
         CurrencyConverter currencyConverter = accountManager.checkForCurrencyConverter();
 
         outputMethods.startScreen();
@@ -33,37 +37,38 @@ public class Main {
             //when input comes in, it gets turned to all caps, so you can think of it as non-case-sensitive
             switch (option) {
                 case "ADD":
-                    accountManager.addFunds(scanner);
+                    user.add(accountManager, scanner);
                     break;
 
                     //todo
                 case "ADDUSER":
-                    //add user to database
-                    //set user's preferred currency to CurrencyType
-                    //set the user's password
-                    //save the password (hashed with salt)
-                    //ex [username, salt, hashed password]
+                    if(user.isAdmin()) {
+                        user.adduser();
+                    }
                     break;
 
                 case "ACCOUNT":
-                    accountManager.manageAccount(scanner);
+                    user.account(accountManager, scanner);
                     break;
 
                 case "CONVERSIONS":
-                    System.out.println(currencyConverter.toString());
+                    user.conversions(currencyConverter);
                     break;
 
                 case "CREATE":
-                    accountManager.makeAccount(scanner);
+                        user.create(accountManager, scanner);
                     break;
 
                 case "DELETE":
-                    accountManager.deleteAccount(scanner);
+                        user.delete(accountManager, scanner);
                     break;
 
                     //todo
                 case "DELUSER":
-                    //delete user from database
+                    if(user.isAdmin()) {
+                        //delete user from database
+                        user.deluser();
+                    }
                     break;
 
                 case "EXIT":
@@ -72,29 +77,31 @@ public class Main {
                     break;
 
                 case "HELP":
-                    outputMethods.helpScreen();
+                    user.help(outputMethods);
                     break;
 
                 case "MAINT":
-                    System.out.println(currencyConverter.toString());
-                    currencyConverter = accountManager.updateCurrencyWeights(scanner);
+                    if(user.isAdmin()) {
+                        currencyConverter = user.maint(currencyConverter, accountManager, scanner);
+                    }
                     break;
 
                 case "LIST":
-                    accountManager.showAllAccounts();
+                    if(user.isAdmin()) {
+                        user.list(accountManager);
+                    }
                     break;
 
-                    //todo add to help menu
                 case "SUBTRACT":
-                    accountManager.subtractFunds(scanner);
+                    user.subtract(accountManager, scanner);
                     break;
 
                 case "TRANSFER":
-                    accountManager.transferFunds(scanner);
+                        user.transfer(accountManager, scanner);
                     break;
 
                 case "WITHDRAW":
-                    accountManager.subtractFunds(scanner);
+                    user.withdraw(accountManager, scanner);
                     break;
 
                 default:
