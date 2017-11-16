@@ -2,13 +2,13 @@ package banking;
 
 import java.util.Scanner;
 
-public class Admin implements User {
+public class AdminUser implements User {
     private String username;
     private String password;
     private boolean admin;
     private int currencyType;
 
-    Admin(String username, String password, int currencyType) {
+    AdminUser(String username, String password, int currencyType) {
         this.username = username;
         this.password = password;
         this.currencyType = currencyType;

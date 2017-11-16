@@ -71,6 +71,23 @@ class AccountManager {
 
     }
 
+    User login(Scanner scanner) {
+        String username = getUsername(scanner);
+        User user = findUser(username);
+
+        String password = getPassword(scanner);
+
+        if(user.getPassword().equals(password)){
+            return user;
+        }
+        outputMethods.incorrectUsernameOrPassword();
+        return new AnonymousUser();
+    }
+
+    User logout() {
+        return new AnonymousUser();
+    }
+
     private void updateUsername(Account account, Scanner scanner) {
         String username = getUsername(scanner);
 
@@ -121,7 +138,6 @@ class AccountManager {
 
             } else {
                 currencyType = balance[1].intValue();
-
             }
 
             account.setBalance(balance[0]);
@@ -136,21 +152,19 @@ class AccountManager {
 
     }
 
-    void makeUser(Scanner scanner){
-        //todo
-        int currencyType = -1;
-
+    void makeUser(Scanner scanner) {
         String username = getUsername(scanner);
         User user = findUser(username);
 
-        if(user == null) {
+        if (user == null) {
+            String password = getPassword(scanner);
+            int currencyType = getAccountCurrencyType(scanner);
+            user = new NormalUser(username, password, currencyType);
 
-        }
-        else
-        {
+            saveUser(user);
+        } else {
             outputMethods.usernameInUse();
         }
-
 
 
     }
@@ -262,22 +276,21 @@ class AccountManager {
             for (Account a : accounts) {
                 System.out.print(a);
             }
-        }
-        catch (PersistenceException pe) {
+        } catch (PersistenceException pe) {
             System.out.println("No accounts have been saved yet.");
         }
     }
 
+    @SuppressWarnings("unchecked")
     void showAllUsers() {
         try {
             Query ql = entityManager.createQuery("SELECT a FROM NormalUser a");
-            List<Account> accounts = ql.getResultList();
-            for (Account a : accounts) {
-                System.out.println(a);
+            List<User> accounts = ql.getResultList();
+            for (User u : accounts) {
+                System.out.println(u);
             }
             System.out.println();
-        }
-        catch (PersistenceException pe) {
+        } catch (PersistenceException pe) {
             System.out.println("No users have been saved yet.");
         }
 
@@ -298,6 +311,12 @@ class AccountManager {
 
     private void saveAccount(Account account) {
         entityManager.persist(account);
+        entityManager.getTransaction().commit();
+        entityManager.getTransaction().begin();
+    }
+
+    private void saveUser(User user) {
+        entityManager.persist(user);
         entityManager.getTransaction().commit();
         entityManager.getTransaction().begin();
     }
@@ -329,6 +348,32 @@ class AccountManager {
         }
 
         return username;
+    }
+
+    private String getPassword(Scanner scanner) {
+        String password = "";
+
+        while (password.equals("")) {
+            outputMethods.passwordPrompt();
+            String input = scanner.nextLine();
+
+            //todo any string
+            password = sanitizer.lettersOnlyString(input);
+
+            if (password.equals("")) {
+                outputMethods.invalidPassword();
+            }
+
+            outputMethods.confirmPassword();
+            input = scanner.nextLine();
+            input = sanitizer.lettersOnlyString(input);
+            if (!input.equals(password)) {
+                outputMethods.nonMatchingPassword();
+                password = "";
+            }
+        }
+
+        return password;
     }
 
     private Double getAccountBalance(Scanner scanner) {

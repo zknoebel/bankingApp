@@ -13,7 +13,7 @@ public class Main {
         Sanitizer sanitizer = new Sanitizer();
 
         //todo make users sign in
-        User user = new Admin("root", "toor", 0);
+        User user = new AdminUser("root", "toor", 0);
         user.setAdmin(true);
 
         CurrencyConverter currencyConverter = accountManager.checkForCurrencyConverter();
@@ -34,7 +34,7 @@ public class Main {
 
                 case "ADDUSER":
                     try {
-                        user.adduser();
+                        user.adduser(accountManager, scanner);
                     } catch (IllegalAccessException iae) {
                         outputMethods.userNotAdmin();
                     }
@@ -63,7 +63,7 @@ public class Main {
                 case "DELUSER":
                     try {
                         //delete user from database
-                        user.deluser();
+                        user.deluser(accountManager, scanner);
                     } catch (IllegalAccessException iae) {
                         outputMethods.userNotAdmin();
                     }
@@ -78,12 +78,12 @@ public class Main {
                     user.help(outputMethods);
                     break;
 
-                //todo implement
                 case "LOGIN":
+                    user = accountManager.login(scanner);
                     break;
 
-                //todo implement
                 case "LOGOUT":
+                    user = accountManager.logout();
                     break;
 
                 case "MAINT":

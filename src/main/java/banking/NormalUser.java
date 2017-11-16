@@ -85,7 +85,7 @@ public class NormalUser implements User {
 
     @Override
     public void adduser(AccountManager accountManager, Scanner scanner) throws IllegalAccessException {
-        throw new IllegalAccessException("Not Admin");
+        throw new IllegalAccessException("Not AdminUser");
     }
 
     @Override
@@ -96,7 +96,7 @@ public class NormalUser implements User {
 
     @Override
     public void conversions(CurrencyConverter currencyConverter) throws IllegalAccessException {
-        throw new IllegalAccessException("Not Admin");
+        throw new IllegalAccessException("Not AdminUser");
     }
 
     @Override
@@ -114,7 +114,7 @@ public class NormalUser implements User {
     //todo
     @Override
     public void deluser(AccountManager accountManager, Scanner scanner) throws IllegalAccessException {
-        throw new IllegalAccessException("Not Admin");
+        throw new IllegalAccessException("Not AdminUser");
     }
 
     @Override
@@ -124,12 +124,12 @@ public class NormalUser implements User {
 
     @Override
     public CurrencyConverter maint(CurrencyConverter currencyConverter, AccountManager accountManager, Scanner scanner) throws IllegalAccessException {
-        throw new IllegalAccessException("Not Admin");
+        throw new IllegalAccessException("Not AdminUser");
     }
 
     @Override
     public void list(AccountManager accountManager) throws IllegalAccessException {
-        throw new IllegalAccessException("Not Admin");
+        throw new IllegalAccessException("Not AdminUser");
     }
 
     @Override

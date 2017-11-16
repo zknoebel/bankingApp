@@ -147,6 +147,16 @@ class OutputMethods {
         System.out.println("Username: ");
     }
 
+    void passwordPrompt() {
+        System.out.println("\nPlease enter the password for this account.");
+        System.out.println("Password : ");
+    }
+
+    void confirmPassword() {
+        System.out.println("\nPlease confirm the password for this account.");
+        System.out.println("Password : ");
+    }
+
     private void whatAttributePrompt() {
         System.out.println("\nWhat attribute would you like to change?");
         System.out.println("Options are:");
@@ -184,14 +194,35 @@ class OutputMethods {
         System.out.println("The Currency Weight should only contain digits from the Arabic numeral system and a period as a decimal separator");
     }
 
+    void invalidPassword() {
+        System.out.println("\nInvalid password...");
+        System.out.println("Enter a password and press enter.");
+        System.out.println("Input should be one word and only contain letters from the English alphabet.");
+    }
+
     void invalidUsername() {
         System.out.println("\nThe username you entered is invalid.");
         System.out.println("Usernames may only contain letters from the English alphabet.");
         System.out.println("Usernames are not case sensitive.");
     }
 
+    void nonMatchingPassword() {
+        System.out.println("\nPasswords do not match...");
+        System.out.println("Input should be one word and only contain letters from the English alphabet.");
+    }
+
     void userNotAdmin() {
         System.out.println("\nYou are not an administrator.");
     }
 
+    void mustLogIn() {
+        System.out.println("\nYou must log in to use this function!");
+        System.out.println("To log in, type LOGIN and press enter.");
+        System.out.println("Once logged in, you can type HELP and press enter to display a list of commands.");
+    }
+
+    void incorrectUsernameOrPassword() {
+        System.out.println("\nIncorrect username or password.");
+        System.out.println("Please try again.");
+    }
 }
