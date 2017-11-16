@@ -48,8 +48,6 @@ class AccountManager {
     }
 
     void manageAccount(Scanner scanner) {
-        outputMethods.accountNumberPrompt();
-
         Account account = validateAccount(null, scanner);
 
         outputMethods.accountScreen(account);
@@ -138,6 +136,25 @@ class AccountManager {
 
     }
 
+    void makeUser(Scanner scanner){
+        //todo
+        int currencyType = -1;
+
+        String username = getUsername(scanner);
+        User user = findUser(username);
+
+        if(user == null) {
+
+        }
+        else
+        {
+            outputMethods.usernameInUse();
+        }
+
+
+
+    }
+
     void addFunds(Scanner scanner) {
         int currencyType = -1;
 
@@ -156,6 +173,11 @@ class AccountManager {
 
     void subtractFunds(Scanner scanner) {
         Account account = validateAccount(null, scanner);
+        subtractFundsFromAccount(scanner, account.getAccountNumber());
+    }
+
+    void subtractFundsFromAccount(Scanner scanner, Long accountNumber) {
+        Account account = findAccount(accountNumber);
         Double[] amount = getAmountToSubtract(scanner);
         int currencyType = -1;
 
@@ -168,6 +190,7 @@ class AccountManager {
         }
 
         subtract(currencyType, account, amountToSubtract);
+
     }
 
     void transferFunds(Scanner scanner) {
@@ -245,8 +268,32 @@ class AccountManager {
         }
     }
 
+    void showAllUsers() {
+        try {
+            Query ql = entityManager.createQuery("SELECT a FROM NormalUser a");
+            List<Account> accounts = ql.getResultList();
+            for (Account a : accounts) {
+                System.out.println(a);
+            }
+            System.out.println();
+        }
+        catch (PersistenceException pe) {
+            System.out.println("No users have been saved yet.");
+        }
+
+    }
+
     private Account findAccount(long id) {
         return entityManager.find(Account.class, id);
+    }
+
+    private NormalUser findNormalUser(String username) {
+        return entityManager.find(NormalUser.class, username);
+    }
+
+    private User findUser(String username) {
+        //todo add admin
+        return findNormalUser(username);
     }
 
     private void saveAccount(Account account) {

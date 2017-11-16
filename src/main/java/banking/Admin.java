@@ -61,14 +61,14 @@ public class Admin implements User {
     }
 
     @Override
-    //todo
     public void add(AccountManager accountManager, Scanner scanner) {
-
+        accountManager.addFunds(scanner);
     }
 
     //todo
     @Override
-    public void adduser() {
+    public void adduser(AccountManager accountManager, Scanner scanner) {
+        accountManager.makeUser(scanner);
         //add user to database
         //set user's preferred currency to CurrencyType
         //set the user's password
@@ -99,12 +99,13 @@ public class Admin implements User {
 
     //todo
     @Override
-    public void deluser() {
+    public void deluser(AccountManager accountManager, Scanner scanner) {
         //delete user from database
     }
 
     @Override
     public void help(OutputMethods outputMethods) {
+        outputMethods.helpScreen();
 
     }
 
@@ -116,8 +117,10 @@ public class Admin implements User {
 
     @Override
     public void list(AccountManager accountManager) {
+        accountManager.showAllUsers();
         accountManager.showAllAccounts();
     }
+
 
     @Override
     public void subtract(AccountManager accountManager, Scanner scanner) {
@@ -131,7 +134,7 @@ public class Admin implements User {
 
     @Override
     public void withdraw(AccountManager accountManager, Scanner scanner) {
-
+        subtract(accountManager, scanner);
     }
 
 }

@@ -1,12 +1,34 @@
 package banking;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Scanner;
 
-public class NormalUser implements User{
+@Entity
+@Table()
+public class NormalUser implements User {
+    @Id
     private String username;
+
+    @Column
     private String password;
+
+    //dollars 0
+    //euros 1
+    //yen 2
+    @Column
     private int currencyType;
+
+    @Column
     private boolean admin = false;
+
+    public NormalUser(){
+        username = "not set";
+        password = "password";
+        currencyType = 0;
+    }
 
     NormalUser(String username, String password, int currencyType) {
         this.username = username;
@@ -52,7 +74,7 @@ public class NormalUser implements User{
 
     @Override
     public void setAdmin(boolean admin) {
-        this.admin = admin;
+        //empty
     }
 
     @Override
@@ -62,7 +84,7 @@ public class NormalUser implements User{
     }
 
     @Override
-    public void adduser() throws IllegalAccessException {
+    public void adduser(AccountManager accountManager, Scanner scanner) throws IllegalAccessException {
         throw new IllegalAccessException("Not Admin");
     }
 
@@ -91,7 +113,7 @@ public class NormalUser implements User{
 
     //todo
     @Override
-    public void deluser() throws IllegalAccessException {
+    public void deluser(AccountManager accountManager, Scanner scanner) throws IllegalAccessException {
         throw new IllegalAccessException("Not Admin");
     }
 
@@ -125,5 +147,10 @@ public class NormalUser implements User{
     @Override
     public void withdraw(AccountManager accountManager, Scanner scanner) {
         subtract(accountManager, scanner);
+    }
+
+    @Override
+    public String toString() {
+        return getUsername();
     }
 }

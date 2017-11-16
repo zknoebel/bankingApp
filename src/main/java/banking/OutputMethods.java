@@ -76,6 +76,11 @@ class OutputMethods {
         System.out.println("Please choose another and try again.");
     }
 
+    void usernameInUse() {
+        System.out.println("\nThe user name you entered is already in use.");
+        System.out.println("Please choose another and try again.");
+    }
+
     //////////////////////////////////////////////////////////////
     // Prompts
     //////////////////////////////////////////////////////////////
@@ -125,11 +130,11 @@ class OutputMethods {
     }
 
     void accountToTransferFromPrompt() {
-        System.out.println("\nPlease enter the account number for the account you with to transfer money from.");
+        System.out.println("\nPlease enter the account number for the account you wish to transfer money from.");
     }
 
     void accountToTransferToPrompt() {
-        System.out.println("\nPlease enter the account number for the account you with to transfer money to.");
+        System.out.println("\nPlease enter the account number for the account you wish to transfer money to.");
     }
 
     void amountToTransferPrompt() {

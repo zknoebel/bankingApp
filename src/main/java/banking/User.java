@@ -22,7 +22,7 @@ public interface User {
 
     void add(AccountManager accountManager, Scanner scanner);
 
-    void adduser () throws IllegalAccessException;
+    void adduser (AccountManager accountManager, Scanner scanner) throws IllegalAccessException;
 
     void account(AccountManager accountManager, Scanner scanner);
 
@@ -32,7 +32,7 @@ public interface User {
 
     void delete(AccountManager accountManager, Scanner scanner);
 
-    void deluser()throws IllegalAccessException;
+    void deluser(AccountManager accountManager, Scanner scanner)throws IllegalAccessException;
 
     void help(OutputMethods outputMethods);
 
