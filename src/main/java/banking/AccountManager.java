@@ -2,6 +2,7 @@ package banking;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 class AccountManager {
@@ -167,6 +168,11 @@ class AccountManager {
         }
 
 
+    }
+
+    int makeSalt() {
+        Random random = new Random();
+        return random.nextInt(256) + 1;
     }
 
     void addFunds(Scanner scanner) {

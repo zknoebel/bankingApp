@@ -151,6 +151,7 @@ public class NormalUser implements User {
 
     @Override
     public String toString() {
-        return getUsername();
+
+        return getUsername() + " : " + getPassword();
     }
 }
