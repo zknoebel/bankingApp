@@ -1,6 +1,10 @@
 package banking;
 
 import javax.persistence.*;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -173,6 +177,16 @@ class AccountManager {
     int makeSalt() {
         Random random = new Random();
         return random.nextInt(256) + 1;
+    }
+
+    //takes a plain text password and encrypts it
+    String passwordHash(String password) throws NoSuchAlgorithmException{
+        MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+
+        messageDigest.update(password.getBytes(StandardCharsets.UTF_16));
+        byte[] digest = messageDigest.digest();
+
+        return String.format("%064x", new BigInteger(1, digest));
     }
 
     void addFunds(Scanner scanner) {
