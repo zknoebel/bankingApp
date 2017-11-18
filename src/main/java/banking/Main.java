@@ -13,7 +13,7 @@ public class Main {
         Sanitizer sanitizer = new Sanitizer();
 
         //todo make users sign in
-        User user = new AdminUser("root", "toor", 0);
+        User user = new AdminUser("root", "toor");
         user.setAdmin(true);
 
         CurrencyConverter currencyConverter = accountManager.checkForCurrencyConverter();

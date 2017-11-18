@@ -1,21 +1,35 @@
 package banking;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Scanner;
 
+@Entity
 public class AdminUser implements User {
+
+    @Id
     private String username;
+
+    @Column
     private String password;
+
+    @Column
     private boolean admin;
+
+    @Column
     private int currencyType;
 
-    AdminUser(String username, String password, int currencyType) {
+    protected AdminUser() {
+        setAdmin(true);
+    }
+
+    AdminUser(String username, String password) {
         this.username = username;
         this.password = password;
-        this.currencyType = currencyType;
         setAdmin(true);
 
     }
-
 
     @Override
     public String getUsername() {
@@ -97,10 +111,9 @@ public class AdminUser implements User {
         accountManager.deleteAccount(scanner);
     }
 
-    //todo
     @Override
     public void deluser(AccountManager accountManager, Scanner scanner) {
-        //delete user from database
+        accountManager.deleteUser(scanner);
     }
 
     @Override
@@ -137,4 +150,9 @@ public class AdminUser implements User {
         subtract(accountManager, scanner);
     }
 
+    @Override
+    public String toString() {
+
+        return "Administrator - " + getUsername() + " : " + getPassword();
+    }
 }

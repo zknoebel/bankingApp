@@ -71,6 +71,11 @@ class OutputMethods {
         System.out.println("Use the LIST command to print a list of existing accounts.");
     }
 
+    void noExistingUser(String username) {
+        System.out.println("\nThere is no existing user with the username: " + username);
+        System.out.println("Use the LIST command to print a list of existing users and bank accounts.");
+    }
+
     void accountNumberInUse() {
         System.out.println("\nThe account number you entered is already in use.");
         System.out.println("Please choose another and try again.");
@@ -187,6 +192,11 @@ class OutputMethods {
         System.out.println("The balance should only contain digits from the Arabic numeral system and a period as a decimal separator");
     }
 
+    void invalidBoolean() {
+        System.out.println("\nInvalid truth value...");
+        System.out.println("\nEnter either TRUE or FALSE and press enter.");
+    }
+
     void invalidCurrencyWeight() {
         System.out.println("\nInvalid Currency Weight...");
         System.out.println("Enter a Currency Weight and press enter.");
@@ -204,6 +214,11 @@ class OutputMethods {
         System.out.println("\nThe username you entered is invalid.");
         System.out.println("Usernames may only contain letters from the English alphabet.");
         System.out.println("Usernames are not case sensitive.");
+    }
+
+    void isAdminPrompt() {
+        System.out.println("\nWill this user be an administrator?");
+        System.out.println("\nEnter either TRUE or FALSE.");
     }
 
     void nonMatchingPassword() {
@@ -224,5 +239,10 @@ class OutputMethods {
     void incorrectUsernameOrPassword() {
         System.out.println("\nIncorrect username or password.");
         System.out.println("Please try again.");
+    }
+
+    void loggedOut() {
+        System.out.println("\nYou have been logged out.");
+        System.out.println("\nType EXIT to close the program or sign in to continue.\n");
     }
 }

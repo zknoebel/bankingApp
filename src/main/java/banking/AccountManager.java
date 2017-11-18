@@ -47,6 +47,19 @@ class AccountManager {
         }
     }
 
+    void deleteUser(Scanner scanner) {
+        String username = getUsername(scanner);
+
+        try {
+            User user = findUser(username);
+            entityManager.remove(user);
+            entityManager.getTransaction().commit();
+            entityManager.getTransaction().begin();
+        } catch (IllegalArgumentException iae) {
+            outputMethods.noExistingUser(username);
+        }
+    }
+
     void closeEntityManger() {
         entityManager.close();
         emfactory.close();
@@ -82,7 +95,7 @@ class AccountManager {
 
         String password = getPassword(scanner);
 
-        if(user.getPassword().equals(password)){
+        if (user.getPassword().equals(password)) {
             return user;
         }
         outputMethods.incorrectUsernameOrPassword();
@@ -90,6 +103,7 @@ class AccountManager {
     }
 
     User logout() {
+        outputMethods.loggedOut();
         return new AnonymousUser();
     }
 
@@ -163,8 +177,14 @@ class AccountManager {
 
         if (user == null) {
             String password = getPassword(scanner);
-            int currencyType = getAccountCurrencyType(scanner);
-            user = new NormalUser(username, password, currencyType);
+            boolean isAdmin = getAdminValue(scanner);
+
+            if (isAdmin) {
+                user = new AdminUser(username, password);
+            } else {
+                int currencyType = getAccountCurrencyType(scanner);
+                user = new NormalUser(username, password, currencyType);
+            }
 
             saveUser(user);
         } else {
@@ -180,7 +200,7 @@ class AccountManager {
     }
 
     //takes a plain text password and encrypts it
-    String passwordHash(String password) throws NoSuchAlgorithmException{
+    String passwordHash(String password) throws NoSuchAlgorithmException {
         MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
 
         messageDigest.update(password.getBytes(StandardCharsets.UTF_16));
@@ -306,6 +326,8 @@ class AccountManager {
         try {
             Query ql = entityManager.createQuery("SELECT a FROM NormalUser a");
             List<User> accounts = ql.getResultList();
+            ql = entityManager.createQuery("SELECT a FROM AdminUser a");
+            accounts.addAll(ql.getResultList());
             for (User u : accounts) {
                 System.out.println(u);
             }
@@ -324,9 +346,17 @@ class AccountManager {
         return entityManager.find(NormalUser.class, username);
     }
 
+    private AdminUser findAdminUser(String username) {
+        return entityManager.find(AdminUser.class, username);
+    }
+
     private User findUser(String username) {
-        //todo add admin
-        return findNormalUser(username);
+        User user = findAdminUser(username);
+
+        if (user == null) {
+            user = findNormalUser(username);
+        }
+        return user;
     }
 
     private void saveAccount(Account account) {
@@ -394,6 +424,34 @@ class AccountManager {
         }
 
         return password;
+    }
+
+    private boolean getAdminValue(Scanner scanner) {
+        String isAdmin = "";
+        Boolean adminValue = null;
+
+        while (adminValue == null) {
+            outputMethods.isAdminPrompt();
+            String input = scanner.nextLine();
+
+            isAdmin = sanitizer.lettersOnlyString(input);
+
+            if (isAdmin.equals("T") || isAdmin.equals("TRUE")) {
+                adminValue = true;
+            }
+
+            if (isAdmin.equals("F") || isAdmin.equals("FALSE")) {
+                adminValue = false;
+            }
+
+            if (adminValue == null) {
+                outputMethods.invalidBoolean();
+            }
+
+        }
+
+        return adminValue;
+
     }
 
     private Double getAccountBalance(Scanner scanner) {
