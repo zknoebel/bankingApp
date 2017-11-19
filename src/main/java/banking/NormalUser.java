@@ -1,9 +1,13 @@
 package banking;
 
+import com.objectdb.o.HST;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 @Entity
@@ -24,7 +28,7 @@ public class NormalUser implements User {
     @Column
     private boolean admin = false;
 
-    public NormalUser(){
+    public NormalUser() {
         username = "not set";
         password = "password";
         currencyType = 0;
@@ -79,8 +83,7 @@ public class NormalUser implements User {
 
     @Override
     public void add(AccountManager accountManager, Scanner scanner) {
-        //todo only allow adding to user's account
-//        accountManager.addFunds(scanner);
+        accountManager.addFunds(scanner, this);
     }
 
     @Override
@@ -90,8 +93,7 @@ public class NormalUser implements User {
 
     @Override
     public void account(AccountManager accountManager, Scanner scanner) {
-        //todo only only allow access to accounts for signed in user
-//        accountManager.manageAccount(scanner);
+        accountManager.manageAccount(scanner, this);
     }
 
     @Override
@@ -100,15 +102,13 @@ public class NormalUser implements User {
     }
 
     @Override
-    public void create(AccountManager accountManager, Scanner scanner) {
-        //todo only allow creation of accounts for signed in user
-//        accountManager.makeAccount(scanner);
+    public void create(AccountManager accountManager, Scanner scanner) throws IllegalAccessException {
+        throw new IllegalAccessException("Not AdminUser");
     }
 
     @Override
-    public void delete(AccountManager accountManager, Scanner scanner) {
-        //todo only allow deletion of accounts for signed in user
-//        accountManager.deleteAccount(scanner);
+    public void delete(AccountManager accountManager, Scanner scanner) throws IllegalAccessException {
+        throw new IllegalAccessException("Not AdminUser");
     }
 
     //todo
@@ -128,8 +128,23 @@ public class NormalUser implements User {
     }
 
     @Override
-    public void list(AccountManager accountManager) throws IllegalAccessException {
-        throw new IllegalAccessException("Not AdminUser");
+    public List<Object> list(AccountManager accountManager, boolean print) throws IllegalAccessException {
+        List<Object> lists = new ArrayList<>();
+        List<Account> accounts = accountManager.allAccounts(false);
+        List<Account> myAccounts = new ArrayList<>();
+
+        lists.add(new ArrayList<>());
+
+        for (Account account : accounts) {
+            if (account.getUsername().equals(this.username)) {
+                System.out.print(account);
+                myAccounts.add(account);
+            }
+        }
+
+        lists.add(myAccounts);
+
+        return lists;
     }
 
     @Override

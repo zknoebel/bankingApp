@@ -1,5 +1,6 @@
 package banking;
 
+import java.util.List;
 import java.util.Scanner;
 
 public interface User {
@@ -22,23 +23,23 @@ public interface User {
 
     void add(AccountManager accountManager, Scanner scanner);
 
-    void adduser (AccountManager accountManager, Scanner scanner) throws IllegalAccessException;
+    void adduser(AccountManager accountManager, Scanner scanner) throws IllegalAccessException;
 
     void account(AccountManager accountManager, Scanner scanner);
 
-    void conversions(CurrencyConverter currencyConverter)throws IllegalAccessException;
+    void conversions(CurrencyConverter currencyConverter) throws IllegalAccessException;
 
-    void create(AccountManager accountManager, Scanner scanner);
+    void create(AccountManager accountManager, Scanner scanner) throws IllegalAccessException;
 
-    void delete(AccountManager accountManager, Scanner scanner);
+    void delete(AccountManager accountManager, Scanner scanner) throws IllegalAccessException;
 
-    void deluser(AccountManager accountManager, Scanner scanner)throws IllegalAccessException;
+    void deluser(AccountManager accountManager, Scanner scanner) throws IllegalAccessException;
 
     void help(OutputMethods outputMethods);
 
-    CurrencyConverter maint(CurrencyConverter currencyConverter, AccountManager accountManager, Scanner scanner)throws IllegalAccessException;
+    CurrencyConverter maint(CurrencyConverter currencyConverter, AccountManager accountManager, Scanner scanner) throws IllegalAccessException;
 
-    void list(AccountManager accountManager)throws IllegalAccessException;
+    List<Object> list(AccountManager accountManager, boolean print) throws IllegalAccessException;
 
     void subtract(AccountManager accountManager, Scanner scanner);
 

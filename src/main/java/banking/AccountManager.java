@@ -1,10 +1,13 @@
 package banking;
 
+import com.objectdb.o.HST;
+
 import javax.persistence.*;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -73,6 +76,18 @@ class AccountManager {
         changeAttribute(account, scanner);
     }
 
+    void manageAccount(Scanner scanner, User user) {
+        Account account = validateAccount(null, scanner);
+
+        outputMethods.accountScreen(account);
+
+        if (user.getUsername().equals(account.getUsername())) {
+            changeAttribute(account, scanner);
+        } else {
+            outputMethods.invalidAccountNumber();
+        }
+    }
+
     private void changeAttribute(Account account, Scanner scanner) {
         String input = scanner.nextLine();
 
@@ -93,7 +108,7 @@ class AccountManager {
         String username = getUsername(scanner);
         User user = findUser(username);
 
-        String password = getPassword(scanner);
+        String password = getPassword(scanner, false);
 
         if (user.getPassword().equals(password)) {
             return user;
@@ -176,7 +191,7 @@ class AccountManager {
         User user = findUser(username);
 
         if (user == null) {
-            String password = getPassword(scanner);
+            String password = getPassword(scanner, true);
             boolean isAdmin = getAdminValue(scanner);
 
             if (isAdmin) {
@@ -223,6 +238,34 @@ class AccountManager {
         }
 
         add(currencyType, account, amountToAdd[0]);
+    }
+
+    void addFunds(Scanner scanner, User user) {
+        int currencyType = -1;
+
+        Account account = validateAccount(null, scanner);
+
+        List<Account> accounts = allAccounts(false);
+        List<Account> usersAccounts = new ArrayList<>();
+        for (Account a : accounts) {
+            if (a.getUsername().equals(user.getUsername())) {
+                usersAccounts.add(a);
+            }
+        }
+
+        if (usersAccounts.contains(account)) {
+            Double[] amountToAdd = getAmountToAdd(scanner);
+
+            if (amountToAdd[1].equals((double) -1)) {
+                currencyType = getAccountCurrencyType(scanner);
+            } else {
+                currencyType = amountToAdd[1].intValue();
+            }
+
+            add(currencyType, account, amountToAdd[0]);
+        } else {
+            outputMethods.invalidAccountNumber();
+        }
     }
 
     void subtractFunds(Scanner scanner) {
@@ -308,34 +351,44 @@ class AccountManager {
     }
 
     @SuppressWarnings("unchecked")
-    void showAllAccounts() {
+    List<Account> allAccounts(boolean print) {
+        List<Account> accounts = new ArrayList<>();
 
         try {
             Query ql = entityManager.createQuery("SELECT a FROM Account a");
-            List<Account> accounts = ql.getResultList();
-            for (Account a : accounts) {
-                System.out.print(a);
+            accounts = ql.getResultList();
+            if (print) {
+                for (Account a : accounts) {
+                    System.out.print(a);
+                }
             }
         } catch (PersistenceException pe) {
             System.out.println("No accounts have been saved yet.");
         }
+
+        return accounts;
     }
 
     @SuppressWarnings("unchecked")
-    void showAllUsers() {
+    List<User> allUsers(boolean print) {
+        List<User> users = new ArrayList<>();
+
         try {
             Query ql = entityManager.createQuery("SELECT a FROM NormalUser a");
-            List<User> accounts = ql.getResultList();
+            users = ql.getResultList();
             ql = entityManager.createQuery("SELECT a FROM AdminUser a");
-            accounts.addAll(ql.getResultList());
-            for (User u : accounts) {
-                System.out.println(u);
+            users.addAll(ql.getResultList());
+            if (print) {
+                for (User u : users) {
+                    System.out.println(u);
+                }
+                System.out.println();
             }
-            System.out.println();
         } catch (PersistenceException pe) {
             System.out.println("No users have been saved yet.");
         }
 
+        return users;
     }
 
     private Account findAccount(long id) {
@@ -400,7 +453,7 @@ class AccountManager {
         return username;
     }
 
-    private String getPassword(Scanner scanner) {
+    private String getPassword(Scanner scanner, boolean confirm) {
         String password = "";
 
         while (password.equals("")) {
@@ -414,12 +467,14 @@ class AccountManager {
                 outputMethods.invalidPassword();
             }
 
-            outputMethods.confirmPassword();
-            input = scanner.nextLine();
-            input = sanitizer.lettersOnlyString(input);
-            if (!input.equals(password)) {
-                outputMethods.nonMatchingPassword();
-                password = "";
+            if (confirm) {
+                outputMethods.confirmPassword();
+                input = scanner.nextLine();
+                input = sanitizer.lettersOnlyString(input);
+                if (!input.equals(password)) {
+                    outputMethods.nonMatchingPassword();
+                    password = "";
+                }
             }
         }
 

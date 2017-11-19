@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalAccessException {
         boolean end = false;
         Scanner scanner = new Scanner(System.in);
 
@@ -12,9 +12,12 @@ public class Main {
         OutputMethods outputMethods = new OutputMethods();
         Sanitizer sanitizer = new Sanitizer();
 
-        //todo make users sign in
         User user = new AdminUser("root", "toor");
         user.setAdmin(true);
+
+        if(!(accountManager.allUsers(false) == null)) {
+            user = new AnonymousUser();
+        }
 
         CurrencyConverter currencyConverter = accountManager.checkForCurrencyConverter();
 
@@ -96,7 +99,7 @@ public class Main {
 
                 case "LIST":
                     try {
-                        user.list(accountManager);
+                        user.list(accountManager, true);
                     } catch (IllegalAccessException iae) {
                         outputMethods.userNotAdmin();
                     }

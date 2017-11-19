@@ -1,5 +1,6 @@
 package banking;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class AnonymousUser implements User{
@@ -95,8 +96,9 @@ public class AnonymousUser implements User{
     }
 
     @Override
-    public void list(AccountManager accountManager) throws IllegalAccessException {
+    public List<Object> list(AccountManager accountManager, boolean print) throws IllegalAccessException {
         outputMethods.mustLogIn();
+        throw new IllegalAccessException("Not administrator");
     }
 
     @Override

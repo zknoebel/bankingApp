@@ -230,10 +230,14 @@ class OutputMethods {
         System.out.println("\nYou are not an administrator.");
     }
 
-    void mustLogIn() {
-        System.out.println("\nYou must log in to use this function!");
-        System.out.println("To log in, type LOGIN and press enter.");
-        System.out.println("Once logged in, you can type HELP and press enter to display a list of commands.");
+    String mustLogIn() {
+        String outputString = ("\nYou must log in to use this function!" +
+                "\nTo log in, type LOGIN and press enter." +
+                "\nOnce logged in, you can type HELP and press enter to display a list of commands.");
+
+        System.out.println(outputString);
+
+        return outputString;
     }
 
     void incorrectUsernameOrPassword() {

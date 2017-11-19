@@ -3,6 +3,8 @@ package banking;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 @Entity
@@ -129,9 +131,13 @@ public class AdminUser implements User {
     }
 
     @Override
-    public void list(AccountManager accountManager) {
-        accountManager.showAllUsers();
-        accountManager.showAllAccounts();
+    public List<Object> list(AccountManager accountManager, boolean print) {
+        List<Object> lists = new ArrayList<>();
+
+        lists.add(accountManager.allUsers(print));
+        lists.add(accountManager.allAccounts(print));
+
+        return lists;
     }
 
 
