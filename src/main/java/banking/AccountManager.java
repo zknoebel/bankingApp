@@ -273,6 +273,16 @@ class AccountManager {
         subtractFundsFromAccount(scanner, account.getAccountNumber());
     }
 
+    void subtractFunds(Scanner scanner, User user) {
+        Account account = validateAccount(null, scanner);
+        if(user.getUsername().equals(account.getUsername())) {
+            subtractFundsFromAccount(scanner, account.getAccountNumber());
+        }
+        else {
+            outputMethods.invalidAccountNumber();
+        }
+    }
+
     void subtractFundsFromAccount(Scanner scanner, Long accountNumber) {
         Account account = findAccount(accountNumber);
         Double[] amount = getAmountToSubtract(scanner);
@@ -307,6 +317,31 @@ class AccountManager {
 
         subtract(currencyType, accountToTransferFrom, amount[0]);
         add(currencyType, accountToTransferTo, amount[0]);
+    }
+
+    void transferFunds(Scanner scanner, User user) {
+        int currencyType = -1;
+        //get account to take from
+        Account accountToTransferFrom = getAccountToTransferFrom(scanner);
+
+        if(accountToTransferFrom.getUsername().equals(user.getUsername())) {
+            //get account to add to
+            Account accountToTransferTo = getAccountToTransferTo(scanner);
+            //get amount
+            Double[] amount = getAmountToTransfer(scanner);
+            //get currency type
+            if (amount[1].equals((double) -1)) {
+                currencyType = getAccountCurrencyType(scanner);
+            } else {
+                currencyType = amount[1].intValue();
+            }
+
+            subtract(currencyType, accountToTransferFrom, amount[0]);
+            add(currencyType, accountToTransferTo, amount[0]);
+        }
+        else {
+            outputMethods.invalidAccountNumber();
+        }
     }
 
     private void subtract(int currencyType, Account account, Double amountToSubtract) {

@@ -111,7 +111,6 @@ public class NormalUser implements User {
         throw new IllegalAccessException("Not AdminUser");
     }
 
-    //todo
     @Override
     public void deluser(AccountManager accountManager, Scanner scanner) throws IllegalAccessException {
         throw new IllegalAccessException("Not AdminUser");
@@ -149,14 +148,12 @@ public class NormalUser implements User {
 
     @Override
     public void subtract(AccountManager accountManager, Scanner scanner) {
-        //todo only allow subtraction from user's account
-//        accountManager.subtractFunds(scanner);
+        accountManager.subtractFunds(scanner, this);
     }
 
     @Override
     public void transfer(AccountManager accountManager, Scanner scanner) {
-//        accountManager.transferFunds(scanner);
-        //todo only allow transfer from user's account
+        accountManager.transferFunds(scanner, this);
     }
 
     @Override
