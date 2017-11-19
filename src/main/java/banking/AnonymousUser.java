@@ -31,7 +31,7 @@ public class AnonymousUser implements User{
     @Override
     public int getCurrencyType() {
         outputMethods.mustLogIn();
-        return 0;
+        return -1;
     }
 
     @Override
@@ -47,6 +47,16 @@ public class AnonymousUser implements User{
     @Override
     public void setAdmin(boolean admin) {
         outputMethods.mustLogIn();
+    }
+
+    @Override
+    public int getSalt() {
+        return -1;
+    }
+
+    @Override
+    public void setSalt(int salt) {
+        //empty
     }
 
     @Override

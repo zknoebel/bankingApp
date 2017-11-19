@@ -19,6 +19,10 @@ public interface User {
 
     boolean isAdmin();
 
+    int getSalt();
+
+    void setSalt(int salt);
+
     void setAdmin(boolean admin);
 
     void add(AccountManager accountManager, Scanner scanner);

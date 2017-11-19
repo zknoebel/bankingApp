@@ -28,6 +28,9 @@ public class NormalUser implements User {
     @Column
     private boolean admin = false;
 
+    @Column
+    private int salt;
+
     public NormalUser() {
         username = "not set";
         password = "password";
@@ -79,6 +82,16 @@ public class NormalUser implements User {
     @Override
     public void setAdmin(boolean admin) {
         //empty
+    }
+
+    @Override
+    public int getSalt() {
+        return salt;
+    }
+
+    @Override
+    public void setSalt(int salt) {
+        this.salt = salt;
     }
 
     @Override
@@ -164,6 +177,6 @@ public class NormalUser implements User {
     @Override
     public String toString() {
 
-        return "Normal User   - " + getUsername() + " : " + getPassword();
+        return "Normal User   - " + getUsername() + ":" + getSalt() + ":" + getPassword();
     }
 }

@@ -22,6 +22,9 @@ public class AdminUser implements User {
     @Column
     private int currencyType;
 
+    @Column
+    private int salt;
+
     protected AdminUser() {
         setAdmin(true);
     }
@@ -74,6 +77,16 @@ public class AdminUser implements User {
     @Override
     public void setAdmin(boolean admin) {
         this.admin = admin;
+    }
+
+    @Override
+    public int getSalt() {
+        return salt;
+    }
+
+    @Override
+    public void setSalt(int salt) {
+        this.salt = salt;
     }
 
     @Override
@@ -159,6 +172,6 @@ public class AdminUser implements User {
     @Override
     public String toString() {
 
-        return "Administrator - " + getUsername() + " : " + getPassword();
+        return "Administrator - " + getUsername() + ":" + getSalt() + ":" + getPassword();
     }
 }

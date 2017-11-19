@@ -110,8 +110,10 @@ class AccountManager {
 
         String password = getPassword(scanner, false);
 
-        if (user.getPassword().equals(password)) {
-            return user;
+        if (user != null) {
+            if (user.getPassword().equals(password)) {
+                return user;
+            }
         }
         outputMethods.incorrectUsernameOrPassword();
         return new AnonymousUser();
@@ -275,10 +277,9 @@ class AccountManager {
 
     void subtractFunds(Scanner scanner, User user) {
         Account account = validateAccount(null, scanner);
-        if(user.getUsername().equals(account.getUsername())) {
+        if (user.getUsername().equals(account.getUsername())) {
             subtractFundsFromAccount(scanner, account.getAccountNumber());
-        }
-        else {
+        } else {
             outputMethods.invalidAccountNumber();
         }
     }
@@ -324,7 +325,7 @@ class AccountManager {
         //get account to take from
         Account accountToTransferFrom = getAccountToTransferFrom(scanner);
 
-        if(accountToTransferFrom.getUsername().equals(user.getUsername())) {
+        if (accountToTransferFrom.getUsername().equals(user.getUsername())) {
             //get account to add to
             Account accountToTransferTo = getAccountToTransferTo(scanner);
             //get amount
@@ -338,8 +339,7 @@ class AccountManager {
 
             subtract(currencyType, accountToTransferFrom, amount[0]);
             add(currencyType, accountToTransferTo, amount[0]);
-        }
-        else {
+        } else {
             outputMethods.invalidAccountNumber();
         }
     }
