@@ -260,6 +260,11 @@ class OutputMethods {
         System.out.println("Please try again.");
     }
 
+    void insufficientFunds() {
+        System.out.println("\nThis account does not have enough funds to complete this transaction.");
+        System.out.println("Please try again.");
+    }
+
     void loggedOut() {
         System.out.println("\nYou have been logged out.");
         System.out.println("\nType EXIT to close the program or sign in to continue.\n");

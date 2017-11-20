@@ -154,7 +154,7 @@ The first time the program is started, there will be no accounts in the database
     The number for each ratio must greater than zero.
     If you want to see the current ratios, before choosing MAINT you can display them with CONVERSIONS.
     
-##### SUBTRACT
+##### SUBTRACT (same as WITHDRAW)
     First choose the account number for an existing account (to make a new account use CREATE).
     Next choose the amount of money to withdraw and the currency type.
     This can be done one of two ways. Enter both at once like this <currency type character> <amount> example $43.22 or type the amount and then press enter. This will show you the list of acceptable currency types and also allow you to type the word out instead of just using the character. This will be helpful in case you don't have the Euro or Yen symbol on your keyboard.

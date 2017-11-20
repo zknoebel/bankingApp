@@ -104,7 +104,7 @@ class AccountManager {
 
     }
 
-    User login(Scanner scanner) throws NoSuchAlgorithmException{
+    User login(Scanner scanner) throws NoSuchAlgorithmException {
         String username = getUsername(scanner);
         User user = findUser(username);
 
@@ -191,7 +191,7 @@ class AccountManager {
 
     }
 
-    void makeUser(Scanner scanner) throws NoSuchAlgorithmException{
+    void makeUser(Scanner scanner) throws NoSuchAlgorithmException {
         String username = getUsername(scanner);
         User user = findUser(username);
 
@@ -305,7 +305,9 @@ class AccountManager {
             currencyType = amount[1].intValue();
         }
 
-        subtract(currencyType, account, amountToSubtract);
+        if (!subtract(currencyType, account, amountToSubtract)) {
+            outputMethods.insufficientFunds();
+        }
 
     }
 
@@ -324,8 +326,11 @@ class AccountManager {
             currencyType = amount[1].intValue();
         }
 
-        subtract(currencyType, accountToTransferFrom, amount[0]);
-        add(currencyType, accountToTransferTo, amount[0]);
+        if (subtract(currencyType, accountToTransferFrom, amount[0])) {
+            add(currencyType, accountToTransferTo, amount[0]);
+        } else {
+            outputMethods.insufficientFunds();
+        }
     }
 
     void transferFunds(Scanner scanner, User user) {
@@ -345,22 +350,30 @@ class AccountManager {
                 currencyType = amount[1].intValue();
             }
 
-            subtract(currencyType, accountToTransferFrom, amount[0]);
-            add(currencyType, accountToTransferTo, amount[0]);
+            if (subtract(currencyType, accountToTransferFrom, amount[0])) {
+                add(currencyType, accountToTransferTo, amount[0]);
+            } else {
+                outputMethods.insufficientFunds();
+            }
         } else {
             outputMethods.invalidAccountNumber();
         }
     }
 
-    private void subtract(int currencyType, Account account, Double amountToSubtract) {
+    private boolean subtract(int currencyType, Account account, Double amountToSubtract) {
         Double convertedAmount = currencyConverter.convert(currencyType, account.getCurrencyType(), amountToSubtract);
-
         Double newBalance = account.getBalance() - convertedAmount;
-        account.setBalance(newBalance);
 
-        entityManager.getTransaction().commit();
-        entityManager.getTransaction().begin();
+        if (newBalance > 0) {
+            account.setBalance(newBalance);
 
+            entityManager.getTransaction().commit();
+            entityManager.getTransaction().begin();
+
+            return true;
+        }
+
+        return false;
     }
 
     CurrencyConverter updateCurrencyWeights(Scanner scanner) {
