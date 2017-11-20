@@ -7,12 +7,17 @@ class OutputMethods {
 
     void startScreen() {
         titleArt();
-        System.out.println("Enter HELP for a list of options.");
+        System.out.println("Enter HELP for a list of adminOptions.");
     }
 
-    void helpScreen() {
+    void adminHelpScreen() {
         optionsArt();
-        options();
+        adminOptions();
+    }
+
+    void normalHelpScreen() {
+        optionsArt();
+        normalOptions();
     }
 
     void accountScreen(Account account) {
@@ -49,21 +54,31 @@ class OutputMethods {
         );
     }
 
-    private void options() {
-        System.out.println("ADD - Add money to an account.");
-        System.out.println("ADDUSER - Add a new user account.");
-        System.out.println("ACCOUNT - Modify account information.");
+    private void adminOptions() {
+        System.out.println("ADD         - Add money to an account.");
+        System.out.println("ADDUSER     - Add a new user account.");
+        System.out.println("ACCOUNT     - Modify account information.");
         System.out.println("CONVERSIONS - show current currency conversion ratios");
-        System.out.println("CREATE - Create a new bank account.");
-        System.out.println("DELETE - Remove a bank account from database. (CANNOT BE UNDONE)");
-        System.out.println("DELUSER - Remove a user account from the database. (CANNOT BE UNDONE");
-        System.out.println("EXIT - Close program.");
-        System.out.println("HELP - Display options.");
-        System.out.println("MAINT - Allow currency conversion data to be entered (or read in).");
-        System.out.println("LIST - Print a list of all current accounts.");
+        System.out.println("CREATE      - Create a new bank account.");
+        System.out.println("DELETE      - Remove a bank account from database. (CANNOT BE UNDONE)");
+        System.out.println("DELUSER     - Remove a user account from the database. (CANNOT BE UNDONE");
+        System.out.println("EXIT        - Close program.");
+        System.out.println("HELP        - Display adminOptions.");
+        System.out.println("MAINT       - Allow currency conversion data to be entered (or read in).");
+        System.out.println("LIST        - Print a list of all current accounts.");
+        System.out.println("SUBTRACT    - Remove money from an account.");
+        System.out.println("TRANSFER    - Move funds from one account to another.");
+        System.out.println("WITHDRAW    - Same function as SUBTRACT");
+    }
+
+    private void normalOptions() {
+        System.out.println("ADD      - Add money to an account.");
+        System.out.println("EXIT     - Close program.");
+        System.out.println("HELP     - Display options.");
+        System.out.println("LIST     - Print a list of all current accounts.");
         System.out.println("SUBTRACT - Remove money from an account.");
         System.out.println("TRANSFER - Move funds from one account to another.");
-        System.out.println("WITHDRAW - Same function as SUBTRACT");
+        System.out.println("WITHDRAW - Remove money from an account.(Same function as SUBTRACT)");
     }
 
     void noExistingAccount(Long accountNumber) {
@@ -174,9 +189,9 @@ class OutputMethods {
 
     void invalidMenuInput() {
         System.out.println("\nInvalid input...");
-        System.out.println("Enter one of the options and then press enter.");
+        System.out.println("Enter one of the adminOptions and then press enter.");
         System.out.println("Input should be one word and only contain letters from the English alphabet.");
-        System.out.println("For a list of options type HELP and press enter.");
+        System.out.println("For a list of adminOptions type HELP and press enter.");
     }
 
     void invalidAccountNumber() {

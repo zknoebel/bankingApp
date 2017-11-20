@@ -135,7 +135,7 @@ public class AdminUser implements User {
 
     @Override
     public void help(OutputMethods outputMethods) {
-        outputMethods.helpScreen();
+        outputMethods.adminHelpScreen();
 
     }
 

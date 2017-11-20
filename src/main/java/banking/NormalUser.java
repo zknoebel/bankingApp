@@ -1,7 +1,5 @@
 package banking;
 
-import com.objectdb.o.HST;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -107,6 +105,7 @@ public class NormalUser implements User {
 
     @Override
     public void account(AccountManager accountManager, Scanner scanner) {
+        //todo change currency type not username
         accountManager.manageAccount(scanner, this);
     }
 
@@ -132,7 +131,7 @@ public class NormalUser implements User {
 
     @Override
     public void help(OutputMethods outputMethods) {
-        outputMethods.helpScreen();
+        outputMethods.normalHelpScreen();
     }
 
     @Override

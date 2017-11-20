@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws IllegalAccessException, NoSuchAlgorithmException{
+    public static void main(String[] args) throws IllegalAccessException, NoSuchAlgorithmException {
         boolean end = false;
         Scanner scanner = new Scanner(System.in);
 
@@ -16,7 +16,7 @@ public class Main {
         User user = new AdminUser("root", "toor", 0);
         user.setAdmin(true);
 
-        if(!(accountManager.allUsers(false) == null)) {
+        if (!(accountManager.allUsers(false) == null)) {
             user = new AnonymousUser();
         }
 
@@ -57,11 +57,19 @@ public class Main {
                     break;
 
                 case "CREATE":
-                    user.create(accountManager, scanner);
+                    try {
+                        user.create(accountManager, scanner);
+                    } catch (IllegalAccessException iae) {
+                        outputMethods.userNotAdmin();
+                    }
                     break;
 
                 case "DELETE":
-                    user.delete(accountManager, scanner);
+                    try {
+                        user.delete(accountManager, scanner);
+                    } catch (IllegalAccessException iae) {
+                        outputMethods.userNotAdmin();
+                    }
                     break;
 
                 case "DELUSER":
