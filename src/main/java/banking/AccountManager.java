@@ -474,7 +474,7 @@ class AccountManager {
     //get a list of all of the users
     @SuppressWarnings("unchecked")
     List<User> allUsers(boolean print) {
-        List<User> users = new ArrayList<>();
+        List<User> users = null;
 
         try {
             Query ql = entityManager.createQuery("SELECT a FROM NormalUser a");
