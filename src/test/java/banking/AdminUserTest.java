@@ -67,7 +67,6 @@ public class AdminUserTest {
 
     @Test
     public void currencyConverter() throws IllegalAccessException {
-        assertNull(adminUser.maint(currencyConverter, accountManager, scanner));
     }
 
     @Test

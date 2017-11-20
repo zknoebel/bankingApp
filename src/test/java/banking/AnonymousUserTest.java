@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertNotNull;
@@ -13,6 +14,9 @@ import static org.junit.Assert.assertNull;
 public class AnonymousUserTest {
     User anonymousUser = new AnonymousUser();
     OutputMethods outputMethods = new OutputMethods();
+    AccountManager accountManager = new AccountManager();
+    Scanner scanner = new Scanner(System.in);
+    CurrencyConverter currencyConverter = new CurrencyConverter();
 
     String mustLogIn = outputMethods.mustLogIn();
 
@@ -24,67 +28,59 @@ public class AnonymousUserTest {
 
     @Test
     public void add() {
-
     }
 
-    @Test
-    public void adduser() {
-
+    @Test(expected = IllegalAccessException.class)
+    public void adduser() throws IllegalAccessException, NoSuchAlgorithmException {
+        anonymousUser.adduser(accountManager, scanner);
     }
 
     @Test
     public void account() {
-
     }
 
-    @Test
-    public void conversions() {
-
+    @Test(expected = IllegalAccessException.class)
+    public void conversions() throws IllegalAccessException {
+        anonymousUser.conversions(currencyConverter);
     }
 
-    @Test
-    public void create() {
-
+    @Test(expected = IllegalAccessException.class)
+    public void create() throws IllegalAccessException {
+        anonymousUser.create(accountManager, scanner);
     }
 
-    @Test
-    public void delete() {
-
+    @Test(expected = IllegalAccessException.class)
+    public void delete() throws IllegalAccessException {
+        anonymousUser.delete(accountManager, scanner);
     }
 
-    @Test
-    public void deluser() {
-
+    @Test(expected = IllegalAccessException.class)
+    public void deluser() throws IllegalAccessException {
+        anonymousUser.deluser(accountManager, scanner);
     }
 
     @Test
     public void help() {
-
     }
 
-    @Test
-    public void currencyConverter() throws IllegalAccessException{
-        assertNull(anonymousUser.maint(new CurrencyConverter(), new AccountManager(), new Scanner(System.in)));
+    @Test(expected = IllegalAccessException.class)
+    public void currencyConverter() throws IllegalAccessException {
+        anonymousUser.maint(new CurrencyConverter(), new AccountManager(), new Scanner(System.in));
     }
 
     @Test
     public void list() {
-
     }
 
     @Test
     public void subtract() {
-
     }
 
     @Test
     public void transfer() {
-
     }
 
     @Test
     public void withdraw() {
-
     }
-
 }

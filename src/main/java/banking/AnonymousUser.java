@@ -83,13 +83,15 @@ public class AnonymousUser implements User{
     }
 
     @Override
-    public void create(AccountManager accountManager, Scanner scanner) {
+    public void create(AccountManager accountManager, Scanner scanner) throws IllegalAccessException{
         outputMethods.mustLogIn();
+        throw new IllegalAccessException("Not administrator");
     }
 
     @Override
-    public void delete(AccountManager accountManager, Scanner scanner) {
+    public void delete(AccountManager accountManager, Scanner scanner) throws IllegalAccessException{
         outputMethods.mustLogIn();
+        throw new IllegalAccessException("Not administrator");
     }
 
     @Override

@@ -56,9 +56,9 @@ public class NormalUserTest {
 
     }
 
-    @Test
+    @Test(expected = IllegalAccessException.class)
     public void currencyConverter() throws IllegalAccessException{
-        assertNull(normalUser.maint(new CurrencyConverter(), new AccountManager(), new Scanner(System.in)));
+        normalUser.maint(new CurrencyConverter(), new AccountManager(), new Scanner(System.in));
     }
 
     @Test
