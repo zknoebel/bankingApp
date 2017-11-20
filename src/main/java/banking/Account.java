@@ -37,6 +37,9 @@ public class Account {
         return accountNumber;
     }
 
+    //dollars = 0
+    //euros = 1
+    //yen = 2
     private String stringCurrencyType() {
         switch (currencyType) {
             case 0:

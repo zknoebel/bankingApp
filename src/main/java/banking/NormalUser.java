@@ -94,52 +94,62 @@ public class NormalUser implements User {
     }
 
     @Override
+    //adds money to a bank account owned by the user
     public void add(AccountManager accountManager, Scanner scanner) {
         accountManager.addFunds(scanner, this);
     }
 
     @Override
+    //admins only
     public void adduser(AccountManager accountManager, Scanner scanner) throws IllegalAccessException {
         throw new IllegalAccessException("Not AdminUser");
     }
 
     @Override
+    //changes attributes of a bank account belonging to the user
     public void account(AccountManager accountManager, Scanner scanner) {
         //todo change currency type not username
         accountManager.manageAccount(scanner, this);
     }
 
     @Override
+    //admins only
     public void conversions(CurrencyConverter currencyConverter) throws IllegalAccessException {
         throw new IllegalAccessException("Not AdminUser");
     }
 
     @Override
+    //admins only
     public void create(AccountManager accountManager, Scanner scanner) throws IllegalAccessException {
         throw new IllegalAccessException("Not AdminUser");
     }
 
     @Override
+    //admins only
     public void delete(AccountManager accountManager, Scanner scanner) throws IllegalAccessException {
         throw new IllegalAccessException("Not AdminUser");
     }
 
     @Override
+    //admins only
     public void deluser(AccountManager accountManager, Scanner scanner) throws IllegalAccessException {
         throw new IllegalAccessException("Not AdminUser");
     }
 
     @Override
+    //prints options
     public void help(OutputMethods outputMethods) {
         outputMethods.normalHelpScreen();
     }
 
     @Override
+    //admins only
     public CurrencyConverter maint(CurrencyConverter currencyConverter, AccountManager accountManager, Scanner scanner) throws IllegalAccessException {
         throw new IllegalAccessException("Not AdminUser");
     }
 
     @Override
+    //lists all bank accounts belonging to the user
     public List<Object> list(AccountManager accountManager, boolean print) throws IllegalAccessException {
         List<Object> lists = new ArrayList<>();
         List<Account> accounts = accountManager.allAccounts(false);
@@ -160,16 +170,19 @@ public class NormalUser implements User {
     }
 
     @Override
+    //take money out of a bank account belonging to the user
     public void subtract(AccountManager accountManager, Scanner scanner) {
         accountManager.subtractFunds(scanner, this);
     }
 
     @Override
+    //move money from one bank account, beloinging to the user, to an other bank account
     public void transfer(AccountManager accountManager, Scanner scanner) {
         accountManager.transferFunds(scanner, this);
     }
 
     @Override
+    //same as subtract
     public void withdraw(AccountManager accountManager, Scanner scanner) {
         subtract(accountManager, scanner);
     }

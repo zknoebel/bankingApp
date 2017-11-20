@@ -26,6 +26,7 @@ class AccountManager {
 
     }
 
+    //add money to a bank account and save it
     private void add(int currencyType, Account account, Double amountToAdd) {
         Double convertedAmount = currencyConverter.convert(currencyType, account.getCurrencyType(), amountToAdd);
 
@@ -37,6 +38,7 @@ class AccountManager {
 
     }
 
+    //remove a user from the database
     void deleteAccount(Scanner scanner) {
         long accountNumber = getAccountNumber(scanner);
 
@@ -50,6 +52,7 @@ class AccountManager {
         }
     }
 
+    //remove a user from the database
     void deleteUser(Scanner scanner) {
         String username = getUsername(scanner);
 
@@ -63,11 +66,14 @@ class AccountManager {
         }
     }
 
+    //close the entity manager used to save things to the database
     void closeEntityManger() {
         entityManager.close();
         emfactory.close();
     }
 
+    //change an attribute with the account. ie. preferred currency type
+    //used by administrators (can change any account)
     void manageAccount(Scanner scanner) {
         Account account = validateAccount(null, scanner);
 
@@ -76,6 +82,8 @@ class AccountManager {
         changeAttribute(account, scanner);
     }
 
+    //change an attribute with the account. ie. preferred currency type
+    //used by normal users (can only change accounts that the user owns)
     void manageAccount(Scanner scanner, User user) {
         Account account = validateAccount(null, scanner);
 
@@ -88,6 +96,7 @@ class AccountManager {
         }
     }
 
+    //change one of the attributes in an account
     private void changeAttribute(Account account, Scanner scanner) {
         String input = scanner.nextLine();
 
@@ -98,12 +107,18 @@ class AccountManager {
                 updateUsername(account, scanner);
                 break;
 
+                //todo implement change of preferred currency
+            case "CURRENCY":
+                break;
+
             default:
                 break;
         }
 
     }
 
+    //logs a user into an account.
+    //using login while already logged in, will log the user out and then sign them into the new account
     User login(Scanner scanner) throws NoSuchAlgorithmException {
         String username = getUsername(scanner);
         User user = findUser(username);
@@ -122,11 +137,13 @@ class AccountManager {
         return new AnonymousUser();
     }
 
+    //logs the user out. They will then be an anonymous user
     User logout() {
         outputMethods.loggedOut();
         return new AnonymousUser();
     }
 
+    //change username on an account
     private void updateUsername(Account account, Scanner scanner) {
         String username = getUsername(scanner);
 
@@ -136,16 +153,31 @@ class AccountManager {
         entityManager.getTransaction().begin();
     }
 
+    //change currency type on an account
+    private void updateCurrencyType(Account account, Scanner scanner) {
+        int currencyType = getAccountCurrencyType(scanner);
+
+        account.setCurrencyType(currencyType);
+
+        entityManager.getTransaction().commit();
+        entityManager.getTransaction().begin();
+
+    }
+
+
+    //when transferring money between account, this method will get the account to have money taken out of
     private Account getAccountToTransferFrom(Scanner scanner) {
         outputMethods.accountToTransferFromPrompt();
         return validateAccount(null, scanner);
     }
 
+    //when transferring money between account, this method will get the account to have money put into
     private Account getAccountToTransferTo(Scanner scanner) {
         outputMethods.accountToTransferToPrompt();
         return validateAccount(null, scanner);
     }
 
+    //make sure this is an actual account
     private Account validateAccount(Account account, Scanner scanner) {
 
         while (account == null) {
@@ -161,6 +193,7 @@ class AccountManager {
         return account;
     }
 
+    //create and add a bank account to the database
     void makeAccount(Scanner scanner) {
         int currencyType = -1;
 
@@ -191,6 +224,7 @@ class AccountManager {
 
     }
 
+    //create and add a user to the database
     void makeUser(Scanner scanner) throws NoSuchAlgorithmException {
         String username = getUsername(scanner);
         User user = findUser(username);
@@ -219,6 +253,7 @@ class AccountManager {
 
     }
 
+    //make a random salt between 0 and 32767
     int makeSalt() {
         Random random = new Random();
         return random.nextInt(32768);
@@ -234,6 +269,7 @@ class AccountManager {
         return String.format("%064x", new BigInteger(1, digest));
     }
 
+    //add money to any account
     void addFunds(Scanner scanner) {
         int currencyType = -1;
 
@@ -250,6 +286,7 @@ class AccountManager {
         add(currencyType, account, amountToAdd[0]);
     }
 
+    //add money to an account that belongs to the user
     void addFunds(Scanner scanner, User user) {
         int currencyType = -1;
 
@@ -278,11 +315,13 @@ class AccountManager {
         }
     }
 
+    //subtract money from any account
     void subtractFunds(Scanner scanner) {
         Account account = validateAccount(null, scanner);
         subtractFundsFromAccount(scanner, account.getAccountNumber());
     }
 
+    //subtract money from an account that belongs to the user
     void subtractFunds(Scanner scanner, User user) {
         Account account = validateAccount(null, scanner);
         if (user.getUsername().equals(account.getUsername())) {
@@ -292,6 +331,7 @@ class AccountManager {
         }
     }
 
+    //subtract funds from the account with account number accountNumber
     void subtractFundsFromAccount(Scanner scanner, Long accountNumber) {
         Account account = findAccount(accountNumber);
         Double[] amount = getAmountToSubtract(scanner);
@@ -311,6 +351,7 @@ class AccountManager {
 
     }
 
+    //move money from one bank account to another
     void transferFunds(Scanner scanner) {
         int currencyType = -1;
         //get account to take from
@@ -333,6 +374,7 @@ class AccountManager {
         }
     }
 
+    //move money from an account that the user owns to another account in the database
     void transferFunds(Scanner scanner, User user) {
         int currencyType = -1;
         //get account to take from
@@ -360,6 +402,7 @@ class AccountManager {
         }
     }
 
+    //take money from an account, but only if there is at least that much money in the account (don't go below 0)
     private boolean subtract(int currencyType, Account account, Double amountToSubtract) {
         Double convertedAmount = currencyConverter.convert(currencyType, account.getCurrencyType(), amountToSubtract);
         Double newBalance = account.getBalance() - convertedAmount;
@@ -376,6 +419,7 @@ class AccountManager {
         return false;
     }
 
+    //change the ratios for currency conversions
     CurrencyConverter updateCurrencyWeights(Scanner scanner) {
         CurrencyConverter cc = currencyConverter.weightManger(scanner);
         this.currencyConverter = cc;
@@ -384,6 +428,7 @@ class AccountManager {
         return cc;
     }
 
+    //check to see if there is a currency converter in the database. If not, make a new one.
     CurrencyConverter checkForCurrencyConverter() {
 
         CurrencyConverter currencyConverter;
@@ -406,6 +451,7 @@ class AccountManager {
 
     }
 
+    //get a list of all of the accounts
     @SuppressWarnings("unchecked")
     List<Account> allAccounts(boolean print) {
         List<Account> accounts = new ArrayList<>();
@@ -425,6 +471,7 @@ class AccountManager {
         return accounts;
     }
 
+    //get a list of all of the users
     @SuppressWarnings("unchecked")
     List<User> allUsers(boolean print) {
         List<User> users = new ArrayList<>();
@@ -447,18 +494,22 @@ class AccountManager {
         return users;
     }
 
+    //get an account from the database using the account number
     private Account findAccount(long id) {
         return entityManager.find(Account.class, id);
     }
 
+    //get a normal user from the database using the username
     private NormalUser findNormalUser(String username) {
         return entityManager.find(NormalUser.class, username);
     }
 
+    //get an admin user from the database using the username
     private AdminUser findAdminUser(String username) {
         return entityManager.find(AdminUser.class, username);
     }
 
+    //get a user (normal or admin) from the database using the username
     private User findUser(String username) {
         User user = findAdminUser(username);
 
@@ -468,18 +519,21 @@ class AccountManager {
         return user;
     }
 
+    //update an account in the database
     private void saveAccount(Account account) {
         entityManager.persist(account);
         entityManager.getTransaction().commit();
         entityManager.getTransaction().begin();
     }
 
+    //update a user inthe database
     private void saveUser(User user) {
         entityManager.persist(user);
         entityManager.getTransaction().commit();
         entityManager.getTransaction().begin();
     }
 
+    //get an account number from the user
     private long getAccountNumber(Scanner scanner) {
         try {
             outputMethods.accountNumberPrompt();
@@ -492,6 +546,7 @@ class AccountManager {
 
     }
 
+    //get a username from the user
     private String getUsername(Scanner scanner) {
         String username = "";
 
@@ -509,6 +564,7 @@ class AccountManager {
         return username;
     }
 
+    //get a password from the user
     private String getPassword(Scanner scanner, boolean confirm) {
         String password = "";
 
@@ -537,6 +593,7 @@ class AccountManager {
         return password;
     }
 
+    //check if the logged in user is an admin
     private boolean getAdminValue(Scanner scanner) {
         String isAdmin = "";
         Boolean adminValue = null;
@@ -565,6 +622,7 @@ class AccountManager {
 
     }
 
+    //get a starting account balance from the user
     private Double getAccountBalance(Scanner scanner) {
         try {
             outputMethods.accountBalancePrompt();
@@ -577,6 +635,7 @@ class AccountManager {
 
     }
 
+    //get an amount of money to add to an account from the user
     private Double[] getAmountToAdd(Scanner scanner) {
         try {
             outputMethods.amountToAddPrompt();
@@ -588,6 +647,7 @@ class AccountManager {
         }
     }
 
+    //get an amount of money to subtract from an account from the user
     private Double[] getAmountToSubtract(Scanner scanner) {
         try {
             outputMethods.amountToWithdrawPrompt();
@@ -599,6 +659,7 @@ class AccountManager {
         }
     }
 
+    //get an amount of money to transfer from one account to another from the user
     private Double[] getAmountToTransfer(Scanner scanner) {
         try {
             outputMethods.amountToTransferPrompt();
@@ -610,6 +671,7 @@ class AccountManager {
         }
     }
 
+    //get the currency type of an account from the user
     private int getAccountCurrencyType(Scanner scanner) {
         try {
             outputMethods.currencyTypePrompt();

@@ -33,4 +33,5 @@ public class AccountManagerTest {
 
         assertNotEquals(salt0, salt1);
     }
+
 }

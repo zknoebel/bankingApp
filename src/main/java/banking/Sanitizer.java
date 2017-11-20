@@ -7,10 +7,12 @@ public class Sanitizer {
         //empty
     }
 
+    //uppercase letters only
     public String lettersOnlyString(String input) {
         return uppercaseLettersOnly(input.toUpperCase());
     }
 
+    //get amount of money. If they specify a type, take that too
     public Double[] typeAndAmountOfMoney(String input) {
         Double[] doubles = new Double[2];
         String returnString = "";
@@ -32,6 +34,7 @@ public class Sanitizer {
         return doubles;
     }
 
+    //account numbers should be a long (only characters 0-9)
     public Long accountNumber(String input) {
         try {
             return new Long(input);
@@ -41,6 +44,9 @@ public class Sanitizer {
         }
     }
 
+    //dollar = 0
+    //euro = 1
+    //yen = 2
     public int currencyType(String input) {
         String currencyType = currencyCharacters(input);
         if (currencyType.equals("")) {
@@ -71,6 +77,7 @@ public class Sanitizer {
         }
     }
 
+    //only accept doubles
     public Double accountBalance(String input) {
         try {
             return new Double(input);
@@ -80,6 +87,7 @@ public class Sanitizer {
         }
     }
 
+    //weight for the currency converter ratios
     public Double currencyWeight(String input) {
         try {
             return new Double(input);
@@ -88,6 +96,7 @@ public class Sanitizer {
         }
     }
 
+    //only accept uppercase letters
     private String uppercaseLettersOnly(String input) {
 
         if (input.matches("[A-Z]*")) {
@@ -95,12 +104,14 @@ public class Sanitizer {
         } else return "";
     }
 
+    //only accept numbers
     private String numbersOnly(String input) {
         if (input.matches("[0-9]*")) {
             return input;
         } else return "";
     }
 
+    //the symbols for the three type of currency
     private String currencyCharacters(String input) {
         if (input.matches("[$Є¥]")) {
             return input;

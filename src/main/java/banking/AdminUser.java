@@ -96,56 +96,58 @@ public class AdminUser implements User {
         accountManager.addFunds(scanner);
     }
 
-    //todo
     @Override
     public void adduser(AccountManager accountManager, Scanner scanner) throws NoSuchAlgorithmException{
         accountManager.makeUser(scanner);
-        //add user to database
-        //set user's preferred currency to CurrencyType
-        //set the user's password
-        //save the password (hashed with salt)
-        //ex [username, salt, hashed password]
     }
 
 
     @Override
+    //change attributes for a bank account
     public void account(AccountManager accountManager, Scanner scanner) {
         accountManager.manageAccount(scanner);
     }
 
     @Override
+    //change the currency conversion ratios for the database
     public void conversions(CurrencyConverter currencyConverter) {
         System.out.println(currencyConverter.toString());
     }
 
     @Override
+    //make a bank account
     public void create(AccountManager accountManager, Scanner scanner) {
         accountManager.makeAccount(scanner);
     }
 
     @Override
+    //remove a bank account
     public void delete(AccountManager accountManager, Scanner scanner) {
         accountManager.deleteAccount(scanner);
     }
 
     @Override
+    //remove a user
     public void deluser(AccountManager accountManager, Scanner scanner) {
         accountManager.deleteUser(scanner);
     }
 
     @Override
+    //print options
     public void help(OutputMethods outputMethods) {
         outputMethods.adminHelpScreen();
 
     }
 
     @Override
+    //set currency ratios for database
     public CurrencyConverter maint(CurrencyConverter currencyConverter, AccountManager accountManager, Scanner scanner) {
         System.out.println(currencyConverter.toString());
         return accountManager.updateCurrencyWeights(scanner);
     }
 
     @Override
+    //get all bank accounts and users
     public List<Object> list(AccountManager accountManager, boolean print) {
         List<Object> lists = new ArrayList<>();
 
@@ -157,16 +159,19 @@ public class AdminUser implements User {
 
 
     @Override
+    //take money from a bank account
     public void subtract(AccountManager accountManager, Scanner scanner) {
         accountManager.subtractFunds(scanner);
     }
 
     @Override
+    //move money from one bank account to another
     public void transfer(AccountManager accountManager, Scanner scanner) {
         accountManager.transferFunds(scanner);
     }
 
     @Override
+    //take money from a bank account (same as subtract)
     public void withdraw(AccountManager accountManager, Scanner scanner) {
         subtract(accountManager, scanner);
     }

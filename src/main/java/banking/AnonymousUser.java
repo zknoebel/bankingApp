@@ -3,8 +3,11 @@ package banking;
 import java.util.List;
 import java.util.Scanner;
 
+//AnonymousUser is not allowed to do anything besides logging in
 public class AnonymousUser implements User{
     OutputMethods outputMethods = new OutputMethods();
+
+    //todo throw illegal action exceptions
 
     @Override
     public String getUsername() {

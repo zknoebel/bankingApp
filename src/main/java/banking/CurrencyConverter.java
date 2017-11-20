@@ -3,7 +3,6 @@ package banking;
 import javax.persistence.*;
 import java.util.Scanner;
 
-//todo change to static class?
 @Entity
 @Table()
 public class CurrencyConverter {
@@ -46,6 +45,7 @@ public class CurrencyConverter {
         this.yenWeight = yenWeight;
     }
 
+    //takes an amount of money in one currency type and returns its value in another currency type
     public Double convert(int from, int to, Double amount) {
 
         Double convertedAmount;
@@ -128,6 +128,7 @@ public class CurrencyConverter {
         return yen * yenWeight / euroWeight;
     }
 
+    //gathers the "weight" for the ratios for all currency types
     CurrencyConverter weightManger(Scanner scanner) {
         dollarWeight = -1d;
         euroWeight = -1d;

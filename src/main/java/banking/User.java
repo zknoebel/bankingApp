@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public interface User {
+    // IllegalAccessExceptions are for when non-admin users try to use admin functions.
 
     String getUsername();
 
@@ -28,6 +29,7 @@ public interface User {
 
     void add(AccountManager accountManager, Scanner scanner);
 
+    // NoSuchAlgorithmException is for the hashing method of the password
     void adduser(AccountManager accountManager, Scanner scanner) throws IllegalAccessException, NoSuchAlgorithmException;
 
     void account(AccountManager accountManager, Scanner scanner);
