@@ -108,7 +108,6 @@ public class NormalUser implements User {
     @Override
     //changes attributes of a bank account belonging to the user
     public void account(AccountManager accountManager, Scanner scanner) {
-        //todo change currency type not username
         accountManager.manageAccount(scanner, this);
     }
 

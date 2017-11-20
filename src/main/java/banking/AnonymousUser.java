@@ -7,8 +7,6 @@ import java.util.Scanner;
 public class AnonymousUser implements User{
     OutputMethods outputMethods = new OutputMethods();
 
-    //todo throw illegal action exceptions
-
     @Override
     public String getUsername() {
         outputMethods.mustLogIn();
@@ -70,6 +68,7 @@ public class AnonymousUser implements User{
     @Override
     public void adduser(AccountManager accountManager, Scanner scanner) throws IllegalAccessException {
         outputMethods.mustLogIn();
+        throw new IllegalAccessException("Not administrator");
     }
 
     @Override
@@ -80,6 +79,7 @@ public class AnonymousUser implements User{
     @Override
     public void conversions(CurrencyConverter currencyConverter) throws IllegalAccessException {
         outputMethods.mustLogIn();
+        throw new IllegalAccessException("Not administrator");
     }
 
     @Override
@@ -95,6 +95,7 @@ public class AnonymousUser implements User{
     @Override
     public void deluser(AccountManager accountManager, Scanner scanner) throws IllegalAccessException {
         outputMethods.mustLogIn();
+        throw new IllegalAccessException("Not administrator");
     }
 
     @Override
@@ -105,7 +106,7 @@ public class AnonymousUser implements User{
     @Override
     public CurrencyConverter maint(CurrencyConverter currencyConverter, AccountManager accountManager, Scanner scanner) throws IllegalAccessException {
         outputMethods.mustLogIn();
-        return null;
+        throw new IllegalAccessException("Not administrator");
     }
 
     @Override

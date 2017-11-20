@@ -107,8 +107,8 @@ class AccountManager {
                 updateUsername(account, scanner);
                 break;
 
-                //todo implement change of preferred currency
             case "CURRENCY":
+                updateCurrencyType(account, scanner);
                 break;
 
             default:
