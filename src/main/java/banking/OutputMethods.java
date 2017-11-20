@@ -61,11 +61,11 @@ class OutputMethods {
         System.out.println("CONVERSIONS - show current currency conversion ratios");
         System.out.println("CREATE      - Create a new bank account.");
         System.out.println("DELETE      - Remove a bank account from database. (CANNOT BE UNDONE)");
-        System.out.println("DELUSER     - Remove a user account from the database. (CANNOT BE UNDONE");
+        System.out.println("DELUSER     - Remove a user account from the database. (CANNOT BE UNDONE)");
         System.out.println("EXIT        - Close program.");
         System.out.println("HELP        - Display adminOptions.");
-        System.out.println("MAINT       - Allow currency conversion data to be entered (or read in).");
         System.out.println("LIST        - Print a list of all current accounts.");
+        System.out.println("MAINT       - Allow currency conversion data to be entered.");
         System.out.println("SUBTRACT    - Remove money from an account.");
         System.out.println("TRANSFER    - Move funds from one account to another.");
         System.out.println("WITHDRAW    - Same function as SUBTRACT");

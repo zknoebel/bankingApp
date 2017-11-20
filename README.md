@@ -82,19 +82,24 @@ Once the program is started, different options can be selected.
 ##### Select an option by typing the word and then pressing enter. 
 
 Each option is a single word consisting only of letters from the english alphabet and is not case sensitive. 
+A user must login before using any other functions, besides EXIT.
+Administrators will be able to use all options. Normal users can only effect their own account, with the exception of transferring money to other accounts.
 
         
-        ADD - Add money to an account.
-        ACCOUNT - Modify account information.
-        CONVERSIONS - show current currency conversion ratios
-        CREATE - Create a new bank account.
-        DELETE - Remove account from database. (CANNOT BE UNDONE)
-        EXIT - Close program.
-        HELP - Display options.
-        MAINT - Allow currency conversion data to be entered (or read in).
-        LIST - Print a list of all current accounts.
-        TRANSFER - Move funds from one account to another.
-        WITHDRAW - Remove money from an account.
+        ADD         - Add money to an account.
+        ADDUSER     - Add a new user account. (Aministrator only)
+        ACCOUNT     - Modify account information.
+        CONVERSIONS - show current currency conversion ratios. (Aministrator only)
+        CREATE      - Create a new bank account. (Aministrator only)
+        DELETE      - Remove a bank account from database. (CANNOT BE UNDONE) (Aministrator only)
+        DELUSER     - Remove a user account from the database. (CANNOT BE UNDONE) (Aministrator only)
+        EXIT        - Close program.
+        HELP        - Display adminOptions.
+        LIST        - Print a list of all current accounts.
+        MAINT       - Allow currency conversion data to be entered. (Aministrator only)
+        SUBTRACT    - Remove money from an account.
+        TRANSFER    - Move funds from one account to another.
+        WITHDRAW    - Same function as SUBTRACT.
         
 The first time the program is started, there will be no accounts in the database. Use the CREATE option to add new accounts. The currency conversion ratios start at 1:1:1 and they can be changed with the MAINT option.
 
@@ -102,6 +107,12 @@ The first time the program is started, there will be no accounts in the database
     First choose the account number for an existing account (to make a new account use CREATE).
     Next choose the amount of money to add and the currency type.
     This can be done one of two ways. Enter both at once like this <currency type character> <amount> example $43.22 or type the amount and then press enter. This will show you the list of acceptable currency types and also allow you to type the word out instead of just using the character. This will be helpful in case you don't have the Euro or Yen symbol on your keyboard.
+    
+##### ADDUSER
+    First choose a username that is not already in use.
+    Next choose a password.
+    Then choose if the user will be an administrator or a normal user.
+    If the user will be a normal user, choose a preffered currency type.
     
 ##### ACCOUNT
     First choose the account number for an existing account (to make a new account use CREATE).
@@ -125,19 +136,28 @@ The first time the program is started, there will be no accounts in the database
     Enter the account number of the account you wish to delete.
     To get a list of accounts, you can use the LIST option.
     
+##### DELUSER
+    Enter the username of the user that you wish to delte.
+    To get a list of users, you can use the LIST option.
+    
 ##### EXIT
     This will save the database and close the program.
     
 ##### HELP
     This will display a list of the available options.
     
+##### LIST
+    This will show a list of the current accounts and their associated information.
+    
 ##### MAINT
     This will allow you to change the ratios of value for the available currency types.
     The number for each ratio must greater than zero.
     If you want to see the current ratios, before choosing MAINT you can display them with CONVERSIONS.
     
-##### LIST
-    This will show a list of the current accounts and their associated information.
+##### SUBTRACT
+    First choose the account number for an existing account (to make a new account use CREATE).
+    Next choose the amount of money to withdraw and the currency type.
+    This can be done one of two ways. Enter both at once like this <currency type character> <amount> example $43.22 or type the amount and then press enter. This will show you the list of acceptable currency types and also allow you to type the word out instead of just using the character. This will be helpful in case you don't have the Euro or Yen symbol on your keyboard.
     
 ##### TRANSFER
     This can be used to move money from one account to another.
