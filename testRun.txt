@@ -1,5 +1,62 @@
-Script started on 2017-10-15 21:50:52-1000
-]0;zac@zac-pc:~/workspace/school/ICS355/bankingApp[01;32m[zac@zac-pc[01;37m bankingApp[01;32m]$[00m java -jar BankingApp.jar 
+Script started on 2017-11-19 20:36:26-1000
+]0;zac@zac-pc:~/workspace/school/ICS355/bankingApp[01;32m[zac@zac-pc[01;37m bankingApp[01;32m]$[00m mvn clean compile assembly:single
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1mBuilding banking 1.0[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-clean-plugin:2.5:clean[m [1m(default-clean)[m @ [36mbankingApp[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/zac/workspace/school/ICS355/bankingApp/target
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:resources[m [1m(default-resources)[m @ [36mbankingApp[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/zac/workspace/school/ICS355/bankingApp/src/main/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.1:compile[m [1m(default-compile)[m @ [36mbankingApp[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;34mINFO[m] Compiling 10 source files to /home/zac/workspace/school/ICS355/bankingApp/target/classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-assembly-plugin:2.2-beta-5:single[m [1m(default-cli)[m @ [36mbankingApp[0;1m ---[m
+[[1;34mINFO[m] META-INF/MANIFEST.MF already added, skipping
+[[1;34mINFO[m] META-INF/ already added, skipping
+[[1;34mINFO[m] META-INF/MANIFEST.MF already added, skipping
+[[1;34mINFO[m] javax/ already added, skipping
+[[1;34mINFO[m] META-INF/ already added, skipping
+[[1;34mINFO[m] META-INF/MANIFEST.MF already added, skipping
+[[1;34mINFO[m] org/ already added, skipping
+[[1;34mINFO[m] META-INF/ already added, skipping
+[[1;34mINFO[m] META-INF/MANIFEST.MF already added, skipping
+[[1;34mINFO[m] org/ already added, skipping
+[[1;34mINFO[m] Building jar: /home/zac/workspace/school/ICS355/bankingApp/target/BankingApp.jar
+[[1;34mINFO[m] META-INF/MANIFEST.MF already added, skipping
+[[1;34mINFO[m] META-INF/ already added, skipping
+[[1;34mINFO[m] META-INF/MANIFEST.MF already added, skipping
+[[1;34mINFO[m] javax/ already added, skipping
+[[1;34mINFO[m] META-INF/ already added, skipping
+[[1;34mINFO[m] META-INF/MANIFEST.MF already added, skipping
+[[1;34mINFO[m] org/ already added, skipping
+[[1;34mINFO[m] META-INF/ already added, skipping
+[[1;34mINFO[m] META-INF/MANIFEST.MF already added, skipping
+[[1;34mINFO[m] org/ already added, skipping
+[[1;33mWARNING[m] Configuration options: 'appendAssemblyId' is set to false, and 'classifier' is missing.
+Instead of attaching the assembly file: /home/zac/workspace/school/ICS355/bankingApp/target/BankingApp.jar, it will become the file for main project artifact.
+NOTE: If multiple descriptors or descriptor-formats are provided for this project, the value of this file will be non-deterministic!
+[[1;33mWARNING[m] Replacing pre-existing project main-artifact file: /home/zac/workspace/school/ICS355/bankingApp/target/classes
+with assembly file: /home/zac/workspace/school/ICS355/bankingApp/target/BankingApp.jar
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time: 2.991 s
+[[1;34mINFO[m] Finished at: 2017-11-19T20:36:56-10:00
+[[1;34mINFO[m] Final Memory: 17M/243M
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+]0;zac@zac-pc:~/workspace/school/ICS355/bankingApp[01;32m[zac@zac-pc[01;37m bankingApp[01;32m]$[00m ls
+Banking.iml  [0m[01;34mdb[0m  [01;34mlog[0m  pom.xml  README.md  [01;34msrc[0m  [01;34mtarget[0m  [00;32mtestRun.txt[0m
+]0;zac@zac-pc:~/workspace/school/ICS355/bankingApp[01;32m[zac@zac-pc[01;37m bankingApp[01;32m]$[00m ls target/
+[0m[01;34marchive-tmp[0m  [01;31mBankingApp.jar[0m  [01;34mclasses[0m  [01;34mgenerated-sources[0m  [01;34mmaven-status[0m
+]0;zac@zac-pc:~/workspace/school/ICS355/bankingApp[01;32m[zac@zac-pc[01;37m bankingApp[01;32m]$[00m java -jar B[KtestRun.txt [K[K[K[K[K[K[K[K[K[K[K[Ktarget/BankingApp.jar 
+No users have been saved yet.
  ______   _______  _        _       _________ _        _______        _______  _______  _______
 (  ___ \ (  ___  )( (    /|| \    /\\__   __/( (    /|(  ____ \      (  ___  )(  ____ )(  ____ )
 | (   ) )| (   ) ||  \  ( ||  \  / /   ) (   |  \  ( || (    \/      | (   ) || (    )|| (    )|
@@ -9,7 +66,50 @@ Script started on 2017-10-15 21:50:52-1000
 | )___) )| )   ( || )  \  ||  /  \ \___) (___| )  \  || (___) |      | )   ( || )      | )      
 (______/ |/     \||/    )_)|_/    \/\_______/|/    )_)(_______)      |/     \||/       |/       
 
-Enter HELP for a list of options.
+Enter HELP for a list of adminOptions.
+
+Enter an option: list
+No users have been saved yet.
+No accounts have been saved yet.
+
+Enter an option: adduser
+
+Please enter the username for this account.
+Username: 
+admin
+
+Please enter the password for this account.
+Password : 
+adminpass
+
+Please confirm the password for this account.
+Password : 
+adminpass
+
+Will this user be an administrator?
+
+Enter either TRUE or FALSE.
+true
+
+Enter an option: list
+Administrator - ADMIN:21468:47660861af8e9b0a91769142121954d08c78978f4e295e89b3ed1e0a60cbe7a0
+
+No accounts have been saved yet.
+
+Enter an option: login
+
+Please enter the username for this account.
+Username: 
+admin
+
+Please enter the password for this account.
+Password : 
+adminpass
+
+Enter an option: list
+Administrator - ADMIN:21468:47660861af8e9b0a91769142121954d08c78978f4e295e89b3ed1e0a60cbe7a0
+
+No accounts have been saved yet.
 
 Enter an option: help
  _______  _______ __________________ _______  _        _______ 
@@ -21,54 +121,71 @@ Enter an option: help
 | (___) || )         | |   ___) (___| (___) || )  \  |/\____) |
 (_______)|/          )_(   \_______/(_______)|/    )_)\_______)
 
-ADD - Add money to an account.
-ACCOUNT - Modify account information.
+ADD         - Add money to an account.
+ADDUSER     - Add a new user account.
+ACCOUNT     - Modify account information.
 CONVERSIONS - show current currency conversion ratios
-CREATE - Create a new bank account.
-DELETE - Remove account from database. (CANNOT BE UNDONE)
-EXIT - Close program.
-HELP - Display options.
-MAINT - Allow currency conversion data to be entered (or read in).
-LIST - Print a list of all current accounts.
-TRANSFER - Move funds from one account to another.
-WITHDRAW - Remove money from an account.
+CREATE      - Create a new bank account.
+DELETE      - Remove a bank account from database. (CANNOT BE UNDONE)
+DELUSER     - Remove a user account from the database. (CANNOT BE UNDONE)
+EXIT        - Close program.
+HELP        - Display adminOptions.
+LIST        - Print a list of all current accounts.
+MAINT       - Allow currency conversion data to be entered.
+SUBTRACT    - Remove money from an account.
+TRANSFER    - Move funds from one account to another.
+WITHDRAW    - Same function as SUBTRACT
 
-Enter an option: list
-No accounts have been saved yet.
-
-Enter an option: create
-
-Please enter an account number: 1234
-
-Please enter an amount to add: 
-$500
+Enter an option: adduser
 
 Please enter the username for this account.
 Username: 
-sam
+jeff
 
-Enter an option: llist
+Please enter the password for this account.
+Password : 
+jeff
 
-Invalid input...
-Enter one of the options and then press enter.
-Input should be one word and only contain letters from the English alphabet.
-For a list of options type HELP and press enter.
+Please confirm the password for this account.
+Password : 
+jeff
+
+Will this user be an administrator?
+
+Enter either TRUE or FALSE.
+false
+
+Supported currencies...
+	DOLLAR or $
+	EURO or Є
+	YEN ¥
+
+Please enter a currency type: dollar
 
 Enter an option: list
+Normal User   - JEFF:2757:15700795a1bddec6e4f12506c74f191a58be49177a36a9de2255fe1e74494b83
+Administrator - ADMIN:21468:47660861af8e9b0a91769142121954d08c78978f4e295e89b3ed1e0a60cbe7a0
 
-{
-	Username: SAM
-	Account Number: 1234
-	Account Balance: 500.00
-	Account Currency Type: DOLLAR
-}
+No accounts have been saved yet.
 
-Enter an option: add
+Enter an option: adduser
 
-Please enter an account number: 1234
+Please enter the username for this account.
+Username: 
+johnny
 
-Please enter an amount to add: 
-40
+Please enter the password for this account.
+Password : 
+johnny
+
+Please confirm the password for this account.
+Password : 
+johm nny
+
+Will this user be an administrator?
+
+Enter either TRUE or FALSE.
+false
 
 Supported currencies...
 	DOLLAR or $
@@ -78,29 +195,362 @@ Supported currencies...
 Please enter a currency type: yen
 
 Enter an option: list
+Normal User   - JEFF:2757:15700795a1bddec6e4f12506c74f191a58be49177a36a9de2255fe1e74494b83
+Normal User   - JOHNNY:9633:d139a2a731d140725c30a2d71dbf6ee82f600fe2a8ead3066f23d0b8eedd6e8e
+Administrator - ADMIN:21468:47660861af8e9b0a91769142121954d08c78978f4e295e89b3ed1e0a60cbe7a0
+
+No accounts have been saved yet.
+
+Enter an option: help
+ _______  _______ __________________ _______  _        _______ 
+(  ___  )(  ____ )\__   __/\__   __/(  ___  )( (    /|(  ____ \
+| (   ) || (    )|   ) (      ) (   | (   ) ||  \  ( || (    \/
+| |   | || (____)|   | |      | |   | |   | ||   \ | || (_____ 
+| |   | ||  _____)   | |      | |   | |   | || (\ \) |(_____  )
+| |   | || (         | |      | |   | |   | || | \   |      ) |
+| (___) || )         | |   ___) (___| (___) || )  \  |/\____) |
+(_______)|/          )_(   \_______/(_______)|/    )_)\_______)
+
+ADD         - Add money to an account.
+ADDUSER     - Add a new user account.
+ACCOUNT     - Modify account information.
+CONVERSIONS - show current currency conversion ratios
+CREATE      - Create a new bank account.
+DELETE      - Remove a bank account from database. (CANNOT BE UNDONE)
+DELUSER     - Remove a user account from the database. (CANNOT BE UNDONE)
+EXIT        - Close program.
+HELP        - Display adminOptions.
+LIST        - Print a list of all current accounts.
+MAINT       - Allow currency conversion data to be entered.
+SUBTRACT    - Remove money from an account.
+TRANSFER    - Move funds from one account to another.
+WITHDRAW    - Same function as SUBTRACT
+
+Enter an option: create
+
+Please enter an account number: 1111
+
+Please enter an amount to add: 
+5 $500
+
+Please enter the username for this account.
+Username: 
+jeff
+
+Enter an option: list
+Normal User   - JEFF:2757:15700795a1bddec6e4f12506c74f191a58be49177a36a9de2255fe1e74494b83
+Normal User   - JOHNNY:9633:d139a2a731d140725c30a2d71dbf6ee82f600fe2a8ead3066f23d0b8eedd6e8e
+Administrator - ADMIN:21468:47660861af8e9b0a91769142121954d08c78978f4e295e89b3ed1e0a60cbe7a0
+
 
 {
-	Username: SAM
-	Account Number: 1234
-	Account Balance: 540.00
+	Username: JEFF
+	Account Number: 1111
+	Account Balance: 500.00
 	Account Currency Type: DOLLAR
 }
 
-Enter an option: withdraw
+Enter an option: create
 
-Please enter an account number: 1234
+Please enter an account number: 2222
 
-Please enter an amount to withdraw: 
-¥ 40
+Please enter an amount to add: 
+6000
+
+Supported currencies...
+	DOLLAR or $
+	EURO or Є
+	YEN ¥
+
+Please enter a currency type: yen
+
+Please enter the username for this account.
+Username: 
+jeff
+
+Enter an option: list
+Normal User   - JEFF:2757:15700795a1bddec6e4f12506c74f191a58be49177a36a9de2255fe1e74494b83
+Normal User   - JOHNNY:9633:d139a2a731d140725c30a2d71dbf6ee82f600fe2a8ead3066f23d0b8eedd6e8e
+Administrator - ADMIN:21468:47660861af8e9b0a91769142121954d08c78978f4e295e89b3ed1e0a60cbe7a0
+
+
+{
+	Username: JEFF
+	Account Number: 1111
+	Account Balance: 500.00
+	Account Currency Type: DOLLAR
+}
+
+{
+	Username: JEFF
+	Account Number: 2222
+	Account Balance: 6000.00
+	Account Currency Type: YEN
+}
+
+Enter an option: logout
+
+You have been logged out.
+
+Type EXIT to close the program or sign in to continue.
+
+
+Enter an option: login
+
+Please enter the username for this account.
+Username: 
+jeff
+
+Please enter the password for this account.
+Password : 
+jeff
 
 Enter an option: list
 
 {
-	Username: SAM
-	Account Number: 1234
+	Username: JEFF
+	Account Number: 1111
 	Account Balance: 500.00
 	Account Currency Type: DOLLAR
 }
+
+{
+	Username: JEFF
+	Account Number: 2222
+	Account Balance: 6000.00
+	Account Currency Type: YEN
+}
+
+Enter an option: logout
+
+You have been logged out.
+
+Type EXIT to close the program or sign in to continue.
+
+
+Enter an option: login
+
+Please enter the username for this account.
+Username: 
+admin
+
+Please enter the password for this account.
+Password : 
+amdinpass
+
+Incorrect username or password.
+Please try again.
+
+Enter an option: list
+
+You must log in to use this function!
+To log in, type LOGIN and press enter.
+Once logged in, you can type HELP and press enter to display a list of commands.
+
+You are not an administrator.
+
+Enter an option: login
+
+Please enter the username for this account.
+Username: 
+admin
+
+Please enter the password for this account.
+Password : 
+adminpass
+
+Enter an option: list
+Normal User   - JEFF:2757:15700795a1bddec6e4f12506c74f191a58be49177a36a9de2255fe1e74494b83
+Normal User   - JOHNNY:9633:d139a2a731d140725c30a2d71dbf6ee82f600fe2a8ead3066f23d0b8eedd6e8e
+Administrator - ADMIN:21468:47660861af8e9b0a91769142121954d08c78978f4e295e89b3ed1e0a60cbe7a0
+
+
+{
+	Username: JEFF
+	Account Number: 1111
+	Account Balance: 500.00
+	Account Currency Type: DOLLAR
+}
+
+{
+	Username: JEFF
+	Account Number: 2222
+	Account Balance: 6000.00
+	Account Currency Type: YEN
+}
+
+Enter an option: create
+
+Please enter an account number: 3333
+
+Please enter an amount to add: 
+500
+
+Supported currencies...
+	DOLLAR or $
+	EURO or Є
+	YEN ¥
+
+Please enter a currency type: euro
+
+Please enter the username for this account.
+Username: 
+johnny
+
+Enter an option: list
+Normal User   - JEFF:2757:15700795a1bddec6e4f12506c74f191a58be49177a36a9de2255fe1e74494b83
+Normal User   - JOHNNY:9633:d139a2a731d140725c30a2d71dbf6ee82f600fe2a8ead3066f23d0b8eedd6e8e
+Administrator - ADMIN:21468:47660861af8e9b0a91769142121954d08c78978f4e295e89b3ed1e0a60cbe7a0
+
+
+{
+	Username: JEFF
+	Account Number: 1111
+	Account Balance: 500.00
+	Account Currency Type: DOLLAR
+}
+
+{
+	Username: JEFF
+	Account Number: 2222
+	Account Balance: 6000.00
+	Account Currency Type: YEN
+}
+
+{
+	Username: JOHNNY
+	Account Number: 3333
+	Account Balance: 500.00
+	Account Currency Type: EURO
+}
+
+Enter an option: logi 0ut   out
+
+You have been logged out.
+
+Type EXIT to close the program or sign in to continue.
+
+
+Enter an option: login
+
+Please enter the username for this account.
+Username: 
+jeff
+
+Please enter the password for this account.
+Password : 
+jeff
+
+Enter an option: list
+
+{
+	Username: JEFF
+	Account Number: 1111
+	Account Balance: 500.00
+	Account Currency Type: DOLLAR
+}
+
+{
+	Username: JEFF
+	Account Number: 2222
+	Account Balance: 6000.00
+	Account Currency Type: YEN
+}
+
+Enter an option: logout
+
+You have been logged out.
+
+Type EXIT to close the program or sign in to continue.
+
+
+Enter an option: login
+
+Please enter the username for this account.
+Username: 
+johnny
+
+Please enter the password for this account.
+Password : 
+johnny
+
+Enter an option: list
+
+{
+	Username: JOHNNY
+	Account Number: 3333
+	Account Balance: 500.00
+	Account Currency Type: EURO
+}
+
+Enter an option: logout
+
+You have been logged out.
+
+Type EXIT to close the program or sign in to continue.
+
+
+Enter an option: login
+
+Please enter the username for this account.
+Username: 
+admin
+
+Please enter the password for this account.
+Password : 
+admi  minpass
+
+Enter an option: list
+Normal User   - JEFF:2757:15700795a1bddec6e4f12506c74f191a58be49177a36a9de2255fe1e74494b83
+Normal User   - JOHNNY:9633:d139a2a731d140725c30a2d71dbf6ee82f600fe2a8ead3066f23d0b8eedd6e8e
+Administrator - ADMIN:21468:47660861af8e9b0a91769142121954d08c78978f4e295e89b3ed1e0a60cbe7a0
+
+
+{
+	Username: JEFF
+	Account Number: 1111
+	Account Balance: 500.00
+	Account Currency Type: DOLLAR
+}
+
+{
+	Username: JEFF
+	Account Number: 2222
+	Account Balance: 6000.00
+	Account Currency Type: YEN
+}
+
+{
+	Username: JOHNNY
+	Account Number: 3333
+	Account Balance: 500.00
+	Account Currency Type: EURO
+}
+
+Enter an option: help
+ _______  _______ __________________ _______  _        _______ 
+(  ___  )(  ____ )\__   __/\__   __/(  ___  )( (    /|(  ____ \
+| (   ) || (    )|   ) (      ) (   | (   ) ||  \  ( || (    \/
+| |   | || (____)|   | |      | |   | |   | ||   \ | || (_____ 
+| |   | ||  _____)   | |      | |   | |   | || (\ \) |(_____  )
+| |   | || (         | |      | |   | |   | || | \   |      ) |
+| (___) || )         | |   ___) (___| (___) || )  \  |/\____) |
+(_______)|/          )_(   \_______/(_______)|/    )_)\_______)
+
+ADD         - Add money to an account.
+ADDUSER     - Add a new user account.
+ACCOUNT     - Modify account information.
+CONVERSIONS - show current currency conversion ratios
+CREATE      - Create a new bank account.
+DELETE      - Remove a bank account from database. (CANNOT BE UNDONE)
+DELUSER     - Remove a user account from the database. (CANNOT BE UNDONE)
+EXIT        - Close program.
+HELP        - Display adminOptions.
+LIST        - Print a list of all current accounts.
+MAINT       - Allow currency conversion data to be entered.
+SUBTRACT    - Remove money from an account.
+TRANSFER    - Move funds from one account to another.
+WITHDRAW    - Same function as SUBTRACT
 
 Enter an option: conversions
 
@@ -144,55 +594,136 @@ Enter an option: conversions
 }
 
 
-Enter an option: create
+Enter an option: logout
 
-Please enter an account number: 1233
+You have been logged out.
+
+Type EXIT to close the program or sign in to continue.
+
+
+Enter an option: login
+
+Please enter the username for this account.
+Username: 
+jeff
+
+Please enter the password for this account.
+Password : 
+feff
+
+Incorrect username or password.
+Please try again.
+
+Enter an option: lo  jeff
+
+Invalid input...
+Enter one of the adminOptions and then press enter.
+Input should be one word and only contain letters from the English alphabet.
+For a list of adminOptions type HELP and press enter.
+
+Enter an option: list
+
+You must log in to use this function!
+To log in, type LOGIN and press enter.
+Once logged in, you can type HELP and press enter to display a list of commands.
+
+You are not an administrator.
+
+Enter an option: login
+
+Please enter the username for this account.
+Username: 
+jeff
+
+Please enter the password for this account.
+Password : 
+jeff
+
+Enter an option: list
+
+{
+	Username: JEFF
+	Account Number: 1111
+	Account Balance: 500.00
+	Account Currency Type: DOLLAR
+}
+
+{
+	Username: JEFF
+	Account Number: 2222
+	Account Balance: 6000.00
+	Account Currency Type: YEN
+}
+
+Enter an option: add
+
+Please enter an account number: 1111
 
 Please enter an amount to add: 
-400
+50
 
 Supported currencies...
 	DOLLAR or $
 	EURO or Є
 	YEN ¥
 
-Please enter a currency type: dollar
-
-Please enter the username for this account.
-Username: 
-dave
+Please enter a currency type: euro
 
 Enter an option: list
 
 {
-	Username: DAVE
-	Account Number: 1233
-	Account Balance: 400.00
+	Username: JEFF
+	Account Number: 1111
+	Account Balance: 525.00
 	Account Currency Type: DOLLAR
 }
 
 {
-	Username: SAM
-	Account Number: 1234
-	Account Balance: 500.00
+	Username: JEFF
+	Account Number: 2222
+	Account Balance: 6000.00
+	Account Currency Type: YEN
+}
+
+Enter an option: subtract
+
+Please enter an account number: 2222
+
+Please enter an amount to withdraw: 
+50
+
+Supported currencies...
+	DOLLAR or $
+	EURO or Є
+	YEN ¥
+
+Please enter a currency type: euro
+
+Enter an option: list
+
+{
+	Username: JEFF
+	Account Number: 1111
+	Account Balance: 525.00
 	Account Currency Type: DOLLAR
 }
 
+{
+	Username: JEFF
+	Account Number: 2222
+	Account Balance: 5900.00
+	Account Currency Type: YEN
+}
+
 Enter an option: transfer
-P
-lease enter the account number for the account you with to transfer money from.
 
-Please enter an account number: sam
+Please enter the account number for the account you wish to transfer money from.
 
-Invalid account number...
-Enter an account number and press enter.
-Input should be one number and only contain digits from the Arabic numeral system.
+Please enter an account number: 1111
 
-Please enter an account number: 1234
+Please enter the account number for the account you wish to transfer money to.
 
-Please enter the account number for the account you with to transfer money to.
-
-Please enter an account number: 1233
+Please enter an account number: 2222
 
 Please enter the amount of money you wish to transfer.
 Amount: 
@@ -208,27 +739,18 @@ Please enter a currency type: euro
 Enter an option: list
 
 {
-	Username: DAVE
-	Account Number: 1233
-	Account Balance: 425.00
+	Username: JEFF
+	Account Number: 1111
+	Account Balance: 500.00
 	Account Currency Type: DOLLAR
 }
 
 {
-	Username: SAM
-	Account Number: 1234
-	Account Balance: 475.00
-	Account Currency Type: DOLLAR
+	Username: JEFF
+	Account Number: 2222
+	Account Balance: 6000.00
+	Account Currency Type: YEN
 }
-
-Enter an option: conversions
-
-{
-	Dollar weight: 4.0
-	Euro weight: 2.0
-	Yen weight: 1.0
-}
-
 
 Enter an option: help
  _______  _______ __________________ _______  _        _______ 
@@ -240,33 +762,356 @@ Enter an option: help
 | (___) || )         | |   ___) (___| (___) || )  \  |/\____) |
 (_______)|/          )_(   \_______/(_______)|/    )_)\_______)
 
-ADD - Add money to an account.
-ACCOUNT - Modify account information.
-CONVERSIONS - show current currency conversion ratios
-CREATE - Create a new bank account.
-DELETE - Remove account from database. (CANNOT BE UNDONE)
-EXIT - Close program.
-HELP - Display options.
-MAINT - Allow currency conversion data to be entered (or read in).
-LIST - Print a list of all current accounts.
+ADD      - Add money to an account.
+EXIT     - Close program.
+HELP     - Display options.
+LIST     - Print a list of all current accounts.
+SUBTRACT - Remove money from an account.
 TRANSFER - Move funds from one account to another.
-WITHDRAW - Remove money from an account.
+WITHDRAW - Remove money from an account.(Same function as SUBTRACT)
 
-Enter an option: dlee   elete
+Enter an option: logout
 
-Please enter an account number: 1233
+You have been logged out.
+
+Type EXIT to close the program or sign in to continue.
+
+
+Enter an option: login
+
+Please enter the username for this account.
+Username: 
+admin
+
+Please enter the password for this account.
+Password : 
+adminpass
+
+Enter an option: list
+Normal User   - JEFF:2757:15700795a1bddec6e4f12506c74f191a58be49177a36a9de2255fe1e74494b83
+Normal User   - JOHNNY:9633:d139a2a731d140725c30a2d71dbf6ee82f600fe2a8ead3066f23d0b8eedd6e8e
+Administrator - ADMIN:21468:47660861af8e9b0a91769142121954d08c78978f4e295e89b3ed1e0a60cbe7a0
+
+
+{
+	Username: JEFF
+	Account Number: 1111
+	Account Balance: 500.00
+	Account Currency Type: DOLLAR
+}
+
+{
+	Username: JEFF
+	Account Number: 2222
+	Account Balance: 6000.00
+	Account Currency Type: YEN
+}
+
+{
+	Username: JOHNNY
+	Account Number: 3333
+	Account Balance: 500.00
+	Account Currency Type: EURO
+}
+
+Enter an option: transfer
+
+Please enter the account number for the account you wish to transfer money from.
+
+Please enter an account number: 3333
+
+Please enter the account number for the account you wish to transfer money to.
+
+Please enter an account number: 1111
+
+Please enter the amount of money you wish to transfer.
+Amount: 
+1
+
+Supported currencies...
+	DOLLAR or $
+	EURO or Є
+	YEN ¥
+
+Please enter a currency type: yen
+
+Enter an option: list
+Normal User   - JEFF:2757:15700795a1bddec6e4f12506c74f191a58be49177a36a9de2255fe1e74494b83
+Normal User   - JOHNNY:9633:d139a2a731d140725c30a2d71dbf6ee82f600fe2a8ead3066f23d0b8eedd6e8e
+Administrator - ADMIN:21468:47660861af8e9b0a91769142121954d08c78978f4e295e89b3ed1e0a60cbe7a0
+
+
+{
+	Username: JEFF
+	Account Number: 1111
+	Account Balance: 500.25
+	Account Currency Type: DOLLAR
+}
+
+{
+	Username: JEFF
+	Account Number: 2222
+	Account Balance: 6000.00
+	Account Currency Type: YEN
+}
+
+{
+	Username: JOHNNY
+	Account Number: 3333
+	Account Balance: 499.50
+	Account Currency Type: EURO
+}
+
+Enter an option: logout
+
+You have been logged out.
+
+Type EXIT to close the program or sign in to continue.
+
+
+Enter an option: login
+
+Please enter the username for this account.
+Username: 
+johnny
+
+Please enter the password for this account.
+Password : 
+johnny
 
 Enter an option: list
 
 {
-	Username: SAM
-	Account Number: 1234
-	Account Balance: 475.00
+	Username: JOHNNY
+	Account Number: 3333
+	Account Balance: 499.50
+	Account Currency Type: EURO
+}
+
+Enter an option: transfer
+
+Please enter the account number for the account you wish to transfer money from.
+
+Please enter an account number: 3333
+
+Please enter the account number for the account you wish to transfer money to.
+
+Please enter an account number: 1111
+
+Please enter the amount of money you wish to transfer.
+Amount: 
+1
+
+Supported currencies...
+	DOLLAR or $
+	EURO or Є
+	YEN ¥
+
+Please enter a currency type: euro
+
+Enter an option: list
+
+{
+	Username: JOHNNY
+	Account Number: 3333
+	Account Balance: 498.50
+	Account Currency Type: EURO
+}
+
+Enter an option: transfer
+
+Please enter the account number for the account you wish to transfer money from.
+
+Please enter an account number: 1111
+
+Invalid account number...
+Enter an account number and press enter.
+Input should be one number and only contain digits from the Arabic numeral system.
+
+Enter an option: list
+
+{
+	Username: JOHNNY
+	Account Number: 3333
+	Account Balance: 498.50
+	Account Currency Type: EURO
+}
+
+Enter an option: e logout
+
+You have been logged out.
+
+Type EXIT to close the program or sign in to continue.
+
+
+Enter an option: help
+
+You must log in to use this function!
+To log in, type LOGIN and press enter.
+Once logged in, you can type HELP and press enter to display a list of commands.
+
+Enter an option: login
+
+Please enter the username for this account.
+Username: 
+admin
+
+Please enter the password for this account.
+Password : 
+am dminpass
+
+Enter an option: list
+Normal User   - JEFF:2757:15700795a1bddec6e4f12506c74f191a58be49177a36a9de2255fe1e74494b83
+Normal User   - JOHNNY:9633:d139a2a731d140725c30a2d71dbf6ee82f600fe2a8ead3066f23d0b8eedd6e8e
+Administrator - ADMIN:21468:47660861af8e9b0a91769142121954d08c78978f4e295e89b3ed1e0a60cbe7a0
+
+
+{
+	Username: JEFF
+	Account Number: 1111
+	Account Balance: 500.75
 	Account Currency Type: DOLLAR
 }
+
+{
+	Username: JEFF
+	Account Number: 2222
+	Account Balance: 6000.00
+	Account Currency Type: YEN
+}
+
+{
+	Username: JOHNNY
+	Account Number: 3333
+	Account Balance: 498.50
+	Account Currency Type: EURO
+}
+
+Enter an option: hlep
+
+Invalid input...
+Enter one of the adminOptions and then press enter.
+Input should be one word and only contain letters from the English alphabet.
+For a list of adminOptions type HELP and press enter.
+
+Enter an option: help
+ _______  _______ __________________ _______  _        _______ 
+(  ___  )(  ____ )\__   __/\__   __/(  ___  )( (    /|(  ____ \
+| (   ) || (    )|   ) (      ) (   | (   ) ||  \  ( || (    \/
+| |   | || (____)|   | |      | |   | |   | ||   \ | || (_____ 
+| |   | ||  _____)   | |      | |   | |   | || (\ \) |(_____  )
+| |   | || (         | |      | |   | |   | || | \   |      ) |
+| (___) || )         | |   ___) (___| (___) || )  \  |/\____) |
+(_______)|/          )_(   \_______/(_______)|/    )_)\_______)
+
+ADD         - Add money to an account.
+ADDUSER     - Add a new user account.
+ACCOUNT     - Modify account information.
+CONVERSIONS - show current currency conversion ratios
+CREATE      - Create a new bank account.
+DELETE      - Remove a bank account from database. (CANNOT BE UNDONE)
+DELUSER     - Remove a user account from the database. (CANNOT BE UNDONE)
+EXIT        - Close program.
+HELP        - Display adminOptions.
+LIST        - Print a list of all current accounts.
+MAINT       - Allow currency conversion data to be entered.
+SUBTRACT    - Remove money from an account.
+TRANSFER    - Move funds from one account to another.
+WITHDRAW    - Same function as SUBTRACT
+
+Enter an option: delete
+
+Please enter an account number: 1111
+
+Enter an option: delete
+
+Please enter an account number: 2222
+
+Enter an option: delete
+
+Please enter an account number: 3333
+
+Enter an option: liswt
+
+Invalid input...
+Enter one of the adminOptions and then press enter.
+Input should be one word and only contain letters from the English alphabet.
+For a list of adminOptions type HELP and press enter.
+
+Enter an option: list
+Normal User   - JEFF:2757:15700795a1bddec6e4f12506c74f191a58be49177a36a9de2255fe1e74494b83
+Normal User   - JOHNNY:9633:d139a2a731d140725c30a2d71dbf6ee82f600fe2a8ead3066f23d0b8eedd6e8e
+Administrator - ADMIN:21468:47660861af8e9b0a91769142121954d08c78978f4e295e89b3ed1e0a60cbe7a0
+
+
+Enter an option: deluser
+
+Please enter the username for this account.
+Username: 
+jeff
+
+Enter an option: deluser
+
+Please enter the username for this account.
+Username: 
+johnny
+
+Enter an option: list
+Administrator - ADMIN:21468:47660861af8e9b0a91769142121954d08c78978f4e295e89b3ed1e0a60cbe7a0
+
+
+Enter an option: deluser
+
+Please enter the username for this account.
+Username: 
+admin
+
+Enter an option: list
+
+
+Enter an option: logout
+
+You have been logged out.
+
+Type EXIT to close the program or sign in to continue.
+
+
+Enter an option: list
+
+You must log in to use this function!
+To log in, type LOGIN and press enter.
+Once logged in, you can type HELP and press enter to display a list of commands.
+
+You are not an administrator.
+
+Enter an option: lg ogin
+
+Please enter the username for this account.
+Username: 
+admi
+
+Please enter the password for this account.
+Password : 
+aasdf
+
+Incorrect username or password.
+Please try again.
+
+Enter an option: login
+
+Please enter the username for this account.
+Username: 
+admin
+
+Please enter the password for this account.
+Password : 
+adminpass
+
+Incorrect username or password.
+Please try again.
 
 Enter an option: exit
 ]0;zac@zac-pc:~/workspace/school/ICS355/bankingApp[01;32m[zac@zac-pc[01;37m bankingApp[01;32m]$[00m exit
 exit
 
-Script done on 2017-10-15 21:56:05-1000
+Script done on 2017-11-19 21:12:07-1000
