@@ -9,7 +9,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 public class AdminUserTest {
-    User adminUser = new AdminUser("administrator", "adminpass");
+    User adminUser = new AdminUser("administrator", "adminpass", 0);
     AccountManager accountManager = new AccountManager();
     CurrencyConverter currencyConverter = new CurrencyConverter();
     Scanner scanner = new Scanner(System.in);

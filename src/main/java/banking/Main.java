@@ -1,10 +1,11 @@
 package banking;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws IllegalAccessException {
+    public static void main(String[] args) throws IllegalAccessException, NoSuchAlgorithmException{
         boolean end = false;
         Scanner scanner = new Scanner(System.in);
 
@@ -12,7 +13,7 @@ public class Main {
         OutputMethods outputMethods = new OutputMethods();
         Sanitizer sanitizer = new Sanitizer();
 
-        User user = new AdminUser("root", "toor");
+        User user = new AdminUser("root", "toor", 0);
         user.setAdmin(true);
 
         if(!(accountManager.allUsers(false) == null)) {

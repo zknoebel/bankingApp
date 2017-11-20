@@ -8,7 +8,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 public class NormalUserTest {
-    User normalUser = new NormalUser("dave", "password", 0);
+    User normalUser = new NormalUser("dave", "password", 0, 0);
 
     @Test
     public void constructor() {

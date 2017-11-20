@@ -104,13 +104,16 @@ class AccountManager {
 
     }
 
-    User login(Scanner scanner) {
+    User login(Scanner scanner) throws NoSuchAlgorithmException{
         String username = getUsername(scanner);
         User user = findUser(username);
 
         String password = getPassword(scanner, false);
 
         if (user != null) {
+            password += user.getSalt();
+            password = passwordHash(password);
+
             if (user.getPassword().equals(password)) {
                 return user;
             }
@@ -188,19 +191,24 @@ class AccountManager {
 
     }
 
-    void makeUser(Scanner scanner) {
+    void makeUser(Scanner scanner) throws NoSuchAlgorithmException{
         String username = getUsername(scanner);
         User user = findUser(username);
 
         if (user == null) {
             String password = getPassword(scanner, true);
             boolean isAdmin = getAdminValue(scanner);
+            int salt = makeSalt();
+
+            //salt the password
+            password += salt;
+            password = passwordHash(password);
 
             if (isAdmin) {
-                user = new AdminUser(username, password);
+                user = new AdminUser(username, password, salt);
             } else {
                 int currencyType = getAccountCurrencyType(scanner);
-                user = new NormalUser(username, password, currencyType);
+                user = new NormalUser(username, password, currencyType, salt);
             }
 
             saveUser(user);
@@ -213,7 +221,7 @@ class AccountManager {
 
     int makeSalt() {
         Random random = new Random();
-        return random.nextInt(256) + 1;
+        return random.nextInt(32768);
     }
 
     //takes a plain text password and encrypts it

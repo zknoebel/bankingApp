@@ -37,10 +37,11 @@ public class NormalUser implements User {
         currencyType = 0;
     }
 
-    NormalUser(String username, String password, int currencyType) {
+    NormalUser(String username, String password, int currencyType, int salt) {
         this.username = username;
         this.password = password;
         this.currencyType = currencyType;
+        this.salt = salt;
 
     }
 

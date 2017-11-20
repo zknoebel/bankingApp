@@ -3,6 +3,7 @@ package banking;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -29,9 +30,10 @@ public class AdminUser implements User {
         setAdmin(true);
     }
 
-    AdminUser(String username, String password) {
+    AdminUser(String username, String password, int salt) {
         this.username = username;
         this.password = password;
+        this.salt = salt;
         setAdmin(true);
 
     }
@@ -96,7 +98,7 @@ public class AdminUser implements User {
 
     //todo
     @Override
-    public void adduser(AccountManager accountManager, Scanner scanner) {
+    public void adduser(AccountManager accountManager, Scanner scanner) throws NoSuchAlgorithmException{
         accountManager.makeUser(scanner);
         //add user to database
         //set user's preferred currency to CurrencyType

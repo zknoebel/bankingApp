@@ -1,5 +1,6 @@
 package banking;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,7 +28,7 @@ public interface User {
 
     void add(AccountManager accountManager, Scanner scanner);
 
-    void adduser(AccountManager accountManager, Scanner scanner) throws IllegalAccessException;
+    void adduser(AccountManager accountManager, Scanner scanner) throws IllegalAccessException, NoSuchAlgorithmException;
 
     void account(AccountManager accountManager, Scanner scanner);
 
